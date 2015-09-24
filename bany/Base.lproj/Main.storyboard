@@ -7,7 +7,7 @@
         <!--LoginVC-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="LoginVC" customModule="bany" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="9pv-A4-QxB" customClass="LoginVC" customModule="bany" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -60,6 +60,15 @@
                     <view key="view" contentMode="scaleToFill" id="jqu-z1-rMd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Laq-Xm-zTk">
+                                <rect key="frame" x="119" y="225" width="176" height="95"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="logOutButtonTapped:" destination="OhF-ZP-GeS" eventType="touchUpInside" id="yeS-TI-2qm"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="jhp-u1-kh3"/>

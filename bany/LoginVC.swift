@@ -46,6 +46,8 @@ class LoginVC: UIViewController {
             
             if(FBSDKAccessToken.currentAccessToken() != nil)
             {
+                
+                //다른페이지로 확실히 이동
                 let loginNext = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNextVC") as! LoginNextVC
                 
                 let loginNextNav = UINavigationController(rootViewController: loginNext)
