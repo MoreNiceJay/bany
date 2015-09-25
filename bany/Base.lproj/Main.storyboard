@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--LoginVC-->
+        <!--Item-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController storyboardIdentifier="LoginVC" id="9pv-A4-QxB" customClass="LoginVC" customModule="bany" customModuleProvider="target" sceneMemberID="viewController">
@@ -56,9 +56,6 @@
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="0.34092881940000003" green="0.10527348089999999" blue="0.095788467160000001" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="cTy-SQ-Fc2" kind="presentation" id="m4c-De-qkB"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZUe-Q9-2Tq">
                                 <rect key="frame" x="88" y="247" width="240" height="45"/>
@@ -71,6 +68,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="gGz-Nu-hSm"/>
                     <navigationItem key="navigationItem" id="OwE-5j-tzh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -89,6 +87,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AvatarPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Xp3-1N-KHn">
+                                <rect key="frame" x="20" y="136" width="95" height="80"/>
+                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N4s-3m-b4t">
                                 <rect key="frame" x="128" y="138" width="250" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -123,10 +124,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jc4-Bd-4kf">
-                                <rect key="frame" x="48" y="231" width="60" height="30"/>
-                                <color key="backgroundColor" red="0.94193892050000005" green="0.77868171119999996" blue="0.06731346815" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="20" y="136" width="95" height="80"/>
+                                <color key="backgroundColor" red="0.94193892050000005" green="0.77868171119999996" blue="0.06731346815" alpha="0.28000000000000003" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <state key="normal" title="pic">
+                                <state key="normal">
                                     <color key="titleColor" red="0.34092881940000003" green="0.10527348089999999" blue="0.095788467160000001" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -134,7 +135,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJ2-49-YNN">
-                                <rect key="frame" x="87" y="388" width="240" height="45"/>
+                                <rect key="frame" x="87" y="308" width="240" height="45"/>
                                 <color key="backgroundColor" red="0.94193892050000005" green="0.77868171119999996" blue="0.06731346815" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
                                 <state key="normal" title="Sign Up">
@@ -145,25 +146,26 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="or you can login with" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocG-Uk-hoQ">
-                                <rect key="frame" x="87" y="431" width="118" height="21"/>
+                                <rect key="frame" x="87" y="351" width="118" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.34092881940000003" green="0.34092881940000003" blue="0.34092881940000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sc2-Yp-j2J">
-                                <rect key="frame" x="87" y="447" width="240" height="45"/>
+                                <rect key="frame" x="87" y="367" width="240" height="45"/>
                                 <color key="backgroundColor" red="0.2022690456" green="0.3318374597" blue="0.60860558710000001" alpha="0.88" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <state key="normal" title="Login with Facebook">
                                     <color key="titleColor" red="0.90153488010000005" green="0.90153488010000005" blue="0.90153488010000005" alpha="0.93999999999999995" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="facebookLoginButtonTapped:" destination="wqs-ba-vfO" eventType="touchUpInside" id="rfQ-4q-vGF"/>
+                                </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AvatarPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Xp3-1N-KHn">
-                                <rect key="frame" x="35" y="131" width="85" height="85"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="QeR-qv-kqi"/>
                     <navigationItem key="navigationItem" title="Sign up" id="Lgc-Ly-3Rz"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
@@ -175,7 +177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogD-41-5QU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2130" y="-1326"/>
+            <point key="canvasLocation" x="2245" y="-1342"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="a80-2g-TUh">
@@ -192,7 +194,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCe-8q-wt5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2628" y="-663"/>
+            <point key="canvasLocation" x="2089" y="-563"/>
         </scene>
         <!--Login NextVC-->
         <scene sceneID="0R0-g9-vsB">
@@ -218,10 +220,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="jhp-u1-kh3"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="show" identifier="logOutToLogIn" id="03L-Lx-dZQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Be1-Gs-uWR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3154" y="-663"/>
+            <point key="canvasLocation" x="2623" y="-527"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="wg7-f3-ORb">
@@ -420,11 +425,13 @@
             </objects>
             <point key="canvasLocation" x="687" y="943"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="V3M-Nk-d8u">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cTy-SQ-Fc2" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="uTH-8l-pDL"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="1rY-3Z-7Dg"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tpu-zq-UhE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -437,7 +444,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="042-Lw-KQN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1613" y="-1326"/>
+            <point key="canvasLocation" x="1660" y="-1326"/>
         </scene>
     </scenes>
     <resources>
@@ -445,4 +452,7 @@
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="03L-Lx-dZQ"/>
+    </inferredMetricsTieBreakers>
 </document>

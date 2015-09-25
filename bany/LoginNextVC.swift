@@ -26,14 +26,22 @@ class LoginNextVC: UIViewController {
         
         PFUser.logOutInBackgroundWithBlock { (error:NSError?) -> Void in
             
-            //다른페이지로 확실히 이동
-            let loginVC = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
+            self.performSegueWithIdentifier("logOutToLogIn", sender: self)
+
             
-            let loginVCNav = UINavigationController(rootViewController: loginVC)
             
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            //유저에게 메세지 보내기
             
-            appDelegate.window?.rootViewController = loginVC
+           // var myAlert = UIAlertController(title: "Logged out", message: "Logged out", preferredStyle: UIAlertControllerStyle.Alert)
+            
+           // let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+            
+           // myAlert.addAction(okAction)
+            
+           // self.presentViewController(myAlert, animated: true, completion: nil)
+
+            
+            
         }
         
     }

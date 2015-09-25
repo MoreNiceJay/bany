@@ -115,13 +115,14 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                     user.password = userPassword
                     user.email = userEmail
                     user.setObject(nickname!, forKey: "nickName")
-
-                    
                     
                     if( profilePhotoImageView.image != UIImage(named: "AvatarPlaceholder")) {
                     let scaledImage = self.scaleImageWith(profileIamge!, newSize: CGSizeMake(50, 50))
                     let profileImageData = UIImagePNGRepresentation(scaledImage)
                     let profileImageFile = PFFile(name: "profile.png", data : profileImageData!)
+                        
+                        user.setObject(profileImageFile, forKey: "profile_picture")
+                        
                     }
                     
                     user.signUpInBackgroundWithBlock({ (success, error) -> Void in
@@ -133,14 +134,26 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                             
                         }else {
                         
+                        
+                            //드뎌 성공 알럴트
                             
-                        var myAlert = UIAlertController(title: "Welcome", message: "Succesully signed up!                         Plese go check email verificatoin", preferredStyle: UIAlertControllerStyle.Alert)
+                            var myAlert = UIAlertController(title: "Welcome", message: "Succesully signed up!                         Plese go check email verificatoin", preferredStyle: UIAlertControllerStyle.Alert)
                             
                             let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
                             
                             myAlert.addAction(okAction)
                             
                             self.presentViewController(myAlert, animated: true, completion: nil)
+                            
+                            //개인정보 페이지로 보내기
+                            
+                            let loginNext = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNextVC") as! LoginNextVC
+                            
+                            let loginNextNav = UINavigationController(rootViewController: loginNext)
+                            
+                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                            
+                            appDelegate.window?.rootViewController = loginNext
                         
                         }
                     })
@@ -169,9 +182,49 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         return newImage
     }
     
+    @IBAction func facebookLoginButtonTapped(sender: AnyObject) {
+        
+        PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile", "email"], block: { (user:PFUser?, error:NSError?) -> Void in
+            
+            if(error != nil)
+            {
+                //display an alert message
+                let myAlert = UIAlertController(title: "Alert", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+                
+                let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+                
+                myAlert.addAction(okAction)
+                self.presentViewController(myAlert, animated: true, completion: nil)
+                
+                return
+            }
+            
+            print(user)
+            print("Current user token = \(FBSDKAccessToken.currentAccessToken().tokenString)")
+            print("Current user id = \(FBSDKAccessToken.currentAccessToken().userID)")
+            
+            if(FBSDKAccessToken.currentAccessToken() != nil)
+            {
+                
+                //다른페이지로 확실히 이동
+                let loginNext = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNextVC") as! LoginNextVC
+                
+                let loginNextNav = UINavigationController(rootViewController: loginNext)
+                
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                
+                appDelegate.window?.rootViewController = loginNext
+            }
+            
+        })
+        
+    }
+
+        
+    }
     
     
-}
+
 
 
 /*
