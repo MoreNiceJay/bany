@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class LoginNextVC: UIViewController {
+class UserInfo: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +24,14 @@ class LoginNextVC: UIViewController {
     
     @IBAction func logOutButtonTapped(sender: AnyObject) {
         
-        PFUser.logOutInBackgroundWithBlock { (error:NSError?) -> Void in
-            
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("user_name")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+        PFUser.logOutInBackground()
             self.performSegueWithIdentifier("logOutToLogin", sender: self)
-
+            
+            
+            
             
             
             //유저에게 메세지 보내기
@@ -41,8 +45,6 @@ class LoginNextVC: UIViewController {
            // self.presentViewController(myAlert, animated: true, completion: nil)
 
             
-            
-        }
         
     }
 

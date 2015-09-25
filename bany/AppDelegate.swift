@@ -34,7 +34,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
         
+        //자동로그인인데 아직 실행이 안됨 예상으론 토큰인거 같음
+        let userName : String? = NSUserDefaults.standardUserDefaults().stringForKey("username")
+        
+        print(userName)
+        
+        if(userName != nil)
+        {
+            let mainStroyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let mainPage: MainVC = mainStroyBoard.instantiateViewControllerWithIdentifier("MainVC") as! MainVC
+            
+            let mainNav = UINavigationController(rootViewController : mainPage)
+            
+            let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            appDelegate.window?.rootViewController = mainNav
+        }
+        
+        
         return true
+        
+        
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {

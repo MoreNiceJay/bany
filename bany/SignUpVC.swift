@@ -218,7 +218,6 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             if(FBSDKAccessToken.currentAccessToken() != nil)
             {
                 self.stopActivityIndicator()
-                //로긴넥스트로  확실히 이동
                 self.performSegueWithIdentifier("11", sender: self)
             }
             
@@ -243,7 +242,13 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     myAlert.addAction(okAction)
     self.presentViewController(myAlert, animated: true, completion: nil)
     
+    }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        profilePhotoImageView.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordConfirmationTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
     }
 
 

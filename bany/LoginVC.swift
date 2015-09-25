@@ -64,6 +64,7 @@ class LoginVC: UIViewController {
                 //let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 
                 //appDelegate.window?.rootViewController = loginNext
+            
             }
             
         })
@@ -82,22 +83,27 @@ class LoginVC: UIViewController {
         if (username?.utf16.count < 7 || password?.utf16.count < 6) {
            
            
-            self.alert("Invalid", message : "sername must be greater then 4 and Password must be a greater then 5.")
-        
+            self.alert("Invalid", message : "email and password are not matched")
+            self.stopActivityIndicator()
+            
         } else {
-            self.actInd.startAnimating()
+            
             
             PFUser.logInWithUsernameInBackground(username!, password: password!, block: { (user, error) -> Void in
                 self.actInd.stopAnimating()
                 
                 if((user) != nil) {
+                     print(user)
                     
-                    self.alert("Success", message : "Logged In")
+                         self.performSegueWithIdentifier("loginToMain", sender: self)
+                        self.alert("Success", message : "Logged In")
+                    
+                    self.stopActivityIndicator()
                     
                 }else {
                     
-                    self.alert("Error", message : (error?.localizedDescription)!)
-                    
+                    self.alert("login failed", message : (error?.localizedDescription)!)
+                    self.stopActivityIndicator()
                     
                 }
                 
@@ -124,7 +130,11 @@ class LoginVC: UIViewController {
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
         myAlert.addAction(okAction)
         self.presentViewController(myAlert, animated: true, completion: nil)
-        
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        usernameField.resignFirstResponder()
+        passwordField.resignFirstResponder()
         
     }
 

@@ -36,9 +36,11 @@
 		696728D51BB37AA20012723B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728D21BB37AA20012723B /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
 		696728D61BB37AA20012723B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728D31BB37AA20012723B /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
 		696728D71BB37AA20012723B /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728D41BB37AA20012723B /* FBSDKShareKit.framework */; settings = {ASSET_TAGS = (); }; };
-		696728D91BB394D20012723B /* LoginNextVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696728D81BB394D20012723B /* LoginNextVC.swift */; settings = {ASSET_TAGS = (); }; };
+		696728D91BB394D20012723B /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696728D81BB394D20012723B /* UserInfo.swift */; settings = {ASSET_TAGS = (); }; };
 		69BE912B1BB47AC8007E7010 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE912A1BB47AC8007E7010 /* SignUpVC.swift */; settings = {ASSET_TAGS = (); }; };
 		69BE912F1BB500A5007E7010 /* MoreInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE912E1BB500A5007E7010 /* MoreInfoVC.swift */; settings = {ASSET_TAGS = (); }; };
+		69BE91311BB5FB90007E7010 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE91301BB5FB90007E7010 /* MainVC.swift */; settings = {ASSET_TAGS = (); }; };
+		69BE91331BB60502007E7010 /* PasswordRestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE91321BB60502007E7010 /* PasswordRestVC.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,9 +96,11 @@
 		696728D21BB37AA20012723B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		696728D31BB37AA20012723B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		696728D41BB37AA20012723B /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
-		696728D81BB394D20012723B /* LoginNextVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNextVC.swift; sourceTree = "<group>"; };
+		696728D81BB394D20012723B /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		69BE912A1BB47AC8007E7010 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		69BE912E1BB500A5007E7010 /* MoreInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoVC.swift; sourceTree = "<group>"; };
+		69BE91301BB5FB90007E7010 /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		69BE91321BB60502007E7010 /* PasswordRestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordRestVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,8 +177,10 @@
 				6967287D1BB36CD90012723B /* LoginVC.swift */,
 				69BE912A1BB47AC8007E7010 /* SignUpVC.swift */,
 				69BE912E1BB500A5007E7010 /* MoreInfoVC.swift */,
-				696728D81BB394D20012723B /* LoginNextVC.swift */,
+				69BE91301BB5FB90007E7010 /* MainVC.swift */,
+				696728D81BB394D20012723B /* UserInfo.swift */,
 				6967287F1BB36CD90012723B /* SecondViewController.swift */,
+				69BE91321BB60502007E7010 /* PasswordRestVC.swift */,
 				696728811BB36CD90012723B /* Main.storyboard */,
 				696728841BB36CD90012723B /* Assets.xcassets */,
 				696728861BB36CD90012723B /* LaunchScreen.storyboard */,
@@ -360,10 +366,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				696728801BB36CD90012723B /* SecondViewController.swift in Sources */,
-				696728D91BB394D20012723B /* LoginNextVC.swift in Sources */,
+				696728D91BB394D20012723B /* UserInfo.swift in Sources */,
 				6967287C1BB36CD90012723B /* AppDelegate.swift in Sources */,
 				69BE912B1BB47AC8007E7010 /* SignUpVC.swift in Sources */,
 				6967287E1BB36CD90012723B /* LoginVC.swift in Sources */,
+				69BE91311BB5FB90007E7010 /* MainVC.swift in Sources */,
+				69BE91331BB60502007E7010 /* PasswordRestVC.swift in Sources */,
 				69BE912F1BB500A5007E7010 /* MoreInfoVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
