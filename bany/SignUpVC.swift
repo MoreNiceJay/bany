@@ -17,17 +17,22 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordConfirmationTextField: UITextField!
-    var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0, 0, 150, 150)) as UIActivityIndicatorView
+    
+    @IBOutlet weak var actInd: UIActivityIndicatorView!
+    //var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0, 0, 150, 150)) as UIActivityIndicatorView
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.actInd.center = self.view.center
-        self.actInd.hidesWhenStopped = true
-        self.actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
         
-        view.addSubview(self.actInd)
+    self.actInd.hidden = true
+        
+
+       // self.actInd.center = self.view.center
+       // self.actInd.hidesWhenStopped = true
+       // self.actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        
+       // view.addSubview(self.actInd)
         // Do any additional setup after loading the view.
     }
 
@@ -38,11 +43,15 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     @IBAction func selectProfilePhotoButtonTapped(sender: AnyObject) {
         
+        startActivityIndicator()
+        
         let myPickerController = UIImagePickerController()
         myPickerController.delegate = self
         myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         
         self.presentViewController(myPickerController, animated: true, completion: nil)
+        
+        stopActivityIndicator()
         
     }
 
@@ -59,9 +68,8 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     @IBAction func signUpButtonTapped(sender: AnyObject) {
         
-        self.actInd.startAnimating()
-        self.actInd.hidden = false
-    
+       
+        startActivityIndicator()
         
         let userEmail = emailTextField.text
         let userPassword = passwordTextField.text
@@ -73,9 +81,10 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         if (userEmail!.isEmpty || userPassword!.isEmpty || userPasswordConfirm!.isEmpty)
         {
             
-            let alert = UIAlertView(title: "Invalid", message: "All fields must be filled", delegate: self, cancelButtonTitle: "Ok")
             
-            alert.show()
+            self.alert("Invalid", message : "All fields must be filled")
+       
+            stopActivityIndicator()
 
         
         }else {
@@ -84,15 +93,18 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             //이메일과 패스워드 길이 확인
             if (userEmail?.utf16.count < 7) {
                 
-                let alert = UIAlertView(title: "Invalid", message: "email address must be valid ", delegate: self, cancelButtonTitle: "OK")
                 
-                alert.show()
+                self.alert("Invalid", message : "email address must be valid")
+                
+                stopActivityIndicator()
             }else if (userPassword?.utf16.count < 6){
                 
                 //이메일이 8자리가 안될경우
+               
                 
-                let alert = UIAlertView(title: "Invalid", message: "Password must be more than 6 characters", delegate: self, cancelButtonTitle: "OK")
-                alert.show()
+                self.alert("Invalid", message : "Password must be more than 6 characters")
+                
+                stopActivityIndicator()
 
             } else {
                 //굿투고
@@ -100,10 +112,9 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 //패스워드 두번 체크
                 if(userPassword != userPasswordConfirm)
                 {
-                    let alert = UIAlertView(title: "Invalid", message: "Password are not mached", delegate: self, cancelButtonTitle: "Ok")
+                    self.alert("Invalid", message : "Password are not mached")
                     
-                    alert.show()
-                    
+                    stopActivityIndicator()
                 
                 }else {
                     //굿투 고
@@ -127,49 +138,44 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                     
                     user.signUpInBackgroundWithBlock({ (success, error) -> Void in
                         if(!success)
-                        {
-                            let alert = UIAlertView(title: "Invalid", message: error?.localizedDescription, delegate: self, cancelButtonTitle: "Ok")
+                        { //저장 안될때
                             
-                            alert.show()
+                            let myAlert = UIAlertController(title: "Invalid", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+                            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+                            myAlert.addAction(okAction)
+                            self.presentViewController(myAlert, animated: true, completion: nil)
+                            self.alert("Invalid", message : (error?.localizedDescription)!)
+                            
+                            self.stopActivityIndicator()
                             
                         }else {
                         
+                            
+                          
                         
                             //드뎌 성공 알럴트
                             
-                            var myAlert = UIAlertController(title: "Welcome", message: "Succesully signed up!                         Plese go check email verificatoin", preferredStyle: UIAlertControllerStyle.Alert)
                             
-                            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
                             
-                            myAlert.addAction(okAction)
-                            
-                            self.presentViewController(myAlert, animated: true, completion: nil)
+                            self.performSegueWithIdentifier("11", sender: self)
+                            self.alert("Welcome", message : "Succesully signed up!                         please go check email verificatoin")
                             
                             //개인정보 페이지로 보내기
+                            self.stopActivityIndicator()
                             
-                            let loginNext = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNextVC") as! LoginNextVC
-                            
-                            let loginNextNav = UINavigationController(rootViewController: loginNext)
-                            
-                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                            
-                            appDelegate.window?.rootViewController = loginNext
                         
                         }
                     })
                     
                     
-                
                     }
-            }
-                        }
-            
-        self.actInd.stopAnimating()
-        self.actInd.hidesWhenStopped = true
+               
 
-        
+            }
             
         }
+       
+    }
     
 
     func scaleImageWith(image : UIImage, newSize : CGSize) -> UIImage {
@@ -184,46 +190,63 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     @IBAction func facebookLoginButtonTapped(sender: AnyObject) {
         
+        startActivityIndicator()
+        
         PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile", "email"], block: { (user:PFUser?, error:NSError?) -> Void in
             
             if(error != nil)
             {
                 //display an alert message
-                let myAlert = UIAlertController(title: "Alert", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
                 
-                let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
                 
-                myAlert.addAction(okAction)
-                self.presentViewController(myAlert, animated: true, completion: nil)
+                self.alert("Alert", message : (error?.localizedDescription)!)
                 
                 return
+                
+                    self.stopActivityIndicator()
+
             }
             
             print(user)
             print("Current user token = \(FBSDKAccessToken.currentAccessToken().tokenString)")
             print("Current user id = \(FBSDKAccessToken.currentAccessToken().userID)")
             
+            
+            
+            
+            
             if(FBSDKAccessToken.currentAccessToken() != nil)
             {
-                
-                //다른페이지로 확실히 이동
-                let loginNext = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNextVC") as! LoginNextVC
-                
-                let loginNextNav = UINavigationController(rootViewController: loginNext)
-                
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                
-                appDelegate.window?.rootViewController = loginNext
+                self.stopActivityIndicator()
+                //로긴넥스트로  확실히 이동
+                self.performSegueWithIdentifier("11", sender: self)
             }
             
         })
         
     }
-
-        
+    func startActivityIndicator() {
+    self.actInd.hidden = false
+    self.actInd.startAnimating()
+    
     }
     
+    func stopActivityIndicator() {
+    self.actInd.hidden = true
+    self.actInd.stopAnimating()
+    }
     
+    func alert(title : String, message : String) {
+    
+    let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+    myAlert.addAction(okAction)
+    self.presentViewController(myAlert, animated: true, completion: nil)
+    
+    
+    }
+
+
 
 
 
@@ -239,4 +262,4 @@ myAlert.addAction(okAction)
 self.presentViewController(myAlert, animated: true, completion: nil)
 
 */
-
+}

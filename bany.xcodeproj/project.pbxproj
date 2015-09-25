@@ -38,6 +38,7 @@
 		696728D71BB37AA20012723B /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728D41BB37AA20012723B /* FBSDKShareKit.framework */; settings = {ASSET_TAGS = (); }; };
 		696728D91BB394D20012723B /* LoginNextVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696728D81BB394D20012723B /* LoginNextVC.swift */; settings = {ASSET_TAGS = (); }; };
 		69BE912B1BB47AC8007E7010 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE912A1BB47AC8007E7010 /* SignUpVC.swift */; settings = {ASSET_TAGS = (); }; };
+		69BE912F1BB500A5007E7010 /* MoreInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE912E1BB500A5007E7010 /* MoreInfoVC.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		696728D41BB37AA20012723B /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		696728D81BB394D20012723B /* LoginNextVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNextVC.swift; sourceTree = "<group>"; };
 		69BE912A1BB47AC8007E7010 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		69BE912E1BB500A5007E7010 /* MoreInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				6967287B1BB36CD90012723B /* AppDelegate.swift */,
 				6967287D1BB36CD90012723B /* LoginVC.swift */,
 				69BE912A1BB47AC8007E7010 /* SignUpVC.swift */,
+				69BE912E1BB500A5007E7010 /* MoreInfoVC.swift */,
 				696728D81BB394D20012723B /* LoginNextVC.swift */,
 				6967287F1BB36CD90012723B /* SecondViewController.swift */,
 				696728811BB36CD90012723B /* Main.storyboard */,
@@ -361,6 +364,7 @@
 				6967287C1BB36CD90012723B /* AppDelegate.swift in Sources */,
 				69BE912B1BB47AC8007E7010 /* SignUpVC.swift in Sources */,
 				6967287E1BB36CD90012723B /* LoginVC.swift in Sources */,
+				69BE912F1BB500A5007E7010 /* MoreInfoVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,7 +26,7 @@ class LoginNextVC: UIViewController {
         
         PFUser.logOutInBackgroundWithBlock { (error:NSError?) -> Void in
             
-            self.performSegueWithIdentifier("logOutToLogIn", sender: self)
+            self.performSegueWithIdentifier("logOutToLogin", sender: self)
 
             
             
