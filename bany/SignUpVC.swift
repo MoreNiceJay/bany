@@ -11,9 +11,9 @@ import Parse
 import FBSDKCoreKit
 import ParseFacebookUtilsV4
 
-class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SignUpVC: UIViewController {
 
-    @IBOutlet weak var profilePhotoImageView: UIImageView!
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordConfirmationTextField: UITextField!
@@ -41,31 +41,10 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func selectProfilePhotoButtonTapped(sender: AnyObject) {
-        
-        startActivityIndicator()
-        
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self
-        myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        
-        self.presentViewController(myPickerController, animated: true, completion: nil)
-        
-        stopActivityIndicator()
-        
-    }
+            
+    
 
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        profilePhotoImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        
-    }
-    
     @IBAction func signUpButtonTapped(sender: AnyObject) {
         
        
@@ -76,7 +55,7 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         let userPasswordConfirm = passwordConfirmationTextField.text
         
         let nickname = emailTextField.text
-        let profileIamge = profilePhotoImageView.image
+        
         //빈칸 확인
         if (userEmail!.isEmpty || userPassword!.isEmpty || userPasswordConfirm!.isEmpty)
         {
@@ -120,6 +99,7 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                     //굿투 고
                     
                     
+                    
                     //파스저장
                     let user = PFUser()
                     user.username = userEmail
@@ -127,14 +107,6 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                     user.email = userEmail
                     user.setObject(nickname!, forKey: "nickName")
                     
-                    if( profilePhotoImageView.image != UIImage(named: "AvatarPlaceholder")) {
-                    let scaledImage = self.scaleImageWith(profileIamge!, newSize: CGSizeMake(50, 50))
-                    let profileImageData = UIImagePNGRepresentation(scaledImage)
-                    let profileImageFile = PFFile(name: "profile.png", data : profileImageData!)
-                        
-                        user.setObject(profileImageFile, forKey: "profile_picture")
-                        
-                    }
                     
                     user.signUpInBackgroundWithBlock({ (success, error) -> Void in
                         if(!success)
@@ -245,7 +217,7 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        profilePhotoImageView.resignFirstResponder()
+      
         emailTextField.resignFirstResponder()
         passwordConfirmationTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()

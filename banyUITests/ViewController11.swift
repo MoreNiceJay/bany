@@ -1,25 +1,29 @@
 //
-//  SecondViewController.swift
+//  ViewController11.swift
 //  bany
 //
-//  Created by Lee Janghyup on 9/23/15.
+//  Created by Lee Janghyup on 9/28/15.
 //  Copyright © 2015 jay. All rights reserved.
 //
 
 import UIKit
+import Parse
+class ViewController11: UIViewController {
 
-class SecondViewController: UIViewController {
-
+    @IBOutlet weak var label2: UILabel!
+    @IBOutlet weak var label1: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
+    
 }
-

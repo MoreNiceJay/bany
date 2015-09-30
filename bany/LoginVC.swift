@@ -85,7 +85,7 @@ class LoginVC: UIViewController {
            
             self.alert("Invalid", message : "email and password are not matched")
             self.stopActivityIndicator()
-            
+            self.passwordField.text = ""
         } else {
             
             
@@ -99,12 +99,12 @@ class LoginVC: UIViewController {
                         self.alert("Success", message : "Logged In")
                     
                     self.stopActivityIndicator()
-                    
+                    self.passwordField.text = ""
                 }else {
                     
                     self.alert("login failed", message : (error?.localizedDescription)!)
                     self.stopActivityIndicator()
-                    
+                    self.passwordField.text = ""
                 }
                 
             })
