@@ -43,7 +43,7 @@ class UserInfoVC: UIViewController {
         })
         */
         //닉네임
-        if let nickname = (PFUser.currentUser()?.objectForKey("userName") as? String){
+        if let nickname = (PFUser.currentUser()?.objectForKey("nickName") as? String){
             self.nickNameLabel.text = nickname
             
         }else{

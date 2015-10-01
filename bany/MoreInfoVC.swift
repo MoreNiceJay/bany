@@ -17,6 +17,9 @@ class MoreInfoVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     @IBOutlet weak var lastNameTextFiled: UITextField!
     @IBOutlet weak var firstNameTextFiled: UITextField!
     @IBOutlet weak var profilePhotoImageView: UIImageView!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var preferPhoneNumberSwitch: UISwitch!
+    @IBOutlet weak var preferEmailSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +65,8 @@ class MoreInfoVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         let firstName =  firstNameTextFiled.text!
         let nickName =  nickNameTextField.text!
         let profileIamge = profilePhotoImageView.image!
+        let preferPhoneNumber = phoneNumberTextField.text!
+        let preferEmailAddress = emailTextField.text!
         
         
         
@@ -72,6 +77,17 @@ class MoreInfoVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         user.setObject(lastName, forKey: "lastName")
         user.setObject(nickName, forKey: "nickName")
         user.setObject(phoneNumber, forKey: "phoneNumber")
+        
+        //저장전 맞는 형식이 저장 됬나 확인 해야함.
+        
+        if (preferPhoneNumberSwitch.on == true){
+            user.setObject(preferPhoneNumber, forKey: "preferPhoneNumber")
+        }
+        if (preferEmailSwitch.on == true){
+            user.setObject(preferEmailAddress, forKey: "preferEmail")
+        }
+        
+        
         //닉네임 있는지 체크 파스 쿼리 던져야함
         if( profilePhotoImageView.image != UIImage(named: "AvatarPlaceholder")) {
             let scaledImage = self.scaleImageWith(profileIamge, newSize: CGSizeMake(50, 50))

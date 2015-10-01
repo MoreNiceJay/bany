@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         {
             let mainStroyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             
-            let mainPage: MainVC = mainStroyBoard.instantiateViewControllerWithIdentifier("MainVC") as! MainVC
+            let mainPage: MainTVC = mainStroyBoard.instantiateViewControllerWithIdentifier("MainTVC") as! MainTVC
             
             let mainNav = UINavigationController(rootViewController : mainPage)
             
