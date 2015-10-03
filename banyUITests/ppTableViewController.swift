@@ -63,7 +63,7 @@ class ppTableViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        var upcoming : addTableViewController = segue.destinationViewController as! addTableViewController
+        let upcoming : addTableViewController = segue.destinationViewController as! addTableViewController
         if (segue.identifier == "editNote") {
             let indexPath = self.tableView.indexPathForSelectedRow
             var object: PFObject = self.noteObjects.objectAtIndex(indexPath!.row) as! PFObject

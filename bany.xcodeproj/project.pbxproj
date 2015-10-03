@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69090AAA1BBDD81000C95F56 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69090AA91BBDD81000C95F56 /* DetailVC.swift */; settings = {ASSET_TAGS = (); }; };
+		69090AAC1BBE153500C95F56 /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69090AAB1BBE153500C95F56 /* CommentVC.swift */; settings = {ASSET_TAGS = (); }; };
 		690C23FE1BBC6D8400245554 /* MainTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690C23FD1BBC6D8400245554 /* MainTVCE.swift */; settings = {ASSET_TAGS = (); }; };
 		694534CF1BBB8BB700D3B469 /* UploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694534CE1BBB8BB700D3B469 /* UploadVC.swift */; settings = {ASSET_TAGS = (); }; };
 		6967287C1BB36CD90012723B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6967287B1BB36CD90012723B /* AppDelegate.swift */; };
@@ -69,6 +71,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		69090AA91BBDD81000C95F56 /* DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
+		69090AAB1BBE153500C95F56 /* CommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentVC.swift; sourceTree = "<group>"; };
 		690C23FD1BBC6D8400245554 /* MainTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTVCE.swift; sourceTree = "<group>"; };
 		694534CE1BBB8BB700D3B469 /* UploadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadVC.swift; sourceTree = "<group>"; };
 		696728781BB36CD90012723B /* bany.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bany.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +174,8 @@
 			children = (
 				69BE91301BB5FB90007E7010 /* MainTVC.swift */,
 				690C23FD1BBC6D8400245554 /* MainTVCE.swift */,
+				69090AA91BBDD81000C95F56 /* DetailVC.swift */,
+				69090AAB1BBE153500C95F56 /* CommentVC.swift */,
 			);
 			name = MainHome;
 			sourceTree = "<group>";
@@ -434,6 +440,7 @@
 				69BE914B1BB9FBE8007E7010 /* ViewController22.swift in Sources */,
 				69BE913F1BB9D894007E7010 /* addTableViewController.swift in Sources */,
 				696728801BB36CD90012723B /* UploadPhoto.swift in Sources */,
+				69090AAA1BBDD81000C95F56 /* DetailVC.swift in Sources */,
 				69BE913D1BB9D7A3007E7010 /* ppTableViewController.swift in Sources */,
 				696728D91BB394D20012723B /* UserInfoVC.swift in Sources */,
 				6967287C1BB36CD90012723B /* AppDelegate.swift in Sources */,
@@ -441,6 +448,7 @@
 				69BE912B1BB47AC8007E7010 /* SignUpVC.swift in Sources */,
 				6967287E1BB36CD90012723B /* LoginVC.swift in Sources */,
 				69BE91311BB5FB90007E7010 /* MainTVC.swift in Sources */,
+				69090AAC1BBE153500C95F56 /* CommentVC.swift in Sources */,
 				69BE91351BB859D5007E7010 /* PasswordFindVC.swift in Sources */,
 				69BE91331BB60502007E7010 /* PasswordRestVC.swift in Sources */,
 				69BE912F1BB500A5007E7010 /* MoreInfoVC.swift in Sources */,

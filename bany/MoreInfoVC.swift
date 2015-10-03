@@ -39,7 +39,8 @@ class MoreInfoVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         let myPickerController = UIImagePickerController()
         myPickerController.delegate = self
         myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        
+        myPickerController.dismissViewControllerAnimated(true, completion: nil)
+
         self.presentViewController(myPickerController, animated: true, completion: nil)
         
         stopActivityIndicator()
@@ -53,8 +54,10 @@ class MoreInfoVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
+
+    
     
     @IBAction func sendbuttonTapped(sender: AnyObject) {
         

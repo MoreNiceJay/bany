@@ -21,17 +21,19 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
 
     @IBAction func addPicButtonTapped(sender: AnyObject) {
-        startActivityIndicator()
         
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self
-        myPickerController.sourceType = UIImagePickerControllerSourceType.Camera
-        
-        self.presentViewController(myPickerController, animated: true, completion: nil)
-        
+                startActivityIndicator()
+
+        photoCaptureButtonAction()
         stopActivityIndicator()
+        
+        
+        
+        
         
     }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -42,7 +44,9 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        self.dismissViewControllerAnimated(true, completion: nil)
             }
+    
     
     
     func startActivityIndicator() {
@@ -71,7 +75,88 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
             destViewController.uploadPhotoImageView = uploadPhotoImageView
         }
     }
+    
+    func photoCaptureButtonAction() {
+        let cameraDeviceAvailable: Bool = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        let photoLibraryAvailable: Bool = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)
+        
+        if cameraDeviceAvailable && photoLibraryAvailable {
+            let actionController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            
+            let takePhotoAction = UIAlertAction(title: NSLocalizedString("Take Photo", comment: ""), style: UIAlertActionStyle.Default, handler: { _ in self.shouldStartCameraController() })
+            let choosePhotoAction = UIAlertAction(title: NSLocalizedString("Choose Photo", comment: ""), style: UIAlertActionStyle.Default, handler: { _ in self.shouldStartPhotoLibraryPickerController() })
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+            
+            actionController.addAction(takePhotoAction)
+            actionController.addAction(choosePhotoAction)
+            actionController.addAction(cancelAction)
+            
+            self.presentViewController(actionController, animated: true, completion: nil)
+        }
+    }
+    func shouldStartCameraController() -> Bool {
+        
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) == false {
+            return false
+        }
+        
+        let cameraUI = UIImagePickerController()
+        
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        {                cameraUI.sourceType = UIImagePickerControllerSourceType.Camera
+                
+                if UIImagePickerController.isCameraDeviceAvailable(UIImagePickerControllerCameraDevice.Rear) {
+                    cameraUI.cameraDevice = UIImagePickerControllerCameraDevice.Rear
+                } else if UIImagePickerController.isCameraDeviceAvailable(UIImagePickerControllerCameraDevice.Front) {
+                    cameraUI.cameraDevice = UIImagePickerControllerCameraDevice.Front
+                }
+        } else {
+            return false
+        }
+        
+        cameraUI.allowsEditing = true
+        cameraUI.showsCameraControls = true
+        cameraUI.delegate = self
+        
+        self.presentViewController(cameraUI, animated: true, completion: nil)
+        
+        return true
+    }
+    func shouldStartPhotoLibraryPickerController() -> Bool {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) == false
+            && UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum) == false {
+                return false
+        }
+        
+        let cameraUI = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)
+        {
+            
+                cameraUI.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            
+                
+        } else if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum)
+             {
+                cameraUI.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+                
+                
+        } else {
+            return false
+        }
+        
+        cameraUI.allowsEditing = true
+        cameraUI.delegate = self
+        
+        self.presentViewController(cameraUI, animated: true, completion: nil)
+        
+        return true
+    }
 
 
+
+
+
+    
+    
 }
 

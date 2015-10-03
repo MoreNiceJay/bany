@@ -11,7 +11,6 @@ import Parse
 
 class MainTVC: UITableViewController {
     
-    @IBOutlet weak var actInd: UIActivityIndicatorView!
     @IBOutlet weak var categorySegment: UISegmentedControl!
     var mainPhoto = [PFFile]()
     var profilePhoto = [PFFile]()
@@ -21,36 +20,19 @@ class MainTVC: UITableViewController {
     var price = [String]()
     var viewed = [String]()
     var saved = [String]()
-    var objectId = String()
+    
+    var objectArray = [String]()
+   // var objectId = String()
+    var good = String()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         bringAllDatafromParse()
-        /*
-            if (categorySegment.selectedSegmentIndex == 0)  {
-                
-                self.tableView.reloadData()
-                print(self.titleText)
             }
-            if (categorySegment.selectedSegmentIndex == 1)  {
-                bringCategoryDataFromParse("1")
-                self.tableView.reloadData()
-                print(self.titleText)
-            }
-            if (categorySegment.selectedSegmentIndex == 2)  {
-                bringCategoryDataFromParse("2")
-                self.tableView.reloadData()
-                print(self.titleText)
-            }
-            if (categorySegment.selectedSegmentIndex == 3)  {
-                bringCategoryDataFromParse("3")
-                self.tableView.reloadData()
-                print(self.titleText)
-            }
-
-    */
-    }
     
     
     @IBAction func segmentTapped(sender: AnyObject) {
@@ -63,19 +45,21 @@ class MainTVC: UITableViewController {
         nickName = []
         time = []
         price = []
+        objectArray = []
+        good = String()
 
         switch categorySegment.selectedSegmentIndex {
         case 0 :
             bringAllDatafromParse()
             
         case 1 :
-            bringCategoryDataFromParse("1")
+            bringCategoryDataFromParse(1)
             
         case 2 :
-            bringCategoryDataFromParse("2")
+            bringCategoryDataFromParse(2)
             
         case 3 :
-            bringCategoryDataFromParse("3")
+            bringCategoryDataFromParse(3)
             
         default :
             bringAllDatafromParse()
@@ -115,7 +99,7 @@ class MainTVC: UITableViewController {
         // 닉네임
         cell.nickNameLabel.text = nickName[indexPath.row]
         // 시간
-        //cell.timeLabel.text = String(time[indexPath.row])
+        cell.timeLabel.text = String(time[indexPath.row])
         // 가격
         cell.priceLable.text = price[indexPath.row]
         // 뷰
@@ -180,29 +164,43 @@ class MainTVC: UITableViewController {
     }
     */
     func bringAllDatafromParse() {
+        //activityIndicatorOn()
         
         let query = PFQuery(className: "Posts")
+        
         query.findObjectsInBackgroundWithBlock { (posts, error) -> Void in
             if error == nil {
                 
                 for post in posts! {
+                    
+                    
+                    
+                   
+
+                    
                     self.titleText.append(post["titleText"] as! String)
                     self.nickName.append(post["userNickName"] as! String)
-                    //self.time.append(post["createdAt"] as! String)
+                    //시간
+                    let dateFormatter:NSDateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+                    self.time.append(dateFormatter.stringFromDate(post.createdAt!))
                     self.price.append(post["priceText"] as! String)
+                    
+                    self.objectArray.append((post.objectId)! as String!)
+                    
                     //self.viewed.append(post["view"] as! Int)
                     //  self.saved.append(post["like"] as! Int)
                     
                     self.mainPhoto.append(post["imageFile"] as! PFFile)
                     //self.profilePhoto.append(post["profilePhoto"] as! PFFile)
-                    print(self.titleText)
+                    
                     self.tableView.reloadData()
                 }
             }
         }
         
     }
-    func bringCategoryDataFromParse(category : String) {
+    func bringCategoryDataFromParse(category : Int) {
         
         
         let query = PFQuery(className: "Posts")
@@ -214,62 +212,66 @@ class MainTVC: UITableViewController {
             if (error == nil) {
                 //에러없는 경우
                 for post in posts! {
+
+                    //시간
+                    let dateFormatter:NSDateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+                    self.time.append(dateFormatter.stringFromDate(post.createdAt!))
+
                     self.titleText.append(post["titleText"] as! String)
                     self.nickName.append(post["userNickName"] as! String)
                     self.price.append(post["priceText"] as! String)
                     self.mainPhoto.append(post["imageFile"] as! PFFile)
+                    self.objectArray.append((post.objectId)! as String!)
+                    
                     self.tableView.reloadData()
 
         }
-    }
-}
-}
-
-/*
-    func bringCategoryDatafromParse(category : Int) {
-        activityIndicatorOn()
-        
-        let query = PFQuery(className: "Posts")
-        
-        query.whereKey("category", equalTo: category)
-        query.orderByAscending("createdAt")
-        query.findObjectsInBackgroundWithBlock {
-            (comments: [AnyObject]?, error: NSError?) -> Void in
-            
-            // comments now contains the comments for myPost
-            
-            if error == nil {
-                //에러없는 경우
-                for post in comments! {
-                    self.titleText.append(post["titleText"] as! String)
-                    self.nickName.append(post["userNickName"] as! String)
-                    //self.time.append(post["createdAt"] as! String)
-                    self.price.append(post["priceText"] as! String)
-                    //self.viewed.append(post["view"] as! Int)
-                    //  self.saved.append(post["like"] as! Int)
-                    
-                    self.mainPhoto.append(post["imageFile"] as! PFFile)
-                    //self.profilePhoto.append(post["profilePhoto"] as! PFFile)
-                    print(self.titleText)
-                    self.tableView.reloadData()
-                    
-                }
             }else{
                 print(error)
             }
-            
-            self.activityIndicatorOff()
-        }
+
+         //   self.activityIndicatorOff()
+
+}
+}
+
+    
+override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+if (segue.identifier == "mainToComment") {
+
+
+let destViewController : CommentVC = segue.destinationViewController as! CommentVC
+destViewController.parentObjectID = good
+
     }
     
-    func activityIndicatorOn() {
-        actInd.hidden = false
-        actInd.startAnimating()
+    if (segue.identifier == "mainToDetail") {
+        
+        let selectedRowIndex = self.tableView.indexPathForSelectedRow
+        let destViewController : DetailVC = segue.destinationViewController as! DetailVC
+        destViewController.parentObjectID = objectArray[(selectedRowIndex?.row)!]
+    
+
+}
+}
+
+    @IBAction func commentButtonTapped(sender: AnyObject) {
+        
+        let button = sender as! UIButton
+        let view = button.superview!
+        let cell = view.superview as! MainTVCE
+        let indexPath = tableView.indexPathForCell(cell)
+        good = objectArray[(indexPath?.row)!]
+        
+        
+        
+
+        
+        
+        self.performSegueWithIdentifier("mainToComment", sender: self)
     }
-    func activityIndicatorOff() {
-        self.actInd.hidden = true
-        self.actInd.stopAnimating()
-    }
-*/
+
 
 }

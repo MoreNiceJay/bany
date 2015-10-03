@@ -25,7 +25,7 @@ class UploadVC: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     
     
-    var category : String = "0"
+    var category : Int = 0
     var email :String = String()
     var phoneNumber :String = String()
     var uploadPhotoImageView = UIImageView()
@@ -73,7 +73,7 @@ class UploadVC: UIViewController {
     @IBAction func bookSwitchIsOn(sender: AnyObject) {
         if (bookSwitch.on == true)
         {
-            category = "1"
+            category = 1
             iclickerSwitch.on = false
             otherSwitch.on = false
             
@@ -83,7 +83,7 @@ class UploadVC: UIViewController {
     @IBAction func iclickerSwitchIsOn(sender: AnyObject) {
         if (iclickerSwitch.on == true)
         {
-            category = "2"
+            category = 2
             bookSwitch.on = false
             otherSwitch.on = false
 
@@ -94,7 +94,7 @@ class UploadVC: UIViewController {
         
         if (otherSwitch.on == true)
         {
-            category = "3"
+            category = 3
             bookSwitch.on = false
             iclickerSwitch.on = false
         }
@@ -139,7 +139,7 @@ class UploadVC: UIViewController {
             //컨택 메소드 꼭 선택시키고 선택 할때 전화번호/이메일 맞는 지 확인시키기
             
             //스케일 조절
-            let scaledImage = self.scaleImageWith(bookImage!, newSize: CGSizeMake(460, 280))
+            let scaledImage = self.scaleImageWith(bookImage!, newSize: CGSizeMake(320, 200))
             
             
             let imageData = UIImagePNGRepresentation(scaledImage)

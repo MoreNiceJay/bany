@@ -21,6 +21,12 @@ class MainTVCE: UITableViewCell {
     @IBOutlet weak var textButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
     
+    @IBOutlet weak var commentButton: UIButton!
+    
+    
+       
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
