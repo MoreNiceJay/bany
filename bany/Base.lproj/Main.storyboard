@@ -108,6 +108,15 @@
                                 <rect key="frame" x="106" y="93" width="216" height="187"/>
                                 <state key="normal" title="Button" image="first"/>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n1z-Oi-kYH">
+                                <rect key="frame" x="273" y="443" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="자동로그인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZ7-Xa-o3k">
+                                <rect key="frame" x="198" y="453" width="74" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -147,6 +156,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="actInd" destination="kE7-HT-rxq" id="CaZ-y9-ynX"/>
+                        <outlet property="autoLoginSwitch" destination="n1z-Oi-kYH" id="lF9-Bb-0Ld"/>
                         <outlet property="passwordField" destination="2Go-BI-2ga" id="UE1-Dx-c6W"/>
                         <outlet property="usernameField" destination="9nX-sx-eRb" id="jqY-KK-DSh"/>
                         <segue destination="49e-Tb-3d3" kind="showDetail" identifier="loginToMain" id="RPu-0K-xZT"/>
@@ -1527,7 +1537,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qss-kf-qr3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1353" y="893"/>
+            <point key="canvasLocation" x="1215" y="547"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -1952,12 +1962,12 @@
         <image name="suny" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2Px-M6-QxO"/>
-        <segue reference="Vs3-qw-qis"/>
-        <segue reference="RPu-0K-xZT"/>
-        <segue reference="4ln-8p-Ekj"/>
-        <segue reference="fL3-VU-BgV"/>
         <segue reference="b2N-Yn-g7B"/>
+        <segue reference="Vs3-qw-qis"/>
+        <segue reference="LTO-4j-DdA"/>
+        <segue reference="fL3-VU-BgV"/>
+        <segue reference="4ln-8p-Ekj"/>
+        <segue reference="2Px-M6-QxO"/>
         <segue reference="0wb-lO-1eF"/>
     </inferredMetricsTieBreakers>
 </document>

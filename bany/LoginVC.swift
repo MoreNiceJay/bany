@@ -13,6 +13,8 @@ import ParseFacebookUtilsV4
 
 class LoginVC: UIViewController {
    
+    
+    @IBOutlet weak var autoLoginSwitch: UISwitch!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var actInd: UIActivityIndicatorView!
@@ -45,7 +47,17 @@ class LoginVC: UIViewController {
                 
                 return
             }
+            
+            
+            if (self.autoLoginSwitch.on == true){
             NSUserDefaults.standardUserDefaults().setObject(PFUser.currentUser()?.objectId, forKey: "objectId")
+            }
+            
+            
+            
+            
+            
+            
             NSUserDefaults.standardUserDefaults().synchronize()
             
             print("Current user token = \(FBSDKAccessToken.currentAccessToken().tokenString)")

@@ -39,8 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print(objectIdCheck)
         
-        
-        if(objectIdCheck != nil)
+         if(objectIdCheck != nil)
         {
             let mainStroyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             
@@ -52,6 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             appDelegate.window?.rootViewController = welcomeNav
         }
+        
+        
+        
         
         
         return true
