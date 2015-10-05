@@ -127,7 +127,8 @@ class SignUpVC: UIViewController {
                         
                             //드뎌 성공 알럴트
                             
-                            
+                            NSUserDefaults.standardUserDefaults().setObject(PFUser.currentUser()?.objectId, forKey: "objectId")
+                            NSUserDefaults.standardUserDefaults().synchronize()
                             
                             self.performSegueWithIdentifier("11", sender: self)
                             self.alert("Welcome", message : "Succesully signed up!                         please go check email verificatoin")

@@ -83,11 +83,28 @@ class UserInfoVC: UIViewController {
     
     @IBAction func logOutButtonTapped(sender: AnyObject) {
         
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("username")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("objectId")
         NSUserDefaults.standardUserDefaults().synchronize()
         
         PFUser.logOutInBackground()
-            self.performSegueWithIdentifier("logOutToLogin", sender: self)
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        self.performSegueWithIdentifier("logOutToLogin", sender: self)
             
             
             
@@ -108,6 +125,13 @@ class UserInfoVC: UIViewController {
     @IBAction func changePassword(sender: AnyObject) {
         
         self.performSegueWithIdentifier("resetPassword", sender: self)
+    }
+    
+    @IBAction func editProfileTapped(sender: AnyObject) {
+        
+        
+        self.performSegueWithIdentifier("userInfoToEditInfo", sender: self)
+        
         
     }
   }

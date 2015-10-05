@@ -45,8 +45,9 @@ class LoginVC: UIViewController {
                 
                 return
             }
+            NSUserDefaults.standardUserDefaults().setObject(PFUser.currentUser()?.objectId, forKey: "objectId")
+            NSUserDefaults.standardUserDefaults().synchronize()
             
-            print(user)
             print("Current user token = \(FBSDKAccessToken.currentAccessToken().tokenString)")
             print("Current user id = \(FBSDKAccessToken.currentAccessToken().userID)")
             
@@ -98,6 +99,10 @@ class LoginVC: UIViewController {
                          self.performSegueWithIdentifier("loginToMain", sender: self)
                         self.alert("Success", message : "Logged In")
                     
+                    
+                    NSUserDefaults.standardUserDefaults().setObject(PFUser.currentUser()?.objectId, forKey: "objectId")
+                    NSUserDefaults.standardUserDefaults().synchronize()
+                    
                     self.stopActivityIndicator()
                     self.passwordField.text = ""
                 }else {
@@ -105,6 +110,7 @@ class LoginVC: UIViewController {
                     self.alert("login failed", message : (error?.localizedDescription)!)
                     self.stopActivityIndicator()
                     self.passwordField.text = ""
+                    
                 }
                 
             })

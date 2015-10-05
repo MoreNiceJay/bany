@@ -12,6 +12,10 @@ import Parse
 class MainTVC: UITableViewController {
     
     @IBOutlet weak var categorySegment: UISegmentedControl!
+    
+    var user : [User] = []
+    
+    
     var mainPhoto = [PFFile]()
     var profilePhoto = [PFFile]()
     var titleText = [String]()
@@ -51,7 +55,6 @@ class MainTVC: UITableViewController {
         switch categorySegment.selectedSegmentIndex {
         case 0 :
             bringAllDatafromParse()
-            
         case 1 :
             bringCategoryDataFromParse(1)
             

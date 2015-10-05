@@ -171,6 +171,8 @@ class MoreInfoVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         phoneNumberTextField.resignFirstResponder()
         
     }
+    //페북 사진 가져오기
+    // var userProfile = "Https://graph.facebook.com/" + userID + "/picture?type=large"
 
         
         
