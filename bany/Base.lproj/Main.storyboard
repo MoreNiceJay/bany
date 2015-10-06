@@ -1813,6 +1813,10 @@
                                 <rect key="frame" x="189" y="322" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lcI-E0-5Qh">
+                                <rect key="frame" x="178" y="572" width="58" height="59"/>
+                                <state key="normal" title="like"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1825,6 +1829,7 @@
                     <navigationItem key="navigationItem" id="plo-iY-gSM"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="likedButton" destination="lcI-E0-5Qh" id="k6k-BP-StZ"/>
                         <outlet property="scrollView" destination="7F3-ug-Abv" id="ami-xV-vvC"/>
                         <segue destination="hb5-Jz-adZ" kind="show" identifier="detailToComment" id="EbQ-LY-hfU"/>
                     </connections>
@@ -2021,11 +2026,11 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qhz-BR-2Cd"/>
-        <segue reference="LTO-4j-DdA"/>
-        <segue reference="4ln-8p-Ekj"/>
+        <segue reference="RPu-0K-xZT"/>
         <segue reference="2Px-M6-QxO"/>
         <segue reference="Tzm-OJ-dFs"/>
-        <segue reference="OSS-9G-x7J"/>
+        <segue reference="fL3-VU-BgV"/>
+        <segue reference="EbQ-LY-hfU"/>
         <segue reference="0wb-lO-1eF"/>
     </inferredMetricsTieBreakers>
 </document>

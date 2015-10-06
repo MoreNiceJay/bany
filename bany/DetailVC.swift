@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Parse
 
 class DetailVC: UIViewController, UIScrollViewDelegate {
 
+    @IBOutlet weak var likedButton: UIButton!
     
     var parentObjectID = String()
-    
+    var likeButton = Bool()
     @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +52,55 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
             destViewController.parentObjectID = parentObjectID
             
         }
+    }
+    @IBAction func likeButtonTapped(sender: AnyObject) {
+        
+        if likeButton == false {
+        likedButton.titleLabel!.text = "liked"
+            likedButton.titleLabel?.textColor = UIColor.redColor()
+            likeButton = true
+        let likeSave = PFObject(className: "like")
+        
+        likeSave["uploader"] = PFUser.currentUser()?.objectId
+        likeSave["status"] = true
+        likeSave["parent"] = parentObjectID
+        
+        likeSave.saveEventually { (success, error) -> Void in
+            if error == nil {
+                
+                self.alert("Error", message : (error?.localizedDescription)!)
+                
+                
+            }else{
+                self.alert("Error", message : (error?.localizedDescription)!)
+            }
+        }
+        }else { likeButton = false
+            likedButton.titleLabel!.text = "like"
+            likedButton.titleLabel?.textColor = UIColor.blueColor()
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+        
+        
+    }
+    
+    func alert(title : String, message : String) {
+        
+        let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+        myAlert.addAction(okAction)
+        self.presentViewController(myAlert, animated: true, completion: nil)
+        
     }
 
 }

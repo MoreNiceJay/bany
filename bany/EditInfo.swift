@@ -35,9 +35,6 @@ class EditInfo: UITableViewController, UIImagePickerControllerDelegate, UINaviga
         photoCaptureButtonAction()
         
         
-        
-        
-        
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
