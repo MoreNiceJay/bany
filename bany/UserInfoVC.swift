@@ -15,40 +15,21 @@ class UserInfoVC: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
-   
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-     /*
-        var query = PFQuery(className: "User")
-        query.getObjectInBackgroundWithId("\(PFUser.currentUser()?.objectId)", block: {
-            (obj, error)in
-            if let obj = obj! as? PFObject {
-                
-                
-                
-                
-                if let nickname = obj.objectForKey("nickName") as? String {
-                    self.nickNameLabel.text = nickname
-                }
-                else{
-                    self.nickNameLabel.text = "you don't have a nick name"
-                }
-                    
-                
-                
-            } else {
-                print(error)
-            }
-        })
-        */
-        //닉네임
+            //닉네임
         if let nickname = (PFUser.currentUser()?.objectForKey("nickName") as? String){
             self.nickNameLabel.text = nickname
+            
             
         }else{
             self.nickNameLabel.text = "NO NICKNAME"
         }
+        
+        
+        
         //이메일
         if let email = (PFUser.currentUser()?.objectForKey("email") as? String){
             self.emailLabel.text = email
@@ -64,9 +45,31 @@ class UserInfoVC: UIViewController {
             self.phoneNumberLabel.text = "NO PHONE#"
         }
 
+        //profile Pic
+        if let profilePictureObject = (PFUser.currentUser()?.objectForKey("profile_picture") as? PFFile){
+            
+            
+            
+            profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+                
+                
+                
+                if(imageData != nil)
+                    
+                {
+                    
+                    self.profileImageView.image = UIImage(data: imageData!)
+                }        }
+        }else{
+            self.profileImageView.image = UIImage(named: "AvatarPlaceholder")
+            
+        }
         
         
-        
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+        profileImageView.clipsToBounds = true
+        profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImageView.layer.borderWidth = 3
         
           }
 
@@ -87,22 +90,6 @@ class UserInfoVC: UIViewController {
         NSUserDefaults.standardUserDefaults().synchronize()
         
         PFUser.logOutInBackground()
-        
-       
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         self.performSegueWithIdentifier("logOutToLogin", sender: self)
             

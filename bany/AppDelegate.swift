@@ -41,6 +41,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
          if(objectIdCheck != nil)
         {
+            
+            
+            
+            
+            
+            
             let mainStroyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             
             let welcomeVC: WelcomVC = mainStroyBoard.instantiateViewControllerWithIdentifier("WelcomVC") as! WelcomVC

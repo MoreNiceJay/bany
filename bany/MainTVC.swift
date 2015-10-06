@@ -13,21 +13,21 @@ class MainTVC: UITableViewController {
     
     @IBOutlet weak var categorySegment: UISegmentedControl!
     
-    var user : [User] = []
     
     
-    var mainPhoto = [PFFile]()
-    var profilePhoto = [PFFile]()
-    var titleText = [String]()
-    var nickName = [String]()
-    var time = [String]()
-    var price = [String]()
-    var viewed = [String]()
-    var saved = [String]()
+    
+    lazy var mainPhoto = [PFFile]()
+    lazy var profilePhoto = [PFFile]()
+    lazy var titleText = [String]()
+    lazy var nickName = [String]()
+    lazy var time = [String]()
+    lazy var price = [String]()
+    lazy var viewed = [String]()
+    lazy var saved = [String]()
     
     var objectArray = [String]()
    // var objectId = String()
-    var good = String()
+    var parentObjectID = String()
     
     
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ class MainTVC: UITableViewController {
         time = []
         price = []
         objectArray = []
-        good = String()
+        parentObjectID = String()
 
         switch categorySegment.selectedSegmentIndex {
         case 0 :
@@ -121,51 +121,6 @@ class MainTVC: UITableViewController {
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     func bringAllDatafromParse() {
         //activityIndicatorOn()
         
@@ -246,7 +201,7 @@ if (segue.identifier == "mainToComment") {
 
 
 let destViewController : CommentVC = segue.destinationViewController as! CommentVC
-destViewController.parentObjectID = good
+destViewController.parentObjectID = parentObjectID
 
     }
     
@@ -266,15 +221,39 @@ destViewController.parentObjectID = good
         let view = button.superview!
         let cell = view.superview as! MainTVCE
         let indexPath = tableView.indexPathForCell(cell)
-        good = objectArray[(indexPath?.row)!]
-        
-        
-        
-
-        
+        parentObjectID = objectArray[(indexPath?.row)!]
         
         self.performSegueWithIdentifier("mainToComment", sender: self)
     }
-
+    
+    
+    
+    /*func howaboutThis() {
+        let query = PFQuery(className: "User")
+        query.whereKey("objectId", equalTo: (PFUser.currentUser()?.objectId)!)
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if(error == nil) {
+                var temp: NSArray = objects as! NSArray
+                
+                self.userArray = temp.mutableCopy() as! NSMutableArray
+                self.tableView.reloadData()
+                
+            }else {
+                print(error?.userInfo)
+            }
+        }
+       //테이블 뷰 셀에 쓸꺼
+    var object: PFObject = self.uerArray.objectIndex(indexPath.row) as PFObject
+    cell.titleLabel.text = object["nickName"] as? String
+    
+    return cell
+    
+    //preparefor segue
+    if (segue.identifier == "editNote") {
+    let indexPath = self.tableView.indexPathForSelectedRow()!
+    var object : PFObject = self.noteObjects.objectAtIndex(indexPath.row) as PFObject
+    upcoming.object = object
+    self.tableView.deselectRowAtIndexPath(indexPath, animated : true)
+*/
 
 }

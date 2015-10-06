@@ -149,7 +149,7 @@ class UploadVC: UIViewController {
             let post = PFObject(className: "Posts")
             
             
-            post["uploader"] = PFUser.currentUser()
+            post["uploader"] = PFUser.currentUser()?.objectId
             post["username"] = (PFUser.currentUser()!.username)!
             post["titleText"] = titleText
             post["priceText"] = priceText

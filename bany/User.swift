@@ -14,19 +14,25 @@ class User {
     
     var objectId : String
     var username : String
-    
+    var nickName : String
     //var createdAt : NSDate
     //var updatedAt : NSDate
     
     //var profile_picture : UIImage
 
-    init(objectId:String, username:String) {
+    init(objectId:String, username:String, nickName : String) {
         
         
     self.objectId = (PFUser.currentUser()?.objectId)!
     self.username = (PFUser.currentUser()?.username)!
+        if let nickname = (PFUser.currentUser()?.objectForKey("nickName") as? String){
+            self.nickName = nickname
+        }else{
+            self.nickName = "NoDATA"
+        }
     
-  }
+        
+    }
 
 }
 
