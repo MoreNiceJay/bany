@@ -1,20 +1,22 @@
 //
-//  WelcomVC.swift
+//  CollectionViewDetailVC.swift
 //  bany
 //
-//  Created by Lee Janghyup on 10/4/15.
+//  Created by Lee Janghyup on 10/10/15.
 //  Copyright © 2015 jay. All rights reserved.
 //
 
 import UIKit
-import Parse
 
-class WelcomVC: UIViewController {
+class CollectionViewDetailVC: UIViewController {
 
+    @IBOutlet weak var detailImage: UIImageView!
+    
+    var image = UIImage()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+self.detailImage.image = self.image
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,17 +34,5 @@ class WelcomVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func logOutButtonTapped(sender: AnyObject) {
-        
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("objectId")
-        NSUserDefaults.standardUserDefaults().synchronize()
-        
-        PFUser.logOutInBackground()
-        
-        self.performSegueWithIdentifier("logOutToLogin", sender: self)
-        
-
-        
-    }
 
 }

@@ -11,19 +11,34 @@ import Parse
 
 class DetailVC: UIViewController, UIScrollViewDelegate {
 
+    @IBOutlet weak var label: UILabel!
     @IBOutlet weak var likedButton: UIButton!
     
+    var checkingArray = [String]()
+    var liked = false
     var parentObjectID = String()
     var likeButton = Bool()
     @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
 
         // Do any additional setup after loading the view.
         
         scrollView.sizeToFit()
     }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
+        
 
+        
+        
+    
+    
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -53,45 +68,28 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
             
         }
     }
-    @IBAction func likeButtonTapped(sender: AnyObject) {
+
+    @IBAction func likeButtonTapped(sender: AnyObject){
         
-        if likeButton == false {
-        likedButton.titleLabel!.text = "liked"
-            likedButton.titleLabel?.textColor = UIColor.redColor()
-            likeButton = true
-        let likeSave = PFObject(className: "like")
+    
+    var query = PFQuery(className:"Like")
+    
+    
+    
+    
+    query.getObjectInBackgroundWithId((PFUser.currentUser()?.objectId)!) {
+    (likes: PFObject?, error: NSError?) -> Void in
+    if error != nil {
+    print(error)
+    } else if let likes = likes {
+    likes["parent"] = self.parentObjectID
+    likes["uploader"] = PFUser.currentUser()?.objectId
         
-        likeSave["uploader"] = PFUser.currentUser()?.objectId
-        likeSave["status"] = true
-        likeSave["parent"] = parentObjectID
-        
-        likeSave.saveEventually { (success, error) -> Void in
-            if error == nil {
-                
-                self.alert("Error", message : (error?.localizedDescription)!)
-                
-                
-            }else{
-                self.alert("Error", message : (error?.localizedDescription)!)
-            }
+    likes.saveInBackground()
+    
         }
-        }else { likeButton = false
-            likedButton.titleLabel!.text = "like"
-            likedButton.titleLabel?.textColor = UIColor.blueColor()
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+    
         }
-        
-        
     }
     
     func alert(title : String, message : String) {
@@ -100,7 +98,14 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
         myAlert.addAction(okAction)
         self.presentViewController(myAlert, animated: true, completion: nil)
-        
     }
 
-}
+            }
+        
+//let likeBackUp = PFObject(className: "LikeBackUp")
+
+
+//likeBackUp["uploader"] = PFUser.currentUser()?.objectId
+//likeBackUp["parent"] = self.parentObjectID
+//likeBackUp.saveEventually()
+

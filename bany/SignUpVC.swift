@@ -14,6 +14,8 @@ import ParseFacebookUtilsV4
 class SignUpVC: UIViewController {
 
     
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordConfirmationTextField: UITextField!
@@ -46,9 +48,10 @@ class SignUpVC: UIViewController {
 
         
     @IBAction func signUpButtonTapped(sender: AnyObject) {
-        
-       
+        buttonDisabeld(facebookButton)
+        buttonDisabeld(signUpButton)
         startActivityIndicator()
+
         
         let userEmail = emailTextField.text
         let userPassword = passwordTextField.text
@@ -62,7 +65,8 @@ class SignUpVC: UIViewController {
             
             
             self.alert("Invalid", message : "All fields must be filled")
-       
+            buttonEnabled(facebookButton)
+            buttonEnabled(signUpButton)
             stopActivityIndicator()
 
         
@@ -74,7 +78,8 @@ class SignUpVC: UIViewController {
                 
                 
                 self.alert("Invalid", message : "email address must be valid")
-                
+                buttonEnabled(facebookButton)
+                buttonEnabled(signUpButton)
                 stopActivityIndicator()
             }else if (userPassword?.utf16.count < 6){
                 
@@ -82,7 +87,8 @@ class SignUpVC: UIViewController {
                
                 
                 self.alert("Invalid", message : "Password must be more than 6 characters")
-                
+                buttonEnabled(facebookButton)
+                buttonEnabled(signUpButton)
                 stopActivityIndicator()
 
             } else {
@@ -92,7 +98,8 @@ class SignUpVC: UIViewController {
                 if(userPassword != userPasswordConfirm)
                 {
                     self.alert("Invalid", message : "Password are not mached")
-                    
+                    buttonEnabled(facebookButton)
+                    buttonEnabled(signUpButton)
                     stopActivityIndicator()
                 
                 }else {
@@ -118,6 +125,8 @@ class SignUpVC: UIViewController {
                             self.presentViewController(myAlert, animated: true, completion: nil)
                             self.alert("Invalid", message : (error?.localizedDescription)!)
                             
+                            self.buttonEnabled(self.facebookButton)
+                            self.buttonEnabled(self.signUpButton)
                             self.stopActivityIndicator()
                             
                         }else {
@@ -130,10 +139,12 @@ class SignUpVC: UIViewController {
                             NSUserDefaults.standardUserDefaults().setObject(PFUser.currentUser()?.objectId, forKey: "objectId")
                             NSUserDefaults.standardUserDefaults().synchronize()
                             
-                            self.performSegueWithIdentifier("11", sender: self)
+                            self.performSegueWithIdentifier("resisterToMoreInfo", sender: self)
                             self.alert("Welcome", message : "Succesully signed up!                         please go check email verificatoin")
                             
                             //개인정보 페이지로 보내기
+                            self.buttonEnabled(self.facebookButton)
+                            self.buttonEnabled(self.signUpButton)
                             self.stopActivityIndicator()
                             
                         
@@ -162,7 +173,8 @@ class SignUpVC: UIViewController {
     }
     
     @IBAction func facebookLoginButtonTapped(sender: AnyObject) {
-        
+        buttonDisabeld(facebookButton)
+        buttonDisabeld(signUpButton)
         startActivityIndicator()
         
         PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile", "email"], block: { (user:PFUser?, error:NSError?) -> Void in
@@ -173,10 +185,15 @@ class SignUpVC: UIViewController {
                 
                 
                 self.alert("Alert", message : (error?.localizedDescription)!)
+                self.buttonEnabled(self.facebookButton)
+                self.buttonEnabled(self.signUpButton)
+                self.stopActivityIndicator()
+                
+                
                 
                 return
                 
-                    self.stopActivityIndicator()
+                
 
             }
             
@@ -190,8 +207,10 @@ class SignUpVC: UIViewController {
             
             if(FBSDKAccessToken.currentAccessToken() != nil)
             {
+                self.buttonEnabled(self.facebookButton)
+                self.buttonEnabled(self.signUpButton)
                 self.stopActivityIndicator()
-                self.performSegueWithIdentifier("11", sender: self)
+                self.performSegueWithIdentifier("resisterToMoreInfo", sender: self)
             }
             
         })
@@ -206,6 +225,15 @@ class SignUpVC: UIViewController {
     func stopActivityIndicator() {
     self.actInd.hidden = true
     self.actInd.stopAnimating()
+    }
+    
+    func buttonEnabled(buttonName: UIButton){
+        
+        buttonName.enabled = true
+    }
+    func buttonDisabeld(buttonName: UIButton){
+        
+        buttonName.enabled = false
     }
     
     func alert(title : String, message : String) {

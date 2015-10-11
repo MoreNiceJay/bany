@@ -66,10 +66,7 @@ class UserInfoVC: UIViewController {
         }
         
         
-        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-        profileImageView.clipsToBounds = true
-        profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
-        profileImageView.layer.borderWidth = 3
+        self.circularImage(profileImageView)
         
           }
 
@@ -119,6 +116,11 @@ class UserInfoVC: UIViewController {
         
         self.performSegueWithIdentifier("userInfoToEditInfo", sender: self)
         
-        
+    }
+    func circularImage(image : UIImageView){
+    image.layer.cornerRadius = image.frame.size.width / 2
+    image.clipsToBounds = true
+    image.layer.borderColor = UIColor.whiteColor().CGColor
+    image.layer.borderWidth = 3
     }
   }

@@ -24,10 +24,10 @@ class EditInfo: UITableViewController, UIImagePickerControllerDelegate, UINaviga
     override func viewDidLoad() {
         super.viewDidLoad()
         userInfoProvider()
-        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-        profileImageView.clipsToBounds  = true
-        profileImageView.layer.borderColor  = UIColor.whiteColor().CGColor
-        profileImageView.layer.borderWidth = 3
+        
+        
+        circularImage(profileImageView)
+        
     }
 
     @IBAction func profileButtonTapped(sender: AnyObject) {
@@ -284,8 +284,16 @@ class EditInfo: UITableViewController, UIImagePickerControllerDelegate, UINaviga
         
         return newImage
     }
-
-
     
-   
+    func circularImage(image : UIImageView) {
+    image.layer.cornerRadius = image.frame.size.width / 2
+    image.clipsToBounds  = true
+    image.layer.borderColor  = UIColor.whiteColor().CGColor
+    image.layer.borderWidth = 3
+}
+
+
+
+
+
 }

@@ -25,7 +25,14 @@ class UploadVC: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     
     
-    var category : Int = 0
+    var category = Int()
+    var titleText = String()
+    var tagText = String()
+    var photoFront = UIImage()
+    
+    
+    
+    
     var email :String = String()
     var phoneNumber :String = String()
     var uploadPhotoImageView = UIImageView()

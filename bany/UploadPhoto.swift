@@ -11,7 +11,14 @@ import Parse
 class SecondViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var actInd: UIActivityIndicatorView!
-    @IBOutlet weak var uploadPhotoImageView: UIImageView!
+    @IBOutlet weak var photoDamage: UIImageView!
+    
+    
+    var category = Int()
+    var titleText = String()
+    var tagText = String()
+    var photoFront = UIImage()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -32,13 +39,22 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         stopActivityIndicator()
         
         
-        
-        
-        
     }
+    
+    @IBAction func nextButtonTapped(sender: AnyObject) {
+        
+        if photoDamage.image == UIImage(named: "PlaceholderPhoto") {
+            alert("no Image", message: "pic Image")
+        }else{
+        performSegueWithIdentifier("damagePhotoToDescription", sender: self)
+        }
+    }
+    
+    
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        uploadPhotoImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        photoDamage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -70,9 +86,15 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if (segue.identifier == "mainUpload") {
-        let destViewController : UploadVC = segue.destinationViewController as! UploadVC
-            destViewController.uploadPhotoImageView = uploadPhotoImageView
+        if (segue.identifier == "damagePhotoToDescription") {
+        let destViewController : NewUploadDescription = segue.destinationViewController as! NewUploadDescription
+            destViewController.category = category
+            destViewController.titleText = titleText
+            destViewController.tagText = tagText
+            destViewController.photoFront = photoFront
+            
+            destViewController.photoDamage   = photoDamage.image!
+
         }
     }
     

@@ -14,12 +14,24 @@ import ParseFacebookUtilsV4
 class LoginVC: UIViewController {
    
     
+    @IBOutlet weak var facebookButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var autoLoginSwitch: UISwitch!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var actInd: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        let username = self.usernameField.text
+        let password = self.passwordField.text
+        
+        if (username?.utf16.count < 7 || password?.utf16.count < 6) {
+        }
+        
+        
         
         self.actInd.hidden = true
         // Do any additional setup after loading the view, typically from a nib.
@@ -31,9 +43,9 @@ class LoginVC: UIViewController {
     }
 
     @IBAction func facebookSignUp(sender: AnyObject) {
-        
+        buttonDisabeld(loginButton)
         startActivityIndicator()
-        
+        buttonDisabeld(facebookButton)
         PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile", "email"], block: { (user:PFUser?, error:NSError?) -> Void in
             
             if(error != nil)
@@ -41,7 +53,8 @@ class LoginVC: UIViewController {
             //display an alert message
                 
                 self.alert("error", message : (error?.localizedDescription)!)
-                
+                self.buttonEnabled(self.loginButton)
+                self.buttonEnabled(self.facebookButton)
                 self.stopActivityIndicator()
 
                 
@@ -65,6 +78,9 @@ class LoginVC: UIViewController {
             
             if(FBSDKAccessToken.currentAccessToken() != nil)
             {
+                self.buttonEnabled(self.loginButton)
+                self.buttonEnabled(self.facebookButton)
+                self.stopActivityIndicator()
                 self.performSegueWithIdentifier("loginToMain", sender: self)
                 
                 self.stopActivityIndicator()
@@ -86,8 +102,8 @@ class LoginVC: UIViewController {
     
     
     @IBAction func loginButtonTapped(sender: AnyObject) {
-        
-        
+        buttonDisabeld(facebookButton)
+        buttonDisabeld(loginButton)
         startActivityIndicator()
         
         let username = self.usernameField.text
@@ -96,31 +112,37 @@ class LoginVC: UIViewController {
         if (username?.utf16.count < 7 || password?.utf16.count < 6) {
            
            
-            self.alert("Invalid", message : "email and password are not matched")
+            self.alert("Invalid", message : "please write valid email and password")
+            buttonEnabled(loginButton)
+            buttonEnabled(facebookButton)
             self.stopActivityIndicator()
+            
             self.passwordField.text = ""
         } else {
             
             
             PFUser.logInWithUsernameInBackground(username!, password: password!, block: { (user, error) -> Void in
-                self.actInd.stopAnimating()
+                
                 
                 if((user) != nil) {
                      print(user)
-                    
-                         self.performSegueWithIdentifier("loginToMain", sender: self)
+                    self.stopActivityIndicator()
+                    self.buttonEnabled(self.loginButton)
+                       self.buttonEnabled(self.facebookButton)
+                    self.performSegueWithIdentifier("loginToMain", sender: self)
                         self.alert("Success", message : "Logged In")
                     
                     
                     NSUserDefaults.standardUserDefaults().setObject(PFUser.currentUser()?.objectId, forKey: "objectId")
                     NSUserDefaults.standardUserDefaults().synchronize()
                     
-                    self.stopActivityIndicator()
                     self.passwordField.text = ""
                 }else {
                     
                     self.alert("login failed", message : (error?.localizedDescription)!)
                     self.stopActivityIndicator()
+                    self.buttonEnabled(self.facebookButton)
+                    self.buttonEnabled(self.loginButton)
                     self.passwordField.text = ""
                     
                 }
@@ -142,6 +164,14 @@ class LoginVC: UIViewController {
         self.actInd.hidden = true
         self.actInd.stopAnimating()
     }
+    func buttonEnabled(buttonName: UIButton){
+    
+        buttonName.enabled = true
+    }
+    func buttonDisabeld(buttonName: UIButton){
+        
+        buttonName.enabled = false
+    }
     func alert(title : String, message : String) {
         
         let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
@@ -155,6 +185,7 @@ class LoginVC: UIViewController {
         passwordField.resignFirstResponder()
         
     }
+
 
 }
 
