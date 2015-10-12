@@ -149,7 +149,7 @@ class MainTVC: UITableViewController {
                     //self.viewed.append(post["view"] as! Int)
                     //  self.saved.append(post["like"] as! Int)
                     
-                    self.mainPhoto.append(post["imageFile"] as! PFFile)
+                    self.mainPhoto.append(post["front_image"] as! PFFile)
                     //self.profilePhoto.append(post["profilePhoto"] as! PFFile)
                     
                     self.tableView.reloadData()
@@ -179,7 +179,7 @@ class MainTVC: UITableViewController {
                     self.titleText.append(post["titleText"] as! String)
                     self.nickName.append(post["userNickName"] as! String)
                     self.price.append(post["priceText"] as! String)
-                    self.mainPhoto.append(post["imageFile"] as! PFFile)
+                    self.mainPhoto.append(post["front_image"] as! PFFile)
                     self.objectArray.append((post.objectId)! as String!)
                     
                     self.tableView.reloadData()

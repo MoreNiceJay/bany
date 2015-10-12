@@ -33,16 +33,16 @@ class WelcomVC: UIViewController {
     }
     */
     @IBAction func logOutButtonTapped(sender: AnyObject) {
-        
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("objectId")
-        NSUserDefaults.standardUserDefaults().synchronize()
-        
-        PFUser.logOutInBackground()
-        
-        self.performSegueWithIdentifier("logOutToLogin", sender: self)
-        
-
-        
-    }
+//        
+//        NSUserDefaults.standardUserDefaults().removeObjectForKey("objectId")
+//        NSUserDefaults.standardUserDefaults().synchronize()
+//        
+//        PFUser.logOutInBackground()
+//        
+//        self.performSegueWithIdentifier("logOutToLogin", sender: self)
+//        
+//
+//        
+   }
 
 }

@@ -13,6 +13,7 @@ class NewUploadPhoto: UIViewController, UIImagePickerControllerDelegate, UINavig
     var category = Int()
     var titleText = String()
     var tagText = String()
+    @IBOutlet weak var picturButton: UIButton!
     
 
     @IBOutlet weak var photoFront: UIImageView!
@@ -20,7 +21,11 @@ class NewUploadPhoto: UIViewController, UIImagePickerControllerDelegate, UINavig
           @IBOutlet weak var actInd: UIActivityIndicatorView!
       override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+
+        actInd.hidden = true
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -31,11 +36,11 @@ class NewUploadPhoto: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     @IBAction func addPicButtonTapped(sender: AnyObject) {
-        
         startActivityIndicator()
         
         photoCaptureButtonAction()
         stopActivityIndicator()
+        
         
         
         
@@ -181,7 +186,7 @@ class NewUploadPhoto: UIViewController, UIImagePickerControllerDelegate, UINavig
                 return false
             }
             
-            cameraUI.allowsEditing = true
+            cameraUI.allowsEditing = false
             cameraUI.delegate = self
             
             self.presentViewController(cameraUI, animated: true, completion: nil)

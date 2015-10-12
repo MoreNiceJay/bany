@@ -88,7 +88,7 @@
 		69090AA91BBDD81000C95F56 /* DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		69090AAB1BBE153500C95F56 /* CommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentVC.swift; sourceTree = "<group>"; };
 		690C23FD1BBC6D8400245554 /* MainTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTVCE.swift; sourceTree = "<group>"; };
-		694534CE1BBB8BB700D3B469 /* UploadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadVC.swift; sourceTree = "<group>"; };
+		694534CE1BBB8BB700D3B469 /* UploadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadVC.swift; path = ../bany/UploadVC.swift; sourceTree = "<group>"; };
 		6951A2431BC331560005796F /* MyPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPost.swift; sourceTree = "<group>"; };
 		6951A2451BC338F70005796F /* MyPostTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostTVCE.swift; sourceTree = "<group>"; };
 		696728781BB36CD90012723B /* bany.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bany.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,8 +131,8 @@
 		697010E11BC1B30F003D4400 /* EditInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditInfo.swift; sourceTree = "<group>"; };
 		697010E41BC1B676003D4400 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		69840E321BC735B600D42031 /* MoreInfoContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoContactVC.swift; sourceTree = "<group>"; };
-		6988DC531BCA0A0400573E51 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
-		6988DC571BCA0A6400573E51 /* CollectionViewDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDetailVC.swift; sourceTree = "<group>"; };
+		6988DC531BCA0A0400573E51 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainCollectionViewCell.swift; path = ../bany/MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		6988DC571BCA0A6400573E51 /* CollectionViewDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewDetailVC.swift; path = ../bany/CollectionViewDetailVC.swift; sourceTree = "<group>"; };
 		6988DC591BCA0C9700573E51 /* MainCollectionViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewVC.swift; sourceTree = "<group>"; };
 		6988DC5B1BCABFC300573E51 /* NewUploadTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUploadTitle.swift; sourceTree = "<group>"; };
 		6988DC5D1BCAC07200573E51 /* NewUploadPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUploadPhoto.swift; sourceTree = "<group>"; };
@@ -204,8 +204,6 @@
 				690C23FD1BBC6D8400245554 /* MainTVCE.swift */,
 				69090AA91BBDD81000C95F56 /* DetailVC.swift */,
 				69090AAB1BBE153500C95F56 /* CommentVC.swift */,
-				6988DC531BCA0A0400573E51 /* MainCollectionViewCell.swift */,
-				6988DC571BCA0A6400573E51 /* CollectionViewDetailVC.swift */,
 				6988DC591BCA0C9700573E51 /* MainCollectionViewVC.swift */,
 			);
 			name = MainHome;
@@ -218,7 +216,6 @@
 				6988DC5D1BCAC07200573E51 /* NewUploadPhoto.swift */,
 				6967287F1BB36CD90012723B /* UploadPhoto.swift */,
 				6988DC5F1BCAC09F00573E51 /* NewUploadDescription.swift */,
-				694534CE1BBB8BB700D3B469 /* UploadVC.swift */,
 			);
 			name = upload;
 			sourceTree = "<group>";
@@ -355,6 +352,9 @@
 		69BE913B1BB9D77A007E7010 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
+				6988DC531BCA0A0400573E51 /* MainCollectionViewCell.swift */,
+				6988DC571BCA0A6400573E51 /* CollectionViewDetailVC.swift */,
+				694534CE1BBB8BB700D3B469 /* UploadVC.swift */,
 				69BE913C1BB9D7A3007E7010 /* ppTableViewController.swift */,
 				69BE913E1BB9D894007E7010 /* addTableViewController.swift */,
 				69BE91401BB9DA46007E7010 /* ppTableViewCell.swift */,

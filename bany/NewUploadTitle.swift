@@ -12,15 +12,14 @@ class NewUploadTitle: UIViewController {
 
     
     @IBOutlet weak var actInd: UIActivityIndicatorView!
-   
     @IBOutlet weak var titleTextField: UITextField!
-       @IBOutlet weak var tagTextField: UITextField!
-        @IBOutlet weak var bookSwitch: UISwitch!
+    @IBOutlet weak var tagTextField: UITextField!
+    @IBOutlet weak var bookSwitch: UISwitch!
     @IBOutlet weak var iclickerSwitch: UISwitch!
     @IBOutlet weak var otherSwitch: UISwitch!
-    
     @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var nextButton: UIButton!
     var category : Int = 0
    
     @IBOutlet weak var classLabel: UILabel!
@@ -28,8 +27,8 @@ class NewUploadTitle: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tagTextField.placeholder?.write("good")
         
+        actInd.hidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,6 +46,9 @@ class NewUploadTitle: UIViewController {
             category = 1
             iclickerSwitch.on = false
             otherSwitch.on = false
+            titleLabel.text = "book title"
+            classLabel.text = "class/author"
+            tagTextField.placeholder = "ex) Acom203, author name"
             
         }
     }
@@ -57,6 +59,10 @@ class NewUploadTitle: UIViewController {
             category = 2
             bookSwitch.on = false
             otherSwitch.on = false
+            titleLabel.text = "iclicker"
+            classLabel.text = "battery"
+            tagTextField.placeholder = "ex) no battery or yes battery"
+
             
         }
     }
@@ -68,6 +74,9 @@ class NewUploadTitle: UIViewController {
             category = 3
             bookSwitch.on = false
             iclickerSwitch.on = false
+            titleLabel.text = "brand/model"
+            classLabel.text = "model/model number"
+            tagTextField.placeholder = "ex) Mac mini a1347"
         }
         
     }
@@ -81,6 +90,10 @@ class NewUploadTitle: UIViewController {
     
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
+        
+        
+        startActivityIndicator()
+        buttonDisabeld(nextButton)
         
         let titleText = titleTextField.text
         let tagText = tagTextField.text
@@ -101,15 +114,42 @@ class NewUploadTitle: UIViewController {
             
         }else {
             
+            if !(titleText!.utf16.count <= 26 && titleText!.utf16.count >= 2 ) {
+                // 3보다 크고 16보다 작은게 아니라면
+                alert("Invalid", message : "nickname 2 ~ 26")
+                buttonEnabled(nextButton)
+                
+                stopActivityIndicator()
+                
+            }else{
+                //ㅇㅋ
+                
+                if !(tagText!.utf16.count <= 26 && tagText!.utf16.count >= 2 ) {
+                    
+                    alert("Invalid", message : "first name 2 ~ 26")
+                    buttonEnabled(nextButton)
+                    
+                    stopActivityIndicator()
+                    
+                    
+                    
+                    
+                    }else{
+                        //굿투고
+
+            
                 self.performSegueWithIdentifier("uploadTitleToUploadImage", sender: self)
            
             }
             
-                    
-                    
+                
+                
         }
  
+            }
+        }
     }
+
  
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -169,7 +209,15 @@ class NewUploadTitle: UIViewController {
         
     }
     
-    
+            func buttonEnabled(buttonName: UIButton){
+                
+                buttonName.enabled = true
+            }
+            func buttonDisabeld(buttonName: UIButton){
+                
+                buttonName.enabled = false
+            }
+
     
 }
 

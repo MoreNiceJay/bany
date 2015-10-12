@@ -22,6 +22,7 @@ class NewUploadDescription: UIViewController {
     @IBOutlet weak var textSwitch: UISwitch!
     @IBOutlet weak var actInd: UIActivityIndicatorView!
     
+    @IBOutlet weak var uploadButton: UIButton!
     
     
     var category = Int()
@@ -30,8 +31,14 @@ class NewUploadDescription: UIViewController {
     var photoFront = UIImage()
     var photoDamage = UIImage()
     
+    var email :String = String()
+    var phoneNumber :String = String()
+    var uploadPhotoImageView = UIImageView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        actInd.hidden = true
         
         
         
@@ -44,9 +51,7 @@ class NewUploadDescription: UIViewController {
     }
     
 
-    var email :String = String()
-    var phoneNumber :String = String()
-    var uploadPhotoImageView = UIImageView()
+    
     
     
     @IBAction func emailSwitchOn(sender: AnyObject) {
@@ -56,9 +61,13 @@ class NewUploadDescription: UIViewController {
         }else{
             //이메일 세팅 페이지 만들기
             self.alert("No email found", message : "set your email")
+            
+            
+            
+            
             emailSwitch.on = false
             emailSwitch.enabled = false
-            //이메일 저장 시키는 텍스트 필드
+            //이메일 저장 시키는 텍스트 필드..
             
         }
         
@@ -70,12 +79,68 @@ class NewUploadDescription: UIViewController {
             
         }else{
             //이메일 세팅 페이지 만들기
-            self.alert("No phone# found", message : "set your Phone#")
+            
             emailSwitch.on = false
             textSwitch.enabled = false
             //전화번호 저장 시키는 텍스트 필드
-        }
+           self.alert("No phone# found", message : "set your Phone#")
+            
+            
+//            var phoneAlert : UIAlertController = UIAlertController(title: "Phone number", message: "please write prefer phone number ", preferredStyle: UIAlertControllerStyle.Alert)
+//            
+//            phoneAlert.addTextFieldWithConfigurationHandler({ (textField : UITextField) -> Void in
+//                textField.placeholder = "phone number"
+//                
+//            })
+//            
+//            phoneAlert.addAction(UIAlertAction(title: "111", style: UIAlertActionStyle.Default, handler: { alertAction in
+//                let textFields : NSArray = phoneAlert.textFields as! NSArray
+//                let phoneNumberTextField:UITextField = textFields.objectAtIndex(0) as! UITextField
+//                
+//                PFUser.currentUser()?.setObject(phoneNumberTextField.text!, forKey: "preferPhoneNumber")
+//                
+//                PFUser.currentUser()?.saveInBackgroundWithBlock { (success, error) -> Void in
+//                    self.stopActivityIndicator()
+//                    
+//                    if (error != nil)
+//                    {
+//                        self.alert("error", message: (error?.localizedDescription)!)
+//                    }
+//                    
+//                    if(success) {
+//                        print("goooooooooooood")
+//                        
+//                       // self.alert("Success", message: "Your information has been saved in your account")
+//                        
+//                        //self.performSegueWithIdentifier("moreInfoToMain", sender: self)
+//                        
+//                        
+//                        
+//                        
+//                        
+//                    }
+//                    
+//                    
+//                }
+//                
+//                
+//
+//                
+//                
+//                
+//            }
+//        ))
+//        
+//            
+//            self.presentViewController(phoneAlert, animated: true, completion: nil)
+//        
+//        }
+//        
         
+        
+    }
+        
+    
     }
     
     
@@ -92,14 +157,40 @@ class NewUploadDescription: UIViewController {
         let purchasedDate = purchasedDateTextField.text
         let descriptionText = descriptionTextView.text
         
-        let zero = 0
-        if priceText!.isEmpty || purchasedDate!.isEmpty {
+       
+        if priceText!.isEmpty || purchasedDate!.isEmpty || description.isEmpty{
             
             
             //유저에게 채워넣으라고 알럴트
             self.alert("invalid", message : "you must fill in the blank")
             
         }else {
+            
+            if !(purchasedDate!.utf16.count <= 26 && purchasedDate!.utf16.count >= 2 ) {
+                // 3보다 크고 16보다 작은게 아니라면
+                alert("Invalid", message : "date must be 2 ~ 26")
+                buttonEnabled(uploadButton)
+                
+                stopActivityIndicator()
+                
+            }else{
+                //ㅇㅋ
+                
+                if !(description.utf16.count <= 200 && description.utf16.count >= 2 ) {
+                    
+                    alert("Invalid", message : "description 2 ~ 200")
+                    buttonEnabled(uploadButton)
+                    
+                    stopActivityIndicator()
+                    
+                    
+                    
+                    
+                }else {
+            
+            
+            
+            
             if(!emailSwitch.on && !textSwitch.on){
                 self.alert("invalid", message : "you must choose at least one contact method")
                 
@@ -158,8 +249,10 @@ class NewUploadDescription: UIViewController {
         }
     }
     
-    
-    
+        }
+    }
+
+
 
 
 
@@ -198,6 +291,14 @@ class NewUploadDescription: UIViewController {
     func luxuryAlert(userMessage:String) {
         
         let myAlert = UIAlertController(title: "Success", message: userMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        
+       
+        myAlert.addTextFieldWithConfigurationHandler { (textField : UITextField) -> Void in
+            textField.placeholder = "Email Address"
+            textField.keyboardType = UIKeyboardType.EmailAddress
+        }
+        
+        
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) {
             action in
             
@@ -214,6 +315,17 @@ class NewUploadDescription: UIViewController {
         self.presentViewController(myAlert, animated: true, completion: nil)
         
     }
+    
+    func buttonEnabled(buttonName: UIButton){
+        
+        buttonName.enabled = true
+    }
+    func buttonDisabeld(buttonName: UIButton){
+        
+        buttonName.enabled = false
+    }
+    
+
     
     
 }
