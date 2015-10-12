@@ -3868,7 +3868,7 @@
                                 <rect key="frame" x="166" y="390" width="93" height="30"/>
                                 <state key="normal" title="go main page"/>
                                 <connections>
-                                    <segue destination="49e-Tb-3d3" kind="show" id="LTO-4j-DdA"/>
+                                    <segue destination="iK2-TB-gg7" kind="show" id="2rp-n7-xMf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MvF-G8-KoX">
@@ -3909,7 +3909,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1303" y="-285"/>
+            <point key="canvasLocation" x="1755" y="-150.75"/>
         </scene>
         <!--Second-->
         <scene sceneID="aqz-Ft-t2Q">
@@ -4237,7 +4237,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ut0-Fq-8zT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1799" y="-775.5"/>
+            <point key="canvasLocation" x="1105" y="-460.5"/>
         </scene>
         <!--Item-->
         <scene sceneID="iG1-r5-T4W">
@@ -4333,7 +4333,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nto-Io-cMK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1625" y="729"/>
+            <point key="canvasLocation" x="1702" y="839.25"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Yuz-7Y-G2Y">
@@ -4351,7 +4351,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1pl-Hx-JYR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2123" y="1376.25"/>
+            <point key="canvasLocation" x="1128" y="879.75"/>
         </scene>
     </scenes>
     <resources>
@@ -4363,7 +4363,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="8v7-Qj-GhH"/>
         <segue reference="VmO-7q-XH5"/>
-        <segue reference="LTO-4j-DdA"/>
+        <segue reference="MrU-6j-YCD"/>
         <segue reference="4ln-8p-Ekj"/>
         <segue reference="fL3-VU-BgV"/>
         <segue reference="Vs3-qw-qis"/>

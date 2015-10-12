@@ -83,62 +83,62 @@ class NewUploadDescription: UIViewController {
             emailSwitch.on = false
             textSwitch.enabled = false
             //전화번호 저장 시키는 텍스트 필드
-           self.alert("No phone# found", message : "set your Phone#")
+           //self.alert("No phone# found", message : "set your Phone#")
             
             
-//            var phoneAlert : UIAlertController = UIAlertController(title: "Phone number", message: "please write prefer phone number ", preferredStyle: UIAlertControllerStyle.Alert)
-//            
-//            phoneAlert.addTextFieldWithConfigurationHandler({ (textField : UITextField) -> Void in
-//                textField.placeholder = "phone number"
-//                
-//            })
-//            
-//            phoneAlert.addAction(UIAlertAction(title: "111", style: UIAlertActionStyle.Default, handler: { alertAction in
-//                let textFields : NSArray = phoneAlert.textFields as! NSArray
-//                let phoneNumberTextField:UITextField = textFields.objectAtIndex(0) as! UITextField
-//                
-//                PFUser.currentUser()?.setObject(phoneNumberTextField.text!, forKey: "preferPhoneNumber")
-//                
-//                PFUser.currentUser()?.saveInBackgroundWithBlock { (success, error) -> Void in
-//                    self.stopActivityIndicator()
-//                    
-//                    if (error != nil)
-//                    {
-//                        self.alert("error", message: (error?.localizedDescription)!)
-//                    }
-//                    
-//                    if(success) {
-//                        print("goooooooooooood")
-//                        
-//                       // self.alert("Success", message: "Your information has been saved in your account")
-//                        
-//                        //self.performSegueWithIdentifier("moreInfoToMain", sender: self)
-//                        
-//                        
-//                        
-//                        
-//                        
-//                    }
-//                    
-//                    
-//                }
-//                
-//                
-//
-//                
-//                
-//                
-//            }
-//        ))
-//        
-//            
-//            self.presentViewController(phoneAlert, animated: true, completion: nil)
-//        
-//        }
-//        
+            var phoneAlert : UIAlertController = UIAlertController(title: "Phone number", message: "please write prefer phone number ", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            phoneAlert.addTextFieldWithConfigurationHandler({ (textField : UITextField) -> Void in
+                textField.placeholder = "phone number"
+                
+            })
+            
+            phoneAlert.addAction(UIAlertAction(title: "111", style: UIAlertActionStyle.Default, handler: { alertAction in
+                let textFields : NSArray = phoneAlert.textFields as! NSArray
+                let phoneNumberTextField:UITextField = textFields.objectAtIndex(0) as! UITextField
+                
+                PFUser.currentUser()?.setObject(phoneNumberTextField.text!, forKey: "preferPhoneNumber")
+                
+                PFUser.currentUser()?.saveInBackgroundWithBlock { (success, error) -> Void in
+                    self.stopActivityIndicator()
+                    
+                    if (error != nil)
+                    {
+                        self.alert("error", message: (error?.localizedDescription)!)
+                    }
+                    
+                    if(success) {
+                        print("goooooooooooood")
+                        
+                       // self.alert("Success", message: "Your information has been saved in your account")
+                        
+                        //self.performSegueWithIdentifier("moreInfoToMain", sender: self)
+                        
+                        
+                        
+                        
+                        
+                    }
+                    
+                    
+                }
+                
+                
+
+                
+                
+                
+            }
+        ))
+        
+            
+            self.presentViewController(phoneAlert, animated: true, completion: nil)
+        
+        }
         
         
-    }
+        
+    
         
     
     }
@@ -248,9 +248,15 @@ class NewUploadDescription: UIViewController {
                        }
         }
     }
-    
         }
+        
+    
+            
+        
     }
+
+
+
 
 
 
@@ -293,10 +299,6 @@ class NewUploadDescription: UIViewController {
         let myAlert = UIAlertController(title: "Success", message: userMessage, preferredStyle: UIAlertControllerStyle.Alert)
         
        
-        myAlert.addTextFieldWithConfigurationHandler { (textField : UITextField) -> Void in
-            textField.placeholder = "Email Address"
-            textField.keyboardType = UIKeyboardType.EmailAddress
-        }
         
         
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) {
