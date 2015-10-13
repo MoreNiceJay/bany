@@ -10,6 +10,9 @@
 		69090AAA1BBDD81000C95F56 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69090AA91BBDD81000C95F56 /* DetailVC.swift */; settings = {ASSET_TAGS = (); }; };
 		69090AAC1BBE153500C95F56 /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69090AAB1BBE153500C95F56 /* CommentVC.swift */; settings = {ASSET_TAGS = (); }; };
 		690C23FE1BBC6D8400245554 /* MainTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690C23FD1BBC6D8400245554 /* MainTVCE.swift */; settings = {ASSET_TAGS = (); }; };
+		693983211BCD768900ED28C1 /* FrontImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693983201BCD768900ED28C1 /* FrontImage.swift */; settings = {ASSET_TAGS = (); }; };
+		693983231BCD769600ED28C1 /* BackImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693983221BCD769600ED28C1 /* BackImage.swift */; settings = {ASSET_TAGS = (); }; };
+		693983251BCD908100ED28C1 /* editDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693983241BCD908100ED28C1 /* editDetailVC.swift */; settings = {ASSET_TAGS = (); }; };
 		694534CF1BBB8BB700D3B469 /* UploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694534CE1BBB8BB700D3B469 /* UploadVC.swift */; settings = {ASSET_TAGS = (); }; };
 		6951A2441BC331560005796F /* MyPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6951A2431BC331560005796F /* MyPost.swift */; settings = {ASSET_TAGS = (); }; };
 		6951A2461BC338F70005796F /* MyPostTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6951A2451BC338F70005796F /* MyPostTVCE.swift */; settings = {ASSET_TAGS = (); }; };
@@ -85,6 +88,9 @@
 		69090AA91BBDD81000C95F56 /* DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		69090AAB1BBE153500C95F56 /* CommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentVC.swift; sourceTree = "<group>"; };
 		690C23FD1BBC6D8400245554 /* MainTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTVCE.swift; sourceTree = "<group>"; };
+		693983201BCD768900ED28C1 /* FrontImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontImage.swift; sourceTree = "<group>"; };
+		693983221BCD769600ED28C1 /* BackImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackImage.swift; sourceTree = "<group>"; };
+		693983241BCD908100ED28C1 /* editDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editDetailVC.swift; sourceTree = "<group>"; };
 		694534CE1BBB8BB700D3B469 /* UploadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadVC.swift; path = ../bany/UploadVC.swift; sourceTree = "<group>"; };
 		6951A2431BC331560005796F /* MyPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPost.swift; sourceTree = "<group>"; };
 		6951A2451BC338F70005796F /* MyPostTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostTVCE.swift; sourceTree = "<group>"; };
@@ -198,6 +204,9 @@
 				690C23FD1BBC6D8400245554 /* MainTVCE.swift */,
 				69090AA91BBDD81000C95F56 /* DetailVC.swift */,
 				69090AAB1BBE153500C95F56 /* CommentVC.swift */,
+				693983201BCD768900ED28C1 /* FrontImage.swift */,
+				693983221BCD769600ED28C1 /* BackImage.swift */,
+				693983241BCD908100ED28C1 /* editDetailVC.swift */,
 			);
 			name = MainHome;
 			sourceTree = "<group>";
@@ -478,7 +487,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				690C23FE1BBC6D8400245554 /* MainTVCE.swift in Sources */,
+				693983211BCD768900ED28C1 /* FrontImage.swift in Sources */,
 				6988DC541BCA0A0400573E51 /* MainCollectionViewCell.swift in Sources */,
+				693983231BCD769600ED28C1 /* BackImage.swift in Sources */,
 				6988DC581BCA0A6400573E51 /* CollectionViewDetailVC.swift in Sources */,
 				697010E01BC1A8EC003D4400 /* WelcomVC.swift in Sources */,
 				6951A2441BC331560005796F /* MyPost.swift in Sources */,
@@ -506,6 +517,7 @@
 				694534CF1BBB8BB700D3B469 /* UploadVC.swift in Sources */,
 				69BE91411BB9DA46007E7010 /* ppTableViewCell.swift in Sources */,
 				69840E331BC735B600D42031 /* MoreInfoContactVC.swift in Sources */,
+				693983251BCD908100ED28C1 /* editDetailVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

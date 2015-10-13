@@ -14,6 +14,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var likedButton: UIButton!
     
+    @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var frontImageView: UIImageView!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -27,21 +28,43 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
     var liked = false
     var parentObjectID = String()
     var likeButton = Bool()
-    var dddd = String()
+    var frontImage = UIImageView()
+    var backImage = UIImageView()
+    var ddd = String()
     
+    var array = []
     
     @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
+         retrievingData()
         
         
+        editButton.hidden = true
         
 
         // Do any additional setup after loading the view.
         
         scrollView.sizeToFit()
         
-        retrievingData()
+        
+        //유저가 맞으면 에딧 하게 해주기
+        let checkForEdit = PFQuery(className: "Posts")
+        
+        checkForEdit.getObjectInBackgroundWithId(parentObjectID) {
+            (post: PFObject?, error: NSError?) -> Void in
+            if error == nil && post != nil {
+
+                
+                
+                if  (PFUser.currentUser()?.objectId == post!.valueForKey("uploader") as? String){
+                    self.editButton.hidden = false
+                
+                }
+            }
+        
+        }
+        
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
@@ -79,8 +102,39 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
             
             let destViewController : CommentVC = segue.destinationViewController as! CommentVC
             destViewController.parentObjectID = parentObjectID
+                    }
+        
+        if (segue.identifier == "front") {
+            
+            
+            let destViewController : FrontImage = segue.destinationViewController as! FrontImage
+            destViewController.frontImageView.image = frontImage.image
+            
+            
+            
             
         }
+        
+        if (segue.identifier == "back") {
+            
+            let destViewController : BackImage = segue.destinationViewController as! BackImage
+            destViewController.backImageView.image = backImage.image
+            
+            
+        }
+
+        if (segue.identifier == "editDetail") {
+            
+            let destViewController : editDetailVC = segue.destinationViewController as! editDetailVC
+           
+            
+            
+            
+            destViewController.parentObjectID = parentObjectID
+            
+            
+        }
+        
     }
 
     @IBAction func likeButtonTapped(sender: AnyObject){
@@ -121,6 +175,8 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
     if error == nil && post != nil {
         
        
+        
+       
        self.titleLabel.text = post!.valueForKey("titleText") as? String
        self.descriptionTextLabel.text = post!.valueForKey("descriptionText") as? String
         self.priceLabel.text = post!.valueForKey("priceText") as? String
@@ -129,6 +185,13 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         self.tagTextLabel.text =  post!.valueForKey("tagText") as? String
         self.nickNameLabel.text = post!.valueForKey("userNickName") as? String
         
+        
+        //시간
+        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yy"
+      
+        
+        self.timeLabel.text = dateFormatter.stringFromDate(post!.createdAt!)
         
         
         
@@ -141,10 +204,14 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
             if(imageData != nil){
                 
                 self.backImageView.image = UIImage(data: imageData!)
+                self.backImage.image = UIImage(data: imageData!)
+                
             }
                 
             else{
                 self.backImageView.image = UIImage(named: "AvatarPlaceholder")
+                
+                self.backImage.image = UIImage(named: "AvatarPlaceholder")
                 
             }
             
@@ -167,10 +234,14 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
             {
                 
                 self.frontImageView.image = UIImage(data: imageData!)
+                self.frontImage.image = UIImage(data: imageData!)
                 
     }else{
         self.frontImageView.image = UIImage(named: "AvatarPlaceholder")
-        
+                
+                self.frontImage.image =
+                    UIImage(named: "AvatarPlaceholder")
+
         }
        
         
@@ -188,8 +259,18 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
 
         }
     
+    
         }
-        }
+        
+    }
+
+
+    
+    
+  
+    
+    
+    
 }
         
 

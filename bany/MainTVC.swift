@@ -134,6 +134,7 @@ class MainTVC: UITableViewController {
         
         let query = PFQuery(className: "Posts")
         
+        query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (posts, error) -> Void in
             if error == nil {
                 
@@ -175,7 +176,7 @@ class MainTVC: UITableViewController {
         
         query.whereKey("category", equalTo: category)
         
-        query.orderByAscending("createdAt")
+        query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (posts, error) -> Void in
             if (error == nil) {
                 //에러없는 경우
@@ -191,7 +192,7 @@ class MainTVC: UITableViewController {
                     self.price.append(post["priceText"] as! String)
                     self.mainPhoto.append(post["front_image"] as! PFFile)
                     self.objectArray.append((post.objectId)! as String!)
-                    
+                    self.profilePhoto.append(post["profile_picture"] as! PFFile)
                     self.tableView.reloadData()
 
         }

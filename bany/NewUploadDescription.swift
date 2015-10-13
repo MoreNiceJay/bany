@@ -312,11 +312,14 @@ class NewUploadDescription: UIViewController {
                 }else{
                     
                     
+                    let image = UIImage(named: "AvatarPlaceholder")
                     
-                let imageData = UIImagePNGRepresentation(UIImage(named: "AvatarPlaceholder")!)
-                let profileImageFile = PFFile(name: "profileImage", data: imageData!)
-                post["profile_picture"] = profileImageFile
-                
+                    
+                    let imageData = UIImagePNGRepresentation(image!)
+                    let imageFile = PFFile(name:"image.png", data:imageData!)
+                    
+                   post["profile_picture"] = imageFile
+                    
                 }
                 
                 
@@ -423,6 +426,11 @@ class NewUploadDescription: UIViewController {
     }
     
 
-    
+    //
+    //                let imageData = UIImagePNGRepresentation(UIImage(named: "AvatarPlaceholder")!)
+    //                let profileImageFile = PFFile(name: "profileImage", data: imageData!)
+    //                post["profile_picture"] = profileImageFile
+    //
+
     
 }
