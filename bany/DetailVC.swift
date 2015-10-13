@@ -11,13 +11,25 @@ import Parse
 
 class DetailVC: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var likedButton: UIButton!
     
+    @IBOutlet weak var backImageView: UIImageView!
+    @IBOutlet weak var frontImageView: UIImageView!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var nickNameLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var purchasedDateLabel: UILabel!
+    @IBOutlet weak var descriptionTextLabel: UILabel!
+    @IBOutlet weak var tagTextLabel: UILabel!
     var checkingArray = [String]()
     var liked = false
     var parentObjectID = String()
     var likeButton = Bool()
+    var dddd = String()
+    
+    
     @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +40,8 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         // Do any additional setup after loading the view.
         
         scrollView.sizeToFit()
+        
+        retrievingData()
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
@@ -99,13 +113,83 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         myAlert.addAction(okAction)
         self.presentViewController(myAlert, animated: true, completion: nil)
     }
+    
+    func retrievingData() {
+    let query = PFQuery(className:"Posts")
+    query.getObjectInBackgroundWithId(parentObjectID) {
+    (post: PFObject?, error: NSError?) -> Void in
+    if error == nil && post != nil {
+        
+       
+       self.titleLabel.text = post!.valueForKey("titleText") as? String
+       self.descriptionTextLabel.text = post!.valueForKey("descriptionText") as? String
+        self.priceLabel.text = post!.valueForKey("priceText") as? String
+        self.purchasedDateLabel.text = post!.valueForKey("purchasedDate") as? String
 
+        self.tagTextLabel.text =  post!.valueForKey("tagText") as? String
+        self.nickNameLabel.text = post!.valueForKey("userNickName") as? String
+        
+        
+        
+        
+        var backPic = post!.valueForKey("damage_image") as? PFFile
+        
+        backPic!.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+            
+            
+            
+            if(imageData != nil){
+                
+                self.backImageView.image = UIImage(data: imageData!)
+            }
+                
+            else{
+                self.backImageView.image = UIImage(named: "AvatarPlaceholder")
+                
+            }
+            
+            
+            
+            
+            //post!.valueForKey("prefer_phoneNumber") as? String
+            //post!.valueForKey("prefer_email") as? String
+
+        
+        
+        
+        var frontPic = post!.valueForKey("front_image") as? PFFile
+                frontPic!.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+            
+            
+            
+            if(imageData != nil)
+                
+            {
+                
+                self.frontImageView.image = UIImage(data: imageData!)
+                
+    }else{
+        self.frontImageView.image = UIImage(named: "AvatarPlaceholder")
+        
+        }
+       
+        
+        
+        
+   
+    
+    
             }
         
-//let likeBackUp = PFObject(className: "LikeBackUp")
+    
+        }
+        
 
 
-//likeBackUp["uploader"] = PFUser.currentUser()?.objectId
-//likeBackUp["parent"] = self.parentObjectID
-//likeBackUp.saveEventually()
+        }
+    
+        }
+        }
+}
+        
 

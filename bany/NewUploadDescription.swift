@@ -55,49 +55,124 @@ class NewUploadDescription: UIViewController {
     
     
     @IBAction func emailSwitchOn(sender: AnyObject) {
-        if let emailFromParse = (PFUser.currentUser()?.objectForKey("email") as? String){
+        if let emailFromParse = (PFUser.currentUser()?.objectForKey("prefer_email") as? String){
             email = emailFromParse
             
         }else{
-            //이메일 세팅 페이지 만들기
-            self.alert("No email found", message : "set your email")
-            
-            
-            
-            
             emailSwitch.on = false
-            emailSwitch.enabled = false
-            //이메일 저장 시키는 텍스트 필드..
+            // textSwitch.enabled = false
+            //이메일 저장 시키는 텍스트 필드
+            
+            
+            
+            let emailAlert : UIAlertController = UIAlertController(title: "email ", message: "allow your customer email you ", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            emailAlert.addTextFieldWithConfigurationHandler({ (textField : UITextField) -> Void in
+                textField.placeholder = "email address"
+                textField.keyboardType = UIKeyboardType.EmailAddress
+            })
+            
+            emailAlert.addAction(UIAlertAction(title: "save", style: UIAlertActionStyle.Default, handler: { alertAction in
+                let textFields : NSArray = emailAlert.textFields as! NSArray
+                let emailNumberTextField:UITextField = textFields.objectAtIndex(0) as! UITextField
+                
+                
+                if !(emailNumberTextField.text!.utf16.count > 10  ) {
+                    // 3보다 크고 16보다 작은게 아니라면
+                    self.alert("Invalid", message : "email must be 10")
+                    
+                    
+                    self.stopActivityIndicator()
+                    
+                }else{
+                    
+                    PFUser.currentUser()?.setObject(emailNumberTextField.text!, forKey: "email")
+                    
+                    PFUser.currentUser()?.saveInBackgroundWithBlock { (success, error) -> Void in
+                        self.stopActivityIndicator()
+                        
+                        if (error != nil)
+                        {
+                            self.alert("error", message: (error?.localizedDescription)!)
+                        }
+                        
+                        if(success) {
+                            
+                            self.emailSwitch.on = true
+                            
+                            
+                            self.alert("saved", message : "email address saved")
+                            
+                            
+                            // self.alert("Success", message: "Your information has been saved in your account")
+                            
+                            //self.performSegueWithIdentifier("moreInfoToMain", sender: self)
+                            
+                            
+                            
+                            
+                            
+                        }
+                        
+                        
+                    }
+                }
+                
+                
+                
+                
+                
+                }
+                ))
+            let okAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.Default, handler: nil)
+            emailAlert.addAction(okAction)
+            
+            
+            self.presentViewController(emailAlert, animated: true, completion: nil)
             
         }
-        
+
     }
     
     @IBAction func textFieldOn(sender: AnyObject) {
-        if let numberFromParse = (PFUser.currentUser()?.objectForKey("phoneNumber") as? String){
+        if let numberFromParse = (PFUser.currentUser()?.objectForKey("prefer_phoneNumber") as? String){
+            
+         
+
+            
             phoneNumber = numberFromParse
             
         }else{
-            //이메일 세팅 페이지 만들기
             
-            emailSwitch.on = false
-            textSwitch.enabled = false
+            
+            textSwitch.on = false
+           // textSwitch.enabled = false
             //전화번호 저장 시키는 텍스트 필드
-           //self.alert("No phone# found", message : "set your Phone#")
+           
             
             
-            var phoneAlert : UIAlertController = UIAlertController(title: "Phone number", message: "please write prefer phone number ", preferredStyle: UIAlertControllerStyle.Alert)
+            let phoneAlert : UIAlertController = UIAlertController(title: "Phone number", message: "allow your customer text you ", preferredStyle: UIAlertControllerStyle.Alert)
             
             phoneAlert.addTextFieldWithConfigurationHandler({ (textField : UITextField) -> Void in
                 textField.placeholder = "phone number"
-                
+                textField.keyboardType = UIKeyboardType.PhonePad
             })
             
-            phoneAlert.addAction(UIAlertAction(title: "111", style: UIAlertActionStyle.Default, handler: { alertAction in
+            phoneAlert.addAction(UIAlertAction(title: "save", style: UIAlertActionStyle.Default, handler: { alertAction in
                 let textFields : NSArray = phoneAlert.textFields as! NSArray
                 let phoneNumberTextField:UITextField = textFields.objectAtIndex(0) as! UITextField
                 
-                PFUser.currentUser()?.setObject(phoneNumberTextField.text!, forKey: "preferPhoneNumber")
+                
+                if !(phoneNumberTextField.text!.utf16.count == 10  ) {
+                    // 3보다 크고 16보다 작은게 아니라면
+               self.alert("Invalid", message : "phoneNumber must be 10")
+                   
+                    
+                    self.stopActivityIndicator()
+                    
+                }else{
+
+                PFUser.currentUser()?.setObject(phoneNumberTextField.text!, forKey: "prefer_phoneNumber")
                 
                 PFUser.currentUser()?.saveInBackgroundWithBlock { (success, error) -> Void in
                     self.stopActivityIndicator()
@@ -108,7 +183,12 @@ class NewUploadDescription: UIViewController {
                     }
                     
                     if(success) {
-                        print("goooooooooooood")
+                        
+                        self.textSwitch.on = true
+                        
+                        
+                        self.alert("saved", message : "phone number saved")
+
                         
                        // self.alert("Success", message: "Your information has been saved in your account")
                         
@@ -122,7 +202,7 @@ class NewUploadDescription: UIViewController {
                     
                     
                 }
-                
+                }
                 
 
                 
@@ -130,10 +210,12 @@ class NewUploadDescription: UIViewController {
                 
             }
         ))
-        
+            let okAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.Default, handler: nil)
+            phoneAlert.addAction(okAction)
+
             
             self.presentViewController(phoneAlert, animated: true, completion: nil)
-        
+            
         }
         
         
@@ -223,10 +305,23 @@ class NewUploadDescription: UIViewController {
                     post["purchasedDate"] = purchasedDate
                     post["userNickName"] = PFUser.currentUser()?.objectForKey("nickName")
                     post["category"] = category
-                   // post["view"] = zero
-                   // post["like"] = zero
+                
+                
+                if let profilePicture = PFUser.currentUser()?.objectForKey("profile_picture") {
+                    post["profile_picture"] = profilePicture
+                }else{
                     
-                    post.saveInBackgroundWithBlock({ ( isSucessful: Bool, error : NSError?) -> Void in
+                    
+                    
+                let imageData = UIImagePNGRepresentation(UIImage(named: "AvatarPlaceholder")!)
+                let profileImageFile = PFFile(name: "profileImage", data: imageData!)
+                post["profile_picture"] = profileImageFile
+                
+                }
+                
+                
+                
+                post.saveInBackgroundWithBlock({ ( isSucessful: Bool, error : NSError?) -> Void in
                         
                         
                         if error == nil {
@@ -234,8 +329,8 @@ class NewUploadDescription: UIViewController {
                             print("업로드 성공")
                             
                             //저장 성공했다고 표시창
-                            self.luxuryAlert( "your post uploaded" )
-                            
+                            //self.luxuryAlert( "your post uploaded" )
+                             self.alert("Error", message : "업로드성공")
                             
                             
                             
@@ -304,7 +399,7 @@ class NewUploadDescription: UIViewController {
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) {
             action in
             
-            self.performSegueWithIdentifier("uploadSuccess", sender: self)
+            self.performSegueWithIdentifier("u1ploadCompleteToMain", sender: self)
         }
         myAlert.addAction(okAction)
         self.presentViewController(myAlert, animated: true, completion: nil)

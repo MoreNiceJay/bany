@@ -86,9 +86,9 @@ class MoreInfoVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             }else{
                 //ㅇㅋ
                 
-                if !(firstName.utf16.count <= 16 && firstName.utf16.count >= 3 ) {
+                if !(firstName.utf16.count <= 16 && firstName.utf16.count >= 2 ) {
                     
-                    alert("Invalid", message : "first name 3 ~ 16")
+                    alert("Invalid", message : "first name 2 ~ 16")
                     buttonEnabled(skipButton)
                     buttonEnabled(saveButton)
                     stopActivityIndicator()
@@ -97,9 +97,9 @@ class MoreInfoVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                     
                 }else{
                     
-                     if !(lastName.utf16.count <= 16 && lastName.utf16.count >= 3 ) {
+                     if !(lastName.utf16.count <= 16 && lastName.utf16.count >= 1 ) {
                         
-                        alert("Invalid", message : "lastname 3 ~ 16")
+                        alert("Invalid", message : "lastname 1 ~ 16")
                         buttonEnabled(skipButton)
                         buttonEnabled(saveButton)
                         stopActivityIndicator()

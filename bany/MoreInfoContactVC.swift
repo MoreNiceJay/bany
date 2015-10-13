@@ -69,10 +69,10 @@ class MoreInfoContactVC: UIViewController {
                         user.setObject(phoneNumber, forKey: "phoneNumber")
                     
                     if preferEmailSwitch.on == true{
-                        user.setObject(email, forKey: "preferEmail")
+                        user.setObject(email, forKey: "prefer_email")
                     }
                     if preferPhoneNumberSwitch.on == true{
-                         user.setObject(phoneNumber, forKey: "preferPhoneNumber")
+                         user.setObject(phoneNumber, forKey: "prefer_phoneNumber")
                         
                     }
                     

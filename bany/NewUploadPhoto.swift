@@ -156,7 +156,7 @@ class NewUploadPhoto: UIViewController, UIImagePickerControllerDelegate, UINavig
                 return false
             }
             
-            cameraUI.allowsEditing = true
+            cameraUI.allowsEditing = false
             cameraUI.showsCameraControls = true
             cameraUI.delegate = self
             

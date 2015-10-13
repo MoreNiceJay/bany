@@ -53,6 +53,13 @@ class CommentVC: UIViewController, UITableViewDelegate {
         comment["createdBy"] = PFUser.currentUser()
         comment["comment"] =  "" + commentTextField.text!
         comment["parent"] = parentObjectID
+        
+        if let nickName = PFUser.currentUser()?.objectForKey("nickName"){
+            comment["username"] = nickName
+
+            
+        }else {
+            
         comment["username"] = PFUser.currentUser()?.username
         
         comment.saveInBackgroundWithBlock { (success : Bool, error : NSError?) -> Void in
@@ -65,7 +72,8 @@ class CommentVC: UIViewController, UITableViewDelegate {
             }else { print(error)
             }
         }
-        
+            
+        }
     }
 
 

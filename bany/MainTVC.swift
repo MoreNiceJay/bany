@@ -117,6 +117,14 @@ class MainTVC: UITableViewController {
             cell.mainPhoto.image = image
         }
         
+        profilePhoto[indexPath.row].getDataInBackgroundWithBlock { (imageData : NSData?, error : NSError?) -> Void in
+            let image = UIImage(data : imageData!)
+            cell.profilePhoto.image = image
+        }
+
+        
+        
+        
         
         return cell
     }
@@ -140,7 +148,7 @@ class MainTVC: UITableViewController {
                     self.nickName.append(post["userNickName"] as! String)
                     //시간
                     let dateFormatter:NSDateFormatter = NSDateFormatter()
-                    dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+                    dateFormatter.dateFormat = "dd/MM/yy"
                     self.time.append(dateFormatter.stringFromDate(post.createdAt!))
                     self.price.append(post["priceText"] as! String)
                     
@@ -150,7 +158,9 @@ class MainTVC: UITableViewController {
                     //  self.saved.append(post["like"] as! Int)
                     
                     self.mainPhoto.append(post["front_image"] as! PFFile)
-                    //self.profilePhoto.append(post["profilePhoto"] as! PFFile)
+                  
+                    
+                    self.profilePhoto.append(post["profile_picture"] as! PFFile)
                     
                     self.tableView.reloadData()
                 }

@@ -104,13 +104,23 @@ class NewUploadTitle: UIViewController {
         
         if(!bookSwitch.on && !iclickerSwitch.on && !otherSwitch.on){
             
+            buttonEnabled(nextButton)
+            
+            stopActivityIndicator()
+            
             self.alert("invalid", message : "you must choose a category")
         }else{
         if titleText!.isEmpty || tagText!.isEmpty {
             
             
+            buttonEnabled(nextButton)
+            
+            stopActivityIndicator()
+            
             //유저에게 채워넣으라고 알럴트
             self.alert("invalid", message : "you must fill in the blank")
+            
+            
             
         }else {
             

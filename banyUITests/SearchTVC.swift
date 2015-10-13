@@ -192,7 +192,7 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
                     //self.viewed.append(post["view"] as! Int)
                     //  self.saved.append(post["like"] as! Int)
                     
-                    self.mainPhoto.append(post["imageFile"] as! PFFile)
+                    self.mainPhoto.append(post["front_image"] as! PFFile)
                     //self.profilePhoto.append(post["profilePhoto"] as! PFFile)
                     
                     self.myTable.reloadData()

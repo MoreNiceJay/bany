@@ -17,6 +17,7 @@ class MainTVCE: UITableViewCell {
     @IBOutlet weak var viewCountingLabel: UILabel!
     @IBOutlet weak var likeCountingLabel: UILabel!
     
+    @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var mainPhoto: UIImageView!
     @IBOutlet weak var textButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
