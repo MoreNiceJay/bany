@@ -10,11 +10,14 @@
 		69090AAA1BBDD81000C95F56 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69090AA91BBDD81000C95F56 /* DetailVC.swift */; settings = {ASSET_TAGS = (); }; };
 		69090AAC1BBE153500C95F56 /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69090AAB1BBE153500C95F56 /* CommentVC.swift */; settings = {ASSET_TAGS = (); }; };
 		690C23FE1BBC6D8400245554 /* MainTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690C23FD1BBC6D8400245554 /* MainTVCE.swift */; settings = {ASSET_TAGS = (); }; };
+		6923ADB31BCEEF2300DB733D /* CommentTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6923ADB21BCEEF2300DB733D /* CommentTVCE.swift */; settings = {ASSET_TAGS = (); }; };
 		693983211BCD768900ED28C1 /* FrontImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693983201BCD768900ED28C1 /* FrontImage.swift */; settings = {ASSET_TAGS = (); }; };
 		693983231BCD769600ED28C1 /* BackImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693983221BCD769600ED28C1 /* BackImage.swift */; settings = {ASSET_TAGS = (); }; };
 		693983251BCD908100ED28C1 /* editDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693983241BCD908100ED28C1 /* editDetailVC.swift */; settings = {ASSET_TAGS = (); }; };
 		693983291BCDFFCE00ED28C1 /* MyLikeTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693983281BCDFFCE00ED28C1 /* MyLikeTVCE.swift */; settings = {ASSET_TAGS = (); }; };
 		6939832B1BCE001200ED28C1 /* MyLikeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6939832A1BCE001200ED28C1 /* MyLikeTVC.swift */; settings = {ASSET_TAGS = (); }; };
+		6939832D1BCEE92400ED28C1 /* MycommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6939832C1BCEE92400ED28C1 /* MycommentVC.swift */; settings = {ASSET_TAGS = (); }; };
+		6939832F1BCEE95800ED28C1 /* MyCommentTVCETableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6939832E1BCEE95800ED28C1 /* MyCommentTVCETableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		694534CF1BBB8BB700D3B469 /* UploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694534CE1BBB8BB700D3B469 /* UploadVC.swift */; settings = {ASSET_TAGS = (); }; };
 		6951A2441BC331560005796F /* MyPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6951A2431BC331560005796F /* MyPost.swift */; settings = {ASSET_TAGS = (); }; };
 		6951A2461BC338F70005796F /* MyPostTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6951A2451BC338F70005796F /* MyPostTVCE.swift */; settings = {ASSET_TAGS = (); }; };
@@ -90,11 +93,14 @@
 		69090AA91BBDD81000C95F56 /* DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		69090AAB1BBE153500C95F56 /* CommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentVC.swift; sourceTree = "<group>"; };
 		690C23FD1BBC6D8400245554 /* MainTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTVCE.swift; sourceTree = "<group>"; };
+		6923ADB21BCEEF2300DB733D /* CommentTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTVCE.swift; sourceTree = "<group>"; };
 		693983201BCD768900ED28C1 /* FrontImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontImage.swift; sourceTree = "<group>"; };
 		693983221BCD769600ED28C1 /* BackImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackImage.swift; sourceTree = "<group>"; };
 		693983241BCD908100ED28C1 /* editDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editDetailVC.swift; sourceTree = "<group>"; };
-		693983281BCDFFCE00ED28C1 /* MyLikeTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLikeTVCE.swift; sourceTree = "<group>"; };
-		6939832A1BCE001200ED28C1 /* MyLikeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLikeTVC.swift; sourceTree = "<group>"; };
+		693983281BCDFFCE00ED28C1 /* MyLikeTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyLikeTVCE.swift; path = ../bany/MyLikeTVCE.swift; sourceTree = "<group>"; };
+		6939832A1BCE001200ED28C1 /* MyLikeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyLikeTVC.swift; path = ../bany/MyLikeTVC.swift; sourceTree = "<group>"; };
+		6939832C1BCEE92400ED28C1 /* MycommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MycommentVC.swift; sourceTree = "<group>"; };
+		6939832E1BCEE95800ED28C1 /* MyCommentTVCETableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCommentTVCETableViewCell.swift; sourceTree = "<group>"; };
 		694534CE1BBB8BB700D3B469 /* UploadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadVC.swift; path = ../bany/UploadVC.swift; sourceTree = "<group>"; };
 		6951A2431BC331560005796F /* MyPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPost.swift; sourceTree = "<group>"; };
 		6951A2451BC338F70005796F /* MyPostTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostTVCE.swift; sourceTree = "<group>"; };
@@ -207,6 +213,7 @@
 				69BE91301BB5FB90007E7010 /* MainTVC.swift */,
 				690C23FD1BBC6D8400245554 /* MainTVCE.swift */,
 				69090AA91BBDD81000C95F56 /* DetailVC.swift */,
+				6923ADB21BCEEF2300DB733D /* CommentTVCE.swift */,
 				69090AAB1BBE153500C95F56 /* CommentVC.swift */,
 				693983201BCD768900ED28C1 /* FrontImage.swift */,
 				693983221BCD769600ED28C1 /* BackImage.swift */,
@@ -341,8 +348,8 @@
 				697010E11BC1B30F003D4400 /* EditInfo.swift */,
 				6951A2431BC331560005796F /* MyPost.swift */,
 				6951A2451BC338F70005796F /* MyPostTVCE.swift */,
-				6939832A1BCE001200ED28C1 /* MyLikeTVC.swift */,
-				693983281BCDFFCE00ED28C1 /* MyLikeTVCE.swift */,
+				6939832C1BCEE92400ED28C1 /* MycommentVC.swift */,
+				6939832E1BCEE95800ED28C1 /* MyCommentTVCETableViewCell.swift */,
 			);
 			name = userInfo;
 			sourceTree = "<group>";
@@ -350,6 +357,8 @@
 		69BE913B1BB9D77A007E7010 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
+				6939832A1BCE001200ED28C1 /* MyLikeTVC.swift */,
+				693983281BCDFFCE00ED28C1 /* MyLikeTVCE.swift */,
 				6988DC591BCA0C9700573E51 /* MainCollectionViewVC.swift */,
 				6988DC531BCA0A0400573E51 /* MainCollectionViewCell.swift */,
 				6988DC571BCA0A6400573E51 /* CollectionViewDetailVC.swift */,
@@ -492,9 +501,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6923ADB31BCEEF2300DB733D /* CommentTVCE.swift in Sources */,
 				690C23FE1BBC6D8400245554 /* MainTVCE.swift in Sources */,
 				693983211BCD768900ED28C1 /* FrontImage.swift in Sources */,
 				6988DC541BCA0A0400573E51 /* MainCollectionViewCell.swift in Sources */,
+				6939832D1BCEE92400ED28C1 /* MycommentVC.swift in Sources */,
 				693983231BCD769600ED28C1 /* BackImage.swift in Sources */,
 				6988DC581BCA0A6400573E51 /* CollectionViewDetailVC.swift in Sources */,
 				697010E01BC1A8EC003D4400 /* WelcomVC.swift in Sources */,
@@ -517,6 +528,7 @@
 				6988DC5C1BCABFC300573E51 /* NewUploadTitle.swift in Sources */,
 				69BE91311BB5FB90007E7010 /* MainTVC.swift in Sources */,
 				69090AAC1BBE153500C95F56 /* CommentVC.swift in Sources */,
+				6939832F1BCEE95800ED28C1 /* MyCommentTVCETableViewCell.swift in Sources */,
 				69BE91351BB859D5007E7010 /* ForgotPasswordVC.swift in Sources */,
 				6988DC5A1BCA0C9700573E51 /* MainCollectionViewVC.swift in Sources */,
 				69B8B30C1BC02FCF006DD579 /* SearchTVC.swift in Sources */,
