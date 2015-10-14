@@ -2073,6 +2073,9 @@
                                 <state key="normal" title="Like">
                                     <color key="titleColor" red="0.54294902150000002" green="0.015097036419999999" blue="0.0" alpha="0.76000000000000001" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="vOv-sh-FxS" kind="show" id="3AI-zs-Cb9"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nde-ik-sM1">
                                 <rect key="frame" x="230" y="354" width="95" height="95"/>
@@ -2212,14 +2215,14 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4yL-UX-lkU">
                                                     <rect key="frame" x="8" y="24" width="80" height="80"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LvC-Kd-mKV">
-                                                    <rect key="frame" x="104" y="63" width="302" height="47"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUq-nI-AIH">
+                                                    <rect key="frame" x="104" y="24" width="302" height="31"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUq-nI-AIH">
-                                                    <rect key="frame" x="104" y="24" width="302" height="31"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LvC-Kd-mKV">
+                                                    <rect key="frame" x="104" y="63" width="302" height="47"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2255,7 +2258,78 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TCL-pr-Hh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="63" y="3138"/>
+            <point key="canvasLocation" x="189" y="2919"/>
+        </scene>
+        <!--My LikeTVC-->
+        <scene sceneID="tY2-Kb-eON">
+            <objects>
+                <tableViewController id="vOv-sh-FxS" customClass="MyLikeTVC" customModule="bany" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="109" sectionHeaderHeight="28" sectionFooterHeight="28" id="UEX-cQ-73e">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="likeCell" rowHeight="109" id="NRC-UD-f1b" customClass="MyLikeTVCE" customModule="bany" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NRC-UD-f1b" id="rQ1-50-pnb">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mse-eB-Rh9">
+                                            <rect key="frame" x="8" y="24" width="80" height="80"/>
+                                            <variation key="heightClass=regular" fixedFrame="YES">
+                                                <rect key="frame" x="8" y="14" width="80" height="80"/>
+                                            </variation>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfF-0R-fO5">
+                                            <rect key="frame" x="104" y="63" width="302" height="47"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular" fixedFrame="YES">
+                                                <rect key="frame" x="104" y="53" width="302" height="47"/>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4S3-YR-Z1Z">
+                                            <rect key="frame" x="104" y="24" width="302" height="31"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular" fixedFrame="YES">
+                                                <rect key="frame" x="104" y="14" width="302" height="31"/>
+                                            </variation>
+                                        </label>
+                                    </subviews>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="Mse-eB-Rh9"/>
+                                            <exclude reference="GfF-0R-fO5"/>
+                                            <exclude reference="4S3-YR-Z1Z"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular">
+                                        <mask key="subviews">
+                                            <include reference="Mse-eB-Rh9"/>
+                                            <include reference="GfF-0R-fO5"/>
+                                            <include reference="4S3-YR-Z1Z"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="likeImage" destination="Mse-eB-Rh9" id="qWh-of-o29"/>
+                                    <outlet property="priceLabel" destination="GfF-0R-fO5" id="DbI-ca-vyN"/>
+                                    <outlet property="titleLabel" destination="4S3-YR-Z1Z" id="S7i-h6-w50"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vOv-sh-FxS" id="quk-UI-6bY"/>
+                            <outlet property="delegate" destination="vOv-sh-FxS" id="5tG-0K-EsM"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uhk-Y2-ZnL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="785" y="2919"/>
         </scene>
         <!--Edit Info-->
         <scene sceneID="1HB-0y-z1M">
@@ -4601,6 +4675,7 @@
                         <outlet property="descriptionTextLabel" destination="gDR-P7-NaN" id="rk0-al-we2"/>
                         <outlet property="editButton" destination="D3y-az-79a" id="mOh-zL-YdO"/>
                         <outlet property="frontImageView" destination="YaG-Qf-z6r" id="VDD-kd-5xe"/>
+                        <outlet property="likeButton" destination="lcI-E0-5Qh" id="Dng-Qd-VWt"/>
                         <outlet property="likedButton" destination="lcI-E0-5Qh" id="k6k-BP-StZ"/>
                         <outlet property="nickNameLabel" destination="ghw-dI-R5Q" id="6Ph-YH-Ujn"/>
                         <outlet property="priceLabel" destination="B1W-2O-cjU" id="eyv-ID-gzr"/>
@@ -5145,7 +5220,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BUm-RR-uAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3949" y="-383.25"/>
+            <point key="canvasLocation" x="4090" y="-448.5"/>
         </scene>
         <!--Item-->
         <scene sceneID="lAP-ZF-4HC">
@@ -5269,10 +5344,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aVg-0q-cLE"/>
-        <segue reference="Oev-0J-NiN"/>
+        <segue reference="2Px-M6-QxO"/>
+        <segue reference="Tzm-OJ-dFs"/>
+        <segue reference="OSS-9G-x7J"/>
         <segue reference="EbQ-LY-hfU"/>
-        <segue reference="Vs3-qw-qis"/>
-        <segue reference="1aD-kB-3lu"/>
         <segue reference="VmO-7q-XH5"/>
         <segue reference="0wb-lO-1eF"/>
         <segue reference="qhz-BR-2Cd"/>

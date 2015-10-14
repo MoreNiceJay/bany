@@ -74,7 +74,7 @@ class MyPost: UIViewController,  UITableViewDelegate {
                     let dateFormatter:NSDateFormatter = NSDateFormatter()
                     dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
                     self.myPostDate.append(dateFormatter.stringFromDate(post.createdAt!))
-                    self.myPostPic.append(post["imageFile"] as! PFFile)
+                    self.myPostPic.append(post["front_image"] as! PFFile)
                     self.objectArray.append((post.objectId)! as String!)
                     
                     self.tableView.reloadData()

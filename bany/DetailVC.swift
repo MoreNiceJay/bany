@@ -24,10 +24,13 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var purchasedDateLabel: UILabel!
     @IBOutlet weak var descriptionTextLabel: UILabel!
     @IBOutlet weak var tagTextLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
+    
+    
     var checkingArray = [String]()
-    var liked = false
+    
     var parentObjectID = String()
-    var likeButton = Bool()
+    
     var frontImage = UIImageView()
     var backImage = UIImageView()
     var ddd = String()
@@ -139,26 +142,51 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
 
     @IBAction func likeButtonTapped(sender: AnyObject){
         
-    
-    var query = PFQuery(className:"Like")
-    
-    
-    
-    
-    query.getObjectInBackgroundWithId((PFUser.currentUser()?.objectId)!) {
-    (likes: PFObject?, error: NSError?) -> Void in
-    if error != nil {
-    print(error)
-    } else if let likes = likes {
-    likes["parent"] = self.parentObjectID
-    likes["uploader"] = PFUser.currentUser()?.objectId
         
-    likes.saveInBackground()
-    
+                    let save = PFObject(className: "Like")
+                    
+                    save["parent"] = self.parentObjectID
+                    save["uploader"] = PFUser.currentUser()?.objectId
+                    
+                    save.saveInBackgroundWithBlock { (success, error) -> Void in
+                        if error == nil {
+                            
+                            self.alert("liked", message: "you saved it for later")
+                            
+                            self.likeButton.enabled = false
+                            
+                            
+                        }else{
+                            self.alert("error", message: (error?.localizedDescription)!)
+                            
+                        }
         }
-    
-        }
-    }
+                    
+        
+        
+                
+                
+
+                
+                
+            }
+        
+        
+        
+            
+
+  
+
+      
+
+
+        
+        
+        
+        
+       
+       
+
     
     func alert(title : String, message : String) {
         
