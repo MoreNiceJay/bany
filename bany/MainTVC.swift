@@ -24,6 +24,7 @@ class MainTVC: UITableViewController {
     lazy var price = [String]()
     lazy var viewed = [String]()
     lazy var saved = [String]()
+    var timeLineData : NSMutableArray = NSMutableArray()
     
     var objectArray = [String]()
    // var objectId = String()
@@ -89,7 +90,7 @@ class MainTVC: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return titleText.count
+        return timeLineData.count
     }
 
     
@@ -121,27 +122,47 @@ class MainTVC: UITableViewController {
             let image = UIImage(data : imageData!)
             cell.profilePhoto.image = image
         }
-
-        
-        
-        
-        
-        return cell
+    return cell
     }
-    
+
+//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//               let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MainTVCE
+//
+//        let sweet : PFObject = self.timeLineData.objectAtIndex(indexPath.row) as! PFObject
+//        
+//        cell.titleLabel.text = sweet.objectForKey("titleText") as? String
+//        
+//        return cell
+//    }
+
+  
     func bringAllDatafromParse() {
         //activityIndicatorOn()
         
         let query = PFQuery(className: "Posts")
         
         query.orderByDescending("createdAt")
-        query.findObjectsInBackgroundWithBlock { (posts, error) -> Void in
-            if error == nil {
-                
-                for post in posts! {
+        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
+            if error == nil && objects != nil{
+//
+//                for object : PFObject! in objects! {
+//                    
+//                    self.timeLineData.addObject(object)
+//                    
+//                }
+//                
+//                let array : NSArray = self.timeLineData.reverseObjectEnumerator().allObjects
+//                self.timeLineData = array as! NSMutableArray
+//                self.tableView.reloadData()
+//                
+//            }
+        
+                    
+   
                     
                     
-                    
+                for post : PFObject! in objects! {
+
                    
 
                     
@@ -167,8 +188,9 @@ class MainTVC: UITableViewController {
                 }
             }
         }
-        
     }
+    
+
     func bringCategoryDataFromParse(category : Int) {
         
         
@@ -202,10 +224,13 @@ class MainTVC: UITableViewController {
 
          //   self.activityIndicatorOff()
 
-}
-}
 
+        }
+
+        }
     
+
+
 override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
 if (segue.identifier == "mainToComment") {
@@ -238,7 +263,7 @@ destViewController.parentObjectID = parentObjectID
     }
     
     
-    
+}
     /*func howaboutThis() {
         let query = PFQuery(className: "User")
         query.whereKey("objectId", equalTo: (PFUser.currentUser()?.objectId)!)
@@ -267,4 +292,3 @@ destViewController.parentObjectID = parentObjectID
     self.tableView.deselectRowAtIndexPath(indexPath, animated : true)
 */
 
-}

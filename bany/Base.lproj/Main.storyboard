@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9pv-A4-QxB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AYD-Kt-H9p">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -5548,10 +5548,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aVg-0q-cLE"/>
+        <segue reference="4ln-8p-Ekj"/>
+        <segue reference="fL3-VU-BgV"/>
         <segue reference="Vs3-qw-qis"/>
         <segue reference="VmO-7q-XH5"/>
-        <segue reference="OSS-9G-x7J"/>
-        <segue reference="EbQ-LY-hfU"/>
         <segue reference="qhz-BR-2Cd"/>
         <segue reference="0wb-lO-1eF"/>
     </inferredMetricsTieBreakers>
