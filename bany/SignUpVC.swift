@@ -139,7 +139,10 @@ class SignUpVC: UIViewController {
                             NSUserDefaults.standardUserDefaults().setObject(PFUser.currentUser()?.objectId, forKey: "objectId")
                             NSUserDefaults.standardUserDefaults().synchronize()
                             
+                            
                             self.performSegueWithIdentifier("resisterToMoreInfo", sender: self)
+                            
+                            
                             self.alert("Welcome", message : "Succesully signed up!                         please go check email verificatoin")
                             
                             //개인정보 페이지로 보내기
@@ -211,6 +214,8 @@ class SignUpVC: UIViewController {
                 self.buttonEnabled(self.signUpButton)
                 self.stopActivityIndicator()
                 self.performSegueWithIdentifier("resisterToMoreInfo", sender: self)
+                
+                
             }
             
         })
@@ -253,19 +258,12 @@ class SignUpVC: UIViewController {
     }
 
 
+    @IBAction func goBackToLoginPage(sender: AnyObject) {
+        
+        dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
 
 
-
-/*
-let userMessage = "good"
-
-var myAlert = UIAlertController(title: "Alert", message: userMessage, preferredStyle: UIAlertControllerStyle.Alert)
-
-let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
-
-myAlert.addAction(okAction)
-
-self.presentViewController(myAlert, animated: true, completion: nil)
-
-*/
 }

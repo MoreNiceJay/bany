@@ -263,10 +263,10 @@
 				696728841BB36CD90012723B /* Assets.xcassets */,
 				696728861BB36CD90012723B /* LaunchScreen.storyboard */,
 				696728891BB36CD90012723B /* Info.plist */,
+				69BE91361BB85D74007E7010 /* signUpLogin */,
 				690C23FC1BBC6C5B00245554 /* MainHome */,
 				69B8B30D1BC05646006DD579 /* Search */,
 				694534CB1BBB436000D3B469 /* upload */,
-				69BE91361BB85D74007E7010 /* signUpLogin */,
 				69BE91371BB85D97007E7010 /* userInfo */,
 			);
 			path = bany;

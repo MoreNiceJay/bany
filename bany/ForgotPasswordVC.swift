@@ -99,5 +99,9 @@ class ForgotPasswordVC: UIViewController {
         
         
     }
+    @IBAction func goBack(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+        
+    }
 
 }
