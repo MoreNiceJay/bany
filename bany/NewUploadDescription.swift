@@ -307,20 +307,10 @@ class NewUploadDescription: UIViewController {
                     post["category"] = category
                 
                 
-                if let profilePicture = PFUser.currentUser()?.objectForKey("profile_picture") {
-                    post["profile_picture"] = profilePicture
-                }else{
-                    
-                    
-                    let image = UIImage(named: "AvatarPlaceholder")
-                    
-                    
-                    let imageData = UIImagePNGRepresentation(image!)
-                    let imageFile = PFFile(name:"image.png", data:imageData!)
-                    
-                   post["profile_picture"] = imageFile
-                    
-                }
+                
+                   // post["profile_picture"] = PFUser.currentUser()?.objectForKey("profile_picture")
+               
+               
                 
                 
                 

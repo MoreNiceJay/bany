@@ -154,6 +154,7 @@ class LoginVC: UIViewController {
     
     }
     
+    
     func startActivityIndicator() {
         self.actInd.hidden = false
         self.actInd.startAnimating()
