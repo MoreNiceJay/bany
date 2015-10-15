@@ -16,11 +16,13 @@ class CommentVC: UIViewController, UITableViewDelegate {
     @IBOutlet weak var commentTableView: UITableView!
     @IBOutlet weak var commentTextField: UITextField!
     
-    var commentArray = [String]()
     
+    var commentArray = [String]()
+    var objectArray = [String]()
     var userIdArray = [String]()
     var parentObjectID = String()
     
+    @IBOutlet weak var deleteButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +32,27 @@ class CommentVC: UIViewController, UITableViewDelegate {
 
         // Do any additional setup after loading the view.
     }
+    
+//    override func viewDidAppear(animated: Bool) {
+//        super.viewDidAppear(true)
+//        
+//        let checkForEdit = PFQuery(className: "Commment")
+//        
+//        checkForEdit.getObjectInBackgroundWithId(parentObjectID) {
+//            (post: PFObject?, error: NSError?) -> Void in
+//            if error == nil && post != nil {
+//                
+//                
+//                
+//                if  (PFUser.currentUser()?.objectId == post!.valueForKey("parent") as? String){
+//                    self.deleteButton.hidden = false
+//                    
+//                }
+//            }
+//            
+//        }
+//
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -49,8 +72,8 @@ class CommentVC: UIViewController, UITableViewDelegate {
 
     @IBAction func sendButton(sender: AnyObject) {
         startActivityIndicator()
-        let comment = PFObject(className:"Commment")
-        comment["createdBy"] = PFUser.currentUser()
+        let comment = PFObject(className:"Comment")
+        comment["createdBy"] = PFUser.currentUser()?.objectId
         comment["comment"] =  "" + commentTextField.text!
         comment["parent"] = parentObjectID
         
@@ -82,9 +105,9 @@ class CommentVC: UIViewController, UITableViewDelegate {
         
         startActivityIndicator()
         
-        let queryComments = PFQuery(className: "Commment")
+        let queryComments = PFQuery(className: "Comment")
         queryComments.whereKey("parent", equalTo: ("\(parentObjectID)"))
-        queryComments.orderByAscending("createdAt")
+        queryComments.orderByDescending("createdAt")
         queryComments.findObjectsInBackgroundWithBlock { (comments, error) -> Void in
             if error == nil {
                 //에러 없음 
@@ -92,6 +115,8 @@ class CommentVC: UIViewController, UITableViewDelegate {
                 for comment in comments! {
                     self.commentArray.append(comment["comment"] as! String)
                     self.userIdArray.append(comment["username"] as! String)
+                    
+                    
                 }
                 
             }else{
@@ -135,15 +160,32 @@ class CommentVC: UIViewController, UITableViewDelegate {
         
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cellForComment", forIndexPath: indexPath)
+        let cell : CommentTVCE = tableView.dequeueReusableCellWithIdentifier("cellForComment", forIndexPath: indexPath) as! CommentTVCE
         
-        cell.textLabel?.text = self.commentArray[indexPath.row]
-        cell.detailTextLabel!.text = "Id:" + self.userIdArray[indexPath.row]
+        cell.comment.text = self.commentArray[indexPath.row]
+        cell.nickNameLabel!.text = "Id:" + self.userIdArray[indexPath.row]
         
         return cell
     }
     
-    
+    @IBAction func commentDeleteButtonTapped(sender: AnyObject) {
+        
+        let button = sender as! UIButton
+        let view = button.superview!
+        let cell = view.superview as! CommentTVCE
+        let indexPath = commentTableView.indexPathForCell(cell)
+       
+        
+        let query = PFObject(className:"Comment")
+        
+        query.objectId = objectArray[(indexPath?.row)!]
+        query.deleteInBackground()
+
+        
+        
+        
+    }
+    // parentObjectID = objectArray[(indexPath?.row)!]
 }
 
 

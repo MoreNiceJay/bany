@@ -13,6 +13,7 @@ class CommentTVCE: UITableViewCell {
     
     
     
+    @IBOutlet weak var delete: UIButton!
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var comment: UILabel!
     override func awakeFromNib() {
@@ -27,9 +28,5 @@ class CommentTVCE: UITableViewCell {
     }
 
 
-    @IBAction func editButtonTapped(sender: AnyObject) {
-        
-        
-    }
-
+  
 }
