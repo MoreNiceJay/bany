@@ -36,12 +36,12 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
     var ddd = String()
     
     var array = []
-    
+      var object : PFObject!
     @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
-         retrievingData()
-        
+         detailViewSetting()
+        print(object)
         
         editButton.hidden = true
         
@@ -71,12 +71,85 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-        
-        
-
-        
+        }
         
     
+        
+        func detailViewSetting(){
+        //제목
+        
+            self.titleLabel.text = object.objectForKey("titleText") as? String
+            self.descriptionTextLabel.text = object.valueForKey("descriptionText") as? String
+            self.priceLabel.text = object.valueForKey("priceText") as? String
+            self.purchasedDateLabel.text = object.valueForKey("purchasedDate") as? String
+            
+            self.tagTextLabel.text =  object!.valueForKey("tagText") as? String
+            
+            if let userNickNameCheck = object!.valueForKey("userNickName") as? String {
+                
+                self.nickNameLabel.text = userNickNameCheck
+                
+            }else{
+               self.nickNameLabel.text = object!.valueForKey("userNickName") as? String
+            }
+
+            
+            
+            
+            //시간
+            
+            
+            let dateFormatter:NSDateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MM /dd /yyyy HH:mm"
+            timeLabel.text = (dateFormatter.stringFromDate(object.createdAt!))
+            
+            let mainImage = object.objectForKey("front_image") as! PFFile
+            
+            
+            mainImage.getDataInBackgroundWithBlock { (imageData, error) -> Void in
+                let image = UIImage(data: imageData!)
+                self.frontImageView.image = image
+                self.frontImage.image = image
+            }
+            
+            
+            let backImage = object.objectForKey("damage_image") as! PFFile
+            
+            
+            backImage.getDataInBackgroundWithBlock { (imageData, error) -> Void in
+                let image = UIImage(data: imageData!)
+                self.backImageView.image = image
+                self.backImage.image = image
+            }
+
+            
+            
+            // 프로필
+            if let profileImages = (object.objectForKey("profile_picture") as? PFFile){
+                profileImages.getDataInBackgroundWithBlock { (imageData, error) -> Void in
+                    let image = UIImage(data: imageData!)
+                    self.profileImageView.image = image
+                    
+                }
+            
+            }else{ profileImageView.image = UIImage(named: "AvatarPlaceholder")
+               
+            }
+
+                
+                
+                
+                
+                //post!.valueForKey("prefer_phoneNumber") as? String
+                //post!.valueForKey("prefer_email") as? String
+                
+                
+                
+                
+    
+
+    
+        
     
     }
     override func didReceiveMemoryWarning() {
