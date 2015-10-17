@@ -48,7 +48,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
 
         // Do any additional setup after loading the view.
         
-        scrollView.sizeToFit()
+        scrollView.contentSize.height = 1200
         
         
         //유저가 맞으면 에딧 하게 해주기
