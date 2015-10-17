@@ -34,7 +34,7 @@ class MainTVC: UITableViewController {
        override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
        
-        postsArray = []
+        
         bringAllDatafromParse()
     }
     
@@ -198,7 +198,7 @@ class MainTVC: UITableViewController {
     func bringAllDatafromParse() {
         //activityIndicatorOn()
        
-        
+        postsArray = []
         let query = PFQuery(className: "Posts")
         
         query.orderByAscending("createdAt")
@@ -337,7 +337,7 @@ destViewController.parentObjectID = parentObjectID
 //        destViewController.parentObjectID = (postsArray[(selectedRowIndex?.row)!].objectId!)!
         let selectedRowIndex = self.tableView.indexPathForSelectedRow
                 let destViewController : DetailVC = segue.destinationViewController as! DetailVC
-                destViewController.object = (postsArray[(selectedRowIndex?.row)!] as! PFObject)
+                destViewController.object = (postsArray[(selectedRowIndex?.row)!] as? PFObject)
 
 
     }

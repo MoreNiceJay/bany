@@ -12,7 +12,6 @@ import Parse
 class DetailVC: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var likedButton: UIButton!
     
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var backImageView: UIImageView!
@@ -40,6 +39,8 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.frame = UIScreen.mainScreen().bounds
          detailViewSetting()
         print(object)
         
@@ -48,8 +49,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
 
         // Do any additional setup after loading the view.
         
-        scrollView.contentSize.height = 1200
-        
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 1000, 0)
         
         //유저가 맞으면 에딧 하게 해주기
         let checkForEdit = PFQuery(className: "Posts")
@@ -78,6 +78,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         func detailViewSetting(){
         //제목
         
+            
             self.titleLabel.text = object.objectForKey("titleText") as? String
             self.descriptionTextLabel.text = object.valueForKey("descriptionText") as? String
             self.priceLabel.text = object.valueForKey("priceText") as? String
@@ -152,6 +153,13 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         
     
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.scrollView.frame = self.view.bounds
+        self.scrollView.contentSize.height = 1000
+        self.scrollView.contentSize.width = 0
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -168,7 +176,9 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
     }
     */
     @IBAction func commentButtonTapped(sender: AnyObject) {
-        performSegueWithIdentifier("detailToComment", sender: self)
+       
+        
+       performSegueWithIdentifier("detailToComment", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -365,9 +375,41 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         
     }
 
+    @IBAction func emailButtonTapped(sender: AnyObject) {
+        
+        if let preferEmail = PFQuery(className: "Posts").valueForKey("userNickName") as? String {
+            
+            
+        
+        var mailAddress : NSURL = NSURL(string: "mailto://\(preferEmail)")!
+        
+        UIApplication.sharedApplication().openURL(mailAddress)
+
+        }
+        //알럴트 주기
+        
+    }
 
     
-    
+    @IBAction func textButtonTapped(sender: AnyObject) {
+        print("tapped")
+       
+        if let preferPhone = PFQuery(className: "Posts").valueForKey("userNickName") as? String {
+        
+        var textNumber : NSURL = NSURL(string: "text://\(preferPhone)")!
+        
+        UIApplication.sharedApplication().openURL(textNumber)
+        
+        
+    }
+    }
+    @IBAction func deleteButtonTapped(sender: AnyObject) {
+        
+       
+        
+
+        
+    }
   
     
     

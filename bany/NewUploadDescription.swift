@@ -86,7 +86,7 @@ class NewUploadDescription: UIViewController {
                     
                 }else{
                     
-                    PFUser.currentUser()?.setObject(emailNumberTextField.text!, forKey: "email")
+                    PFUser.currentUser()?.setObject(emailNumberTextField.text!, forKey: "prefer_email")
                     
                     PFUser.currentUser()?.saveInBackgroundWithBlock { (success, error) -> Void in
                         self.stopActivityIndicator()
@@ -305,6 +305,14 @@ class NewUploadDescription: UIViewController {
                     post["purchasedDate"] = purchasedDate
                     post["userNickName"] = PFUser.currentUser()?.objectForKey("nickName")
                     post["category"] = category
+                
+                if emailSwitch.on == true {
+                    
+                    post["prefer_email"] = PFUser.currentUser()?.objectForKey("prefer_email")
+                }
+                if textSwitch.on == true {
+                    post["prefer_phoneNumber"] = PFUser.currentUser()?.objectForKey("prefer_phoneNumber")
+                }
                 
                 
                 
