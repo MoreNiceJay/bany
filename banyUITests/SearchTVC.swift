@@ -12,9 +12,8 @@ import Parse
 class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, UISearchBarDelegate,UISearchDisplayDelegate, UISearchResultsUpdating {
 
     @IBOutlet weak var myTable: UITableView!
-    @IBOutlet weak var mySearchBar: UISearchBar!
     
-    var resultSearchController = UISearchController()
+    var resultSearchController : UISearchController!
     var postsArray : NSMutableArray = NSMutableArray()
     var filterdArray : NSMutableArray = NSMutableArray()
     
@@ -26,6 +25,16 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        self.resultSearchController = UISearchController(searchResultsController: nil)
+        self.resultSearchController.searchResultsUpdater = self
+        
+        self.resultSearchController.dimsBackgroundDuringPresentation = false
+        self.resultSearchController.searchBar.sizeToFit()
+        
+        self.myTable.tableHeaderView = self.resultSearchController.searchBar
+        self.myTable.reloadData()
+        
         self.bringAllDatafromParse()
         
     }
@@ -39,12 +48,13 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if myTable == self.searchDisplayController?.searchResultsTableView {
+        if self.resultSearchController.active{
             return self.filterdArray.count
-        }else{
-            
-            return postsArray.count
+        }else
+        {
+            return self.postsArray.count
         }
+    
     }
     
         
@@ -60,7 +70,7 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
         var postObjects : PFObject!
         
         
-        if tableView == self.searchDisplayController?.searchResultsTableView {
+        if self.resultSearchController.active{
              postObjects = self.filterdArray.objectAtIndex(indexPath.row) as! PFObject
         }else {
             
@@ -70,7 +80,9 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
         }
         
         // 제목
-        cell.titleLabel.text = postObjects.objectForKey("titleText") as! String
+        cell.titleLabel.text = (postObjects.objectForKey("titleText") as! String)
+        
+        + " : " + (postObjects.objectForKey("tagText") as! String)
             
             
         //시간
@@ -95,105 +107,113 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
         
 
 
-    func fileterContentForSearchText(searchText: String, scope: String = "Title"){
-        
-       var postObjects = self.postsArray.objectsAtIndexes(NSIndexSet)
-        
-        self.filterdArray = self.postsArray.filter({( postObjects : PFObject) -> Bool in
-            
-            var categoryMatch = (scope == "Title")
-            var stringMatch = postObjects.
-
-            
-            
-            })
-        
-    }
     
-    
-    
-        
-    
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        mySearchBar.resignFirstResponder()
-        
-        searchResults = []
-        mainPhoto = []
-        time = []
-        price = []
-       postsArray = []
-        
-        let firstNameQuery = PFQuery(className: "Posts")
-        
-        firstNameQuery.whereKey("tagText", containsString: searchBar.text)
-        
-        //firstNameQuery.whereKey("tagText", matchesRegex : "(?i)\(searchBar.text)")
-        
-        let lastNameQuery = PFQuery(className: "Posts")
-        lastNameQuery.whereKey("titleText", containsString: searchBar.text)
-        //lastNameQuery.whereKey("titleText", matchesRegex : "(?i)\(searchBar.text)")
-
-        let query = PFQuery.orQueryWithSubqueries([firstNameQuery, lastNameQuery])
-        
-        query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
-            if error != nil{
-                
-                self.alert("Alert", message : (error?.localizedDescription)!)
-                
-                return
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        self.filterdArray.removeAllObjects()
+        let normalizedSearchText = searchController.searchBar.text!.lowercaseString
+        for posts in self.postsArray {
+            var title = ""
+            var tag = ""
+            if let titleText = posts["titleText"] as? String {
+                title = titleText
             }
-            if let objects = results as [PFObject]? {
-                
-                self.searchResults.removeAll(keepCapacity: false)
-                
-                for object in objects {
-                    let tagText = object.objectForKey("tagText") as! String
-                    let titleText = object.objectForKey("titleText") as! String
-                    
-                    
-                    
-                    
-                                        //시간
-                    let dateFormatter:NSDateFormatter = NSDateFormatter()
-                    dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
-                    self.time.append(dateFormatter.stringFromDate(object.createdAt!))
-                    self.price.append(object["priceText"] as! String)
-                    
-                    self.objectArray.append((object.objectId)! as String!)
-                    
-                    //self.viewed.append(post["view"] as! Int)
-                    //  self.saved.append(post["like"] as! Int)
-                    
-                    self.mainPhoto.append(object["imageFile"] as! PFFile)
-                    //self.profilePhoto.append(post["profilePhoto"] as! PFFile)
-
-                    
-                    
-                    
-                    
-                    
-                    let fullResult = tagText + "" + titleText
-                    
-                    self.searchResults.append(fullResult)
-                    
-                }
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.myTable.reloadData()
-                    self.mySearchBar.resignFirstResponder()
-                })
-                
+            if let tagText = posts["tagText"] as? String {
+                tag = tagText
             }
+            var results = "\(title) \(tag)"
+            
+            if results.lowercaseString.rangeOfString(normalizedSearchText) != nil {
+                self.filterdArray.addObject(posts)
+            }
+            
         }
         
+        self.myTable.reloadData()
+    
     }
+
+
     
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        mySearchBar.resignFirstResponder()
-        mySearchBar.text = ""
-    }
+//    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+//        mySearchBar.resignFirstResponder()
+//        
+//        searchResults = []
+//        mainPhoto = []
+//        time = []
+//        price = []
+//       postsArray = []
+//        
+//        let firstNameQuery = PFQuery(className: "Posts")
+//        
+//        firstNameQuery.whereKey("tagText", containsString: searchBar.text)
+//        
+//        //firstNameQuery.whereKey("tagText", matchesRegex : "(?i)\(searchBar.text)")
+//        
+//        let lastNameQuery = PFQuery(className: "Posts")
+//        lastNameQuery.whereKey("titleText", containsString: searchBar.text)
+//        //lastNameQuery.whereKey("titleText", matchesRegex : "(?i)\(searchBar.text)")
+//
+//        let query = PFQuery.orQueryWithSubqueries([firstNameQuery, lastNameQuery])
+//        
+//        query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+//            if error != nil{
+//                
+//                self.alert("Alert", message : (error?.localizedDescription)!)
+//                
+//                return
+//            }
+//            if let objects = results as [PFObject]? {
+//                
+//                self.searchResults.removeAll(keepCapacity: false)
+//                
+//                for object in objects {
+//                    let tagText = object.objectForKey("tagText") as! String
+//                    let titleText = object.objectForKey("titleText") as! String
+//                    
+//                    
+//                    
+//                    
+//                                        //시간
+//                    let dateFormatter:NSDateFormatter = NSDateFormatter()
+//                    dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+//                    self.time.append(dateFormatter.stringFromDate(object.createdAt!))
+//                    self.price.append(object["priceText"] as! String)
+//                    
+//                    self.objectArray.append((object.objectId)! as String!)
+//                    
+//                    //self.viewed.append(post["view"] as! Int)
+//                    //  self.saved.append(post["like"] as! Int)
+//                    
+//                    self.mainPhoto.append(object["imageFile"] as! PFFile)
+//                    //self.profilePhoto.append(post["profilePhoto"] as! PFFile)
+//
+//                    
+//                    
+//                    
+//                    
+//                    
+//                    let fullResult = tagText + "" + titleText
+//                    
+//                    self.searchResults.append(fullResult)
+//                    
+//                }
+//                
+//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                    self.myTable.reloadData()
+//                    self.mySearchBar.resignFirstResponder()
+//                })
+//                
+//            }
+//        }
+//        
+//    }
+    
+    
+//    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+//        mySearchBar.resignFirstResponder()
+//        mySearchBar.text = ""
+//    }
     
     func alert(title : String, message : String) {
         
@@ -203,14 +223,14 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
         self.presentViewController(myAlert, animated: true, completion: nil)
     }
 
-    @IBAction func refreshButtonTapped(sender: AnyObject) {
-        
-        mySearchBar.resignFirstResponder()
-        mySearchBar.text = ""
-        searchResults.removeAll(keepCapacity: false)
-        myTable.reloadData()
-        
-    }
+//    @IBAction func refreshButtonTapped(sender: AnyObject) {
+//        
+//        //mySearchBar.resignFirstResponder()
+//       // mySearchBar.text = ""
+//        searchResults.removeAll(keepCapacity: false)
+//        myTable.reloadData()
+//    
+//    }
     
     func bringAllDatafromParse() {
         //activityIndicatorOn()

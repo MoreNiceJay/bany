@@ -60,7 +60,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         
         //유저가 맞으면 에딧 하게 해주기
         
-        if object.valueForKey("uploader") as! String == PFUser.currentUser()?.objectId{
+        if object.valueForKey("uploader") as? String == PFUser.currentUser()?.objectId{
             self.editButton.hidden = false
             deleteButton.hidden = false
             soldLabel.hidden = false
@@ -75,7 +75,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
                 
                 //팔린걸로 표시된거 알림
                 
-            }else {
+            }else if object.valueForKey("sold") as! Bool == false{
                 soldSwitch.on = false
                 self.soldLabel.textColor = UIColor.grayColor()
                 emailButton.hidden = false
@@ -398,7 +398,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         
         
         
-        var backPic = post!.valueForKey("damage_image") as? PFFile
+        let backPic = post!.valueForKey("damage_image") as? PFFile
         
         backPic!.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
             
@@ -427,7 +427,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         
         
         
-        var frontPic = post!.valueForKey("front_image") as? PFFile
+        let frontPic = post!.valueForKey("front_image") as? PFFile
                 frontPic!.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
             
             
@@ -469,33 +469,50 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
 
     @IBAction func emailButtonTapped(sender: AnyObject) {
         
+        if object.valueForKey("sold") as! Bool == false{
+        
+        
         if let preferEmail = object.valueForKey("userNickName") as? String {
             
             
         
-        var mailAddress : NSURL = NSURL(string: "mailto://\(preferEmail)")!
+        let mailAddress : NSURL = NSURL(string: "mailto://\(preferEmail)")!
         
         UIApplication.sharedApplication().openURL(mailAddress)
 
+        }else{
+            //없음 알럴트 주기
+
+            }
+                
+            
+            
+            }else{//팔렸다 하기
+            print("팔림")
         }
-        //알럴트 주기
-        
+    
     }
 
     
     @IBAction func textButtonTapped(sender: AnyObject) {
-       
+        if object.valueForKey("sold") as! Bool == false{
        
         if let preferPhone = (object.valueForKey("prefer_phoneNumber") as? String) {
         
-            var textNumber : NSURL = NSURL(string: "sms://\(preferPhone)")!
+            let textNumber : NSURL = NSURL(string: "sms://\(preferPhone)")!
             
             UIApplication.sharedApplication().openURL(textNumber)
             
         
         
+        }else{
+            //넘버 없다고 말해주기
+        }
+    }else { //팔렸다고 말해주기
+    print("팔림")
     }
-    }
+
+}
     @IBAction func deleteButtonTapped(sender: AnyObject) {
         
         let query = PFObject(className:"Posts")
