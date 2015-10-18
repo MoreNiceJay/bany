@@ -9,13 +9,13 @@
 import UIKit
 import Parse
 
-class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, UISearchBarDelegate {
+class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, UISearchBarDelegate,UISearchDisplayDelegate {
 
     @IBOutlet weak var myTable: UITableView!
     @IBOutlet weak var mySearchBar: UISearchBar!
     
     
-    
+    var postsArray : NSMutableArray = NSMutableArray()
     
     
     var mainPhoto = [PFFile]()
@@ -75,7 +75,7 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
         mainPhoto = []
         time = []
         price = []
-       
+       postsArray = []
         
         let firstNameQuery = PFQuery(className: "Posts")
         
@@ -168,37 +168,68 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
     func bringAllDatafromParse() {
         //activityIndicatorOn()
         
+        
+        
+        postsArray = []
         let query = PFQuery(className: "Posts")
         
-        query.findObjectsInBackgroundWithBlock { (posts, error) -> Void in
-            if error == nil {
+        query.orderByAscending("createdAt")
+        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
+            if error == nil && objects != nil{
                 
-                for post in posts! {
+                for object : PFObject in objects! {
                     
+                    self.postsArray.addObject(object)
                     
-                    
-                    
-                    
-                    
-                    self.searchResults.append(post["titleText"] as! String)
-                    //시간
-                    let dateFormatter:NSDateFormatter = NSDateFormatter()
-                    dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
-                    self.time.append(dateFormatter.stringFromDate(post.createdAt!))
-                    self.price.append(post["priceText"] as! String)
-                    
-                    self.objectArray.append((post.objectId)! as String!)
-                    
-                    //self.viewed.append(post["view"] as! Int)
-                    //  self.saved.append(post["like"] as! Int)
-                    
-                    self.mainPhoto.append(post["front_image"] as! PFFile)
-                    //self.profilePhoto.append(post["profilePhoto"] as! PFFile)
-                    
-                    self.myTable.reloadData()
                 }
+                
+                let array : Array = self.postsArray.reverseObjectEnumerator().allObjects
+                
+                
+                self.postsArray = array as! NSMutableArray
+                
+                
             }
-        }
+            self.myTable.reloadData()
+            
+
+        
+    }
+    
+        
+        
+        
+//        let query = PFQuery(className: "Posts")
+//        
+//        query.findObjectsInBackgroundWithBlock { (posts, error) -> Void in
+//            if error == nil {
+//                
+//                for post in posts! {
+//                    
+//                    
+//                    
+//                    
+//                    
+//                    
+//                    self.searchResults.append(post["titleText"] as! String)
+//                    //시간
+//                    let dateFormatter:NSDateFormatter = NSDateFormatter()
+//                    dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+//                    self.time.append(dateFormatter.stringFromDate(post.createdAt!))
+//                    self.price.append(post["priceText"] as! String)
+//                    
+//                    self.objectArray.append((post.objectId)! as String!)
+//                    
+//                    //self.viewed.append(post["view"] as! Int)
+//                    //  self.saved.append(post["like"] as! Int)
+//                    
+//                    self.mainPhoto.append(post["front_image"] as! PFFile)
+//                    //self.profilePhoto.append(post["profilePhoto"] as! PFFile)
+//                    
+//                    self.myTable.reloadData()
+//                }
+//            }
+//        }
     
 }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -208,7 +239,7 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
             
             let selectedRowIndex = self.myTable.indexPathForSelectedRow
             let destViewController : DetailVC = segue.destinationViewController as! DetailVC
-            destViewController.parentObjectID = objectArray[(selectedRowIndex?.row)!]
+            destViewController.object = postsArray[(selectedRowIndex?.row)!] as! PFObject
 
             
         }
