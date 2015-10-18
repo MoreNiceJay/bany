@@ -614,12 +614,15 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3ug-Iq-3fH">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" text="" id="a8g-1r-On9">
+                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="search Items" id="7y3-cX-B5r">
                                     <rect key="frame" x="0.0" y="64" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <scopeButtonTitles>
+                                        <string>Title</string>
+                                    </scopeButtonTitles>
                                     <connections>
-                                        <outlet property="delegate" destination="2ES-bP-0ft" id="1wQ-9r-dmf"/>
+                                        <outlet property="delegate" destination="2ES-bP-0ft" id="jLM-iu-eLH"/>
                                     </connections>
                                 </searchBar>
                                 <prototypes>
@@ -686,11 +689,21 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="mySearchBar" destination="a8g-1r-On9" id="k7Q-8R-gyd"/>
+                        <outlet property="mySearchBar" destination="7y3-cX-B5r" id="xVc-uQ-bfx"/>
                         <outlet property="myTable" destination="3ug-Iq-3fH" id="NVI-fg-k7G"/>
+                        <outlet property="searchDisplayController" destination="XWU-S6-I7O" id="myn-J6-f7p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fGb-sk-QFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="XWU-S6-I7O">
+                    <connections>
+                        <outlet property="delegate" destination="2ES-bP-0ft" id="zqz-Vn-2WB"/>
+                        <outlet property="searchBar" destination="7y3-cX-B5r" id="3gG-qn-1r0"/>
+                        <outlet property="searchContentsController" destination="2ES-bP-0ft" id="r3P-hE-Stb"/>
+                        <outlet property="searchResultsDataSource" destination="2ES-bP-0ft" id="FaV-bI-OJ7"/>
+                        <outlet property="searchResultsDelegate" destination="2ES-bP-0ft" id="lje-O9-Mz1"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2873" y="808"/>
         </scene>

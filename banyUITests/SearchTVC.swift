@@ -9,14 +9,14 @@
 import UIKit
 import Parse
 
-class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, UISearchBarDelegate,UISearchDisplayDelegate {
+class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, UISearchBarDelegate,UISearchDisplayDelegate, UISearchResultsUpdating {
 
     @IBOutlet weak var myTable: UITableView!
     @IBOutlet weak var mySearchBar: UISearchBar!
     
-    
+    var resultSearchController = UISearchController()
     var postsArray : NSMutableArray = NSMutableArray()
-    
+    var filterdArray : NSMutableArray = NSMutableArray()
     
     var mainPhoto = [PFFile]()
     var time = [String]()
@@ -35,11 +35,21 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
         // Dispose of any resources that can be recreated.
     }
     
-   
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return searchResults.count
+        if myTable == self.searchDisplayController?.searchResultsTableView {
+            return self.filterdArray.count
+        }else{
+            
+            return postsArray.count
+        }
     }
+    
+        
+    
+    
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -47,26 +57,63 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
         let cell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as! SearchTVCE
         //cell.textLabel!.text = searchResults[indexPath.row]
         
+        var postObjects : PFObject!
+        
+        
+        if tableView == self.searchDisplayController?.searchResultsTableView {
+             postObjects = self.filterdArray.objectAtIndex(indexPath.row) as! PFObject
+        }else {
+            
+              postObjects = self.postsArray.objectAtIndex(indexPath.row) as! PFObject
+            
+            
+        }
+        
         // 제목
-        cell.titleLabel.text = searchResults[indexPath.row]
-        // 시간
-        cell.timeLabel.text = String(time[indexPath.row])
+        cell.titleLabel.text = postObjects.objectForKey("titleText") as! String
+            
+            
+        //시간
+        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM /dd /yy"
+        cell.timeLabel.text = (dateFormatter.stringFromDate(postObjects.createdAt!))
         // 가격
-        cell.priceLabel.text = price[indexPath.row]
+        cell.priceLabel.text = postObjects.objectForKey("priceText") as! String
         //이미지
         
-        mainPhoto[indexPath.row].getDataInBackgroundWithBlock { (imageData : NSData?, error : NSError?) -> Void in
-            let image = UIImage(data : imageData!)
+        let mainImages = postObjects.objectForKey("front_image") as! PFFile
         
+        
+        mainImages.getDataInBackgroundWithBlock { (imageData, error) -> Void in
+            let image = UIImage(data: imageData!)
             cell.mainImageView.image = image
         }
     
-    
+    return cell
         
+        }
         
-        return cell
+
+
+    func fileterContentForSearchText(searchText: String, scope: String = "Title"){
+        
+       var postObjects = self.postsArray.objectsAtIndexes(NSIndexSet)
+        
+        self.filterdArray = self.postsArray.filter({( postObjects : PFObject) -> Bool in
+            
+            var categoryMatch = (scope == "Title")
+            var stringMatch = postObjects.
+
+            
+            
+            })
         
     }
+    
+    
+    
+        
+    
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         mySearchBar.resignFirstResponder()
