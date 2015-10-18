@@ -42,7 +42,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         
         self.view.frame = UIScreen.mainScreen().bounds
          detailViewSetting()
-        print(object)
+        
         
         editButton.hidden = true
         
@@ -52,21 +52,28 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 1000, 0)
         
         //유저가 맞으면 에딧 하게 해주기
-        let checkForEdit = PFQuery(className: "Posts")
         
-        checkForEdit.getObjectInBackgroundWithId(parentObjectID) {
-            (post: PFObject?, error: NSError?) -> Void in
-            if error == nil && post != nil {
+        if object.valueForKey("uploader") as! String == PFUser.currentUser()?.objectId{
+            self.editButton.hidden = false
 
-                
-                
-                if  (PFUser.currentUser()?.objectId == post!.valueForKey("uploader") as? String){
-                    self.editButton.hidden = false
-                
-                }
-            }
-        
+            
         }
+//        let checkForEdit = PFQuery(className: "Posts")
+//        
+//        print(parentObjectID)
+//        checkForEdit.getObjectInBackgroundWithId(parentObjectID) {
+//            (post: PFObject?, error: NSError?) -> Void in
+//            if error == nil && post != nil {
+//
+//                
+//                
+//                if  (PFUser.currentUser()?.objectId == post!.valueForKey("uploader") as? String){
+//                    self.editButton.hidden = false
+//                
+//                }
+//            }
+//        
+//        }
         
     }
     override func viewDidAppear(animated: Bool) {
@@ -188,6 +195,9 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
             
             let destViewController : CommentVC = segue.destinationViewController as! CommentVC
             destViewController.parentObjectID = parentObjectID
+            
+            destViewController.object = object
+            
                     }
         
         if (segue.identifier == "front") {
@@ -377,7 +387,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
 
     @IBAction func emailButtonTapped(sender: AnyObject) {
         
-        if let preferEmail = PFQuery(className: "Posts").valueForKey("userNickName") as? String {
+        if let preferEmail = object.valueForKey("userNickName") as? String {
             
             
         
@@ -392,20 +402,27 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
 
     
     @IBAction func textButtonTapped(sender: AnyObject) {
-        print("tapped")
        
-        if let preferPhone = PFQuery(className: "Posts").valueForKey("userNickName") as? String {
+       
+        if let preferPhone = (object.valueForKey("prefer_phoneNumber") as? String) {
         
-        var textNumber : NSURL = NSURL(string: "text://\(preferPhone)")!
-        
-        UIApplication.sharedApplication().openURL(textNumber)
+            var textNumber : NSURL = NSURL(string: "sms://\(preferPhone)")!
+            
+            UIApplication.sharedApplication().openURL(textNumber)
+            
         
         
     }
     }
     @IBAction func deleteButtonTapped(sender: AnyObject) {
         
-       
+        let query = PFObject(className:"Posts")
+        
+        let tryToDeleteThisObjectId = object.objectId
+        
+       query.objectId = tryToDeleteThisObjectId
+        
+        query.deleteInBackground()
         
 
         

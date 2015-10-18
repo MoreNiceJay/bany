@@ -16,19 +16,23 @@ class CommentVC: UIViewController, UITableViewDelegate {
     @IBOutlet weak var commentTableView: UITableView!
     @IBOutlet weak var commentTextField: UITextField!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
-    var commentArray = [String]()
+    lazy var commentArray : NSMutableArray = NSMutableArray()
     var objectArray = [String]()
     var userIdArray = [String]()
     var parentObjectID = String()
+    var object : PFObject!
+    var postsArray = []
     
     @IBOutlet weak var deleteButton: UIButton!
     override func viewDidLoad() {
+        
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 1000, 0)
         super.viewDidLoad()
         
         queryComment()
-        print(commentArray)
-        print(parentObjectID)
+       
 
         // Do any additional setup after loading the view.
     }
@@ -37,7 +41,7 @@ class CommentVC: UIViewController, UITableViewDelegate {
 //        super.viewDidAppear(true)
 //        
 //        let checkForEdit = PFQuery(className: "Commment")
-//        
+//
 //        checkForEdit.getObjectInBackgroundWithId(parentObjectID) {
 //            (post: PFObject?, error: NSError?) -> Void in
 //            if error == nil && post != nil {
@@ -72,31 +76,90 @@ class CommentVC: UIViewController, UITableViewDelegate {
 
     @IBAction func sendButton(sender: AnyObject) {
         startActivityIndicator()
-        let comment = PFObject(className:"Comment")
-        comment["createdBy"] = PFUser.currentUser()?.objectId
+        
+        
+        let comment = PFObject(className: "Comments")
+        
+        
+        comment["uploader"] = PFUser.currentUser()?.objectId
         comment["comment"] =  "" + commentTextField.text!
-        comment["parent"] = parentObjectID
-        
+        comment["parent"] = object.objectId
         if let nickName = PFUser.currentUser()?.objectForKey("nickName"){
-            comment["username"] = nickName
-
+                        comment["nickName"] = nickName
             
-        }else {
             
-        comment["username"] = PFUser.currentUser()?.username
+                    }else {
+            
+                    comment["nickName"] = PFUser.currentUser()?.username
+        }
         
-        comment.saveInBackgroundWithBlock { (success : Bool, error : NSError?) -> Void in
+        if let profilePic = (PFUser.currentUser()!.objectForKey("profile_picture") as? PFFile){
+            
+        comment["profile_picture"] = profilePic
+        }
+        
+        comment.saveInBackgroundWithBlock({ ( isSucessful: Bool, error : NSError?) -> Void in
+            
+            
             if error == nil {
                 
-                self.commentArray = []
-                self.queryComment()
-                self.commentTextField.text = ""
+                print("업로드 성공")
                 
-            }else { print(error)
+                self.commentArray = []
+                                self.queryComment()
+                                print(self.commentArray)
+                                self.commentTextField.text = ""
+                
+                
+                //저장 성공했다고 표시창
+                //self.luxuryAlert( "your post uploaded" )
+                self.alert("Error", message : "업로드성공")
+                
+                
+                
+            }else {
+                
+                self.alert("Error", message : (error?.localizedDescription)!)
             }
-        }
-            
-        }
+        })
+
+        
+        
+        
+        
+        
+//        print("button")
+//        print(commentTextField.text!)
+//        print(PFUser.currentUser()?.objectForKey("nickName"))
+//        print(object.objectId)
+//        let comment = PFObject(className:"Comment")
+//        comment["uploader"] = PFUser.currentUser()?.objectId
+//        comment["comment"] =  "" + commentTextField.text!
+//        //comment["parent"] = object.objectId
+//        
+//        if let nickName = PFUser.currentUser()?.objectForKey("nickName"){
+//            comment["username"] = nickName
+//
+//            
+//        }else {
+//            
+//        comment["username"] = PFUser.currentUser()?.username
+//        
+//        comment.saveInBackgroundWithBlock { (success : Bool, error : NSError?) -> Void in
+//            if error == nil {
+//                
+//                self.commentArray = []
+//                self.queryComment()
+//                print(self.commentArray)
+//                self.commentTextField.text = ""
+//                
+//            }else {
+//                
+//                print(error)
+//            }
+//        }
+//            
+//        }
     }
 
 
@@ -105,30 +168,56 @@ class CommentVC: UIViewController, UITableViewDelegate {
         
         startActivityIndicator()
         
-        let queryComments = PFQuery(className: "Comment")
-        queryComments.whereKey("parent", equalTo: ("\(parentObjectID)"))
-        queryComments.orderByDescending("createdAt")
-        queryComments.findObjectsInBackgroundWithBlock { (comments, error) -> Void in
-            if error == nil {
-                //에러 없음 
+        commentArray = []
+        let query = PFQuery(className: "Comments")
+        
+        query.orderByAscending("createdAt")
+        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
+            if error == nil && objects != nil{
                 
-                for comment in comments! {
-                    self.commentArray.append(comment["comment"] as! String)
-                    self.userIdArray.append(comment["username"] as! String)
+                for object : PFObject in objects! {
                     
+                    self.commentArray.addObject(object)
                     
                 }
                 
-            }else{
-            print(error)
+                let array : Array = self.commentArray.reverseObjectEnumerator().allObjects
+                
+                
+                self.commentArray = array as! NSMutableArray
+                
+                
             }
             self.commentTableView.reloadData()
-            self.stopActivityIndicator()
         }
-            
+    }
 
+
+//        let queryComments = PFQuery(className: "Comments")
+//        queryComments.whereKey("parent", equalTo: ("\(object.objectId)"))
+//        queryComments.orderByDescending("createdAt")
+//        queryComments.findObjectsInBackgroundWithBlock { (comments, error) -> Void in
+//            if error == nil {
+//                //에러 없음 
+//                
+//                for comment in comments! {
+//                    print("nono")
+//                    self.commentArray.append(comment["comment"] as! String)
+//                    self.userIdArray.append(comment["username"] as! String)
+//                    
+//                    
+//                }
+//                
+//            }else{
+//            print(error)
+//            }
+//            self.commentTableView.reloadData()
+//            self.stopActivityIndicator()
+//        }
+//            
+//}
         
-}
+
    
     func alert(title : String, message : String) {
         
@@ -162,8 +251,11 @@ class CommentVC: UIViewController, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell : CommentTVCE = tableView.dequeueReusableCellWithIdentifier("cellForComment", forIndexPath: indexPath) as! CommentTVCE
         
-        cell.comment.text = self.commentArray[indexPath.row]
-        cell.nickNameLabel!.text = "Id:" + self.userIdArray[indexPath.row]
+        let postObjects : PFObject = self.commentArray.objectAtIndex(indexPath.row) as! PFObject
+        
+        cell.comment.text = postObjects.objectForKey("comment") as! String
+
+        cell.nickNameLabel!.text = "Id:" + (postObjects.objectForKey("nickName") as! String)
         
         return cell
     }
@@ -176,7 +268,7 @@ class CommentVC: UIViewController, UITableViewDelegate {
         let indexPath = commentTableView.indexPathForCell(cell)
        
         
-        let query = PFObject(className:"Comment")
+        let query = PFObject(className:"Comments")
         
         query.objectId = objectArray[(indexPath?.row)!]
         query.deleteInBackground()
@@ -185,6 +277,14 @@ class CommentVC: UIViewController, UITableViewDelegate {
         
         
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.scrollView.frame = self.view.bounds
+        self.scrollView.contentSize.height = 1000
+        self.scrollView.contentSize.width = 0
+    }
+
     // parentObjectID = objectArray[(indexPath?.row)!]
 }
 

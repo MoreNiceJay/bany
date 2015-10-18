@@ -327,7 +327,11 @@ if (segue.identifier == "mainToComment") {
 
 let destViewController : CommentVC = segue.destinationViewController as! CommentVC
 destViewController.parentObjectID = parentObjectID
-
+    let selectedRowIndex = self.tableView.indexPathForSelectedRow
+    
+    destViewController.object = (postsArray[(selectedRowIndex?.row)!] as? PFObject)
+    
+    
     }
     
     if (segue.identifier == "mainToDetail") {
