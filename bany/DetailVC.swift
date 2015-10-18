@@ -25,6 +25,10 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var tagTextLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     
+    @IBOutlet weak var textButton: UIButton!
+    @IBOutlet weak var emailButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var soldSwitch: UISwitch!
     
     var checkingArray = [String]()
     
@@ -32,8 +36,9 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
     
     var frontImage = UIImageView()
     var backImage = UIImageView()
-    var ddd = String()
     
+    
+    @IBOutlet weak var soldLabel: UILabel!
     var array = []
       var object : PFObject!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -45,7 +50,9 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         
         
         editButton.hidden = true
-        
+        deleteButton.hidden = true
+        soldLabel.hidden = true
+        soldSwitch.hidden = true
 
         // Do any additional setup after loading the view.
         
@@ -55,7 +62,25 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         
         if object.valueForKey("uploader") as! String == PFUser.currentUser()?.objectId{
             self.editButton.hidden = false
-
+            deleteButton.hidden = false
+            soldLabel.hidden = false
+            soldSwitch.hidden = false
+            
+           //솔드 스위치
+            if object.valueForKey("sold") as! Bool == true {
+                self.soldLabel.textColor = UIColor.redColor()
+                soldSwitch.on = true
+                emailButton.hidden = true
+                textButton.hidden = true
+                
+                //팔린걸로 표시된거 알림
+                
+            }else {
+                soldSwitch.on = false
+                self.soldLabel.textColor = UIColor.grayColor()
+                emailButton.hidden = false
+                textButton.hidden = false
+            }
             
         }
 //        let checkForEdit = PFQuery(className: "Posts")
@@ -161,6 +186,64 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
     
     }
     
+    
+    @IBAction func soldbutton(sender: AnyObject) {
+        if soldSwitch.on == false {
+            
+            let query = PFQuery(className:"Posts")
+            query.getObjectInBackgroundWithId(object.objectId!) {
+                (post: PFObject?, error: NSError?) -> Void in
+                if error != nil && post == nil {
+                    
+                    
+                    
+                }else if let post = post {
+                    
+                    post["sold"] = false
+                     self.soldLabel.textColor = UIColor.grayColor()
+                    //저장 알림
+                    
+                    self.emailButton.hidden = false
+                    self.textButton.hidden = false
+                    
+                    post.saveInBackgroundWithBlock({ (success, error) -> Void in
+                        if error == nil{
+                            (print("good"))
+                            //에러 알림
+                        }
+                    })
+                }
+            }
+        
+
+            
+        }else {
+            let query = PFQuery(className:"Posts")
+            query.getObjectInBackgroundWithId(object.objectId!) {
+                (post: PFObject?, error: NSError?) -> Void in
+                if error != nil && post == nil {
+                    
+                    
+                    
+                }else if let post = post {
+                    
+                    post["sold"] = true
+                    self.soldLabel.textColor = UIColor.redColor()
+                    self.emailButton.hidden = true
+                    self.textButton.hidden = true                    //저장 알림
+                    
+                    post.saveInBackgroundWithBlock({ (success, error) -> Void in
+                        if error == nil{
+                            (print("good"))
+                            //에러 알림
+                        }
+                    })
+                }
+            }
+
+        }
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         self.scrollView.frame = self.view.bounds
@@ -223,10 +306,9 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
             
             let destViewController : editDetailVC = segue.destinationViewController as! editDetailVC
            
+                        destViewController.object = object
             
             
-            
-            destViewController.parentObjectID = parentObjectID
             
             
         }

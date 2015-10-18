@@ -30,7 +30,7 @@ class MainTVC: UITableViewController {
    // var objectId = String()
     var parentObjectID = String()
     
-    
+    var objectTwo : PFObject!
        override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
        
@@ -133,6 +133,23 @@ class MainTVC: UITableViewController {
 
         let postObjects : PFObject = self.postsArray.objectAtIndex(indexPath.row) as! PFObject
         
+        
+        
+        cell.didRequestToShowComment = { (cell) in
+            let indexPath = tableView.indexPathForCell(cell)
+            let objectToSend = self.postsArray[indexPath!.row] as? PFObject
+            // Show your Comment view controller here, and set object to send here
+            self.objectTwo = objectToSend!
+            self.performSegueWithIdentifier("mainToComment", sender: self)
+            
+            
+        }
+        cell.soldLabel.hidden = true
+        
+        if (postObjects.objectForKey("sold") as! Bool) == true {
+            cell.soldLabel.hidden = false
+            
+        }
         
                 //제목
         
@@ -329,7 +346,7 @@ let destViewController : CommentVC = segue.destinationViewController as! Comment
 destViewController.parentObjectID = parentObjectID
     let selectedRowIndex = self.tableView.indexPathForSelectedRow
     
-    destViewController.object = (postsArray[(selectedRowIndex?.row)!] as? PFObject)
+    destViewController.object = objectTwo
     
     
     }
@@ -357,11 +374,14 @@ destViewController.parentObjectID = parentObjectID
         
         
         
+    }
+        
+        
         
     
    
-        self.performSegueWithIdentifier("mainToComment", sender: self)
-    }
+      //  self.performSegueWithIdentifier("mainToComment", sender: self)
+   // }
     
     
 }

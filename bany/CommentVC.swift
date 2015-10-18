@@ -31,6 +31,8 @@ class CommentVC: UIViewController, UITableViewDelegate {
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 1000, 0)
         super.viewDidLoad()
         
+        titleLabel.text = object.valueForKey("titleText") as! String
+        
         queryComment()
        
 
@@ -172,6 +174,7 @@ class CommentVC: UIViewController, UITableViewDelegate {
         let query = PFQuery(className: "Comments")
         
         query.orderByAscending("createdAt")
+        query.whereKey("parent", equalTo: (object.objectId)!)
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
             if error == nil && objects != nil{
                 
@@ -255,7 +258,24 @@ class CommentVC: UIViewController, UITableViewDelegate {
         
         cell.comment.text = postObjects.objectForKey("comment") as! String
 
-        cell.nickNameLabel!.text = "Id:" + (postObjects.objectForKey("nickName") as! String)
+        cell.nickNameLabel!.text = "Id:  " + (postObjects.objectForKey("nickName") as! String) + "   "
+        
+        //시간
+        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM /dd HH:mm"
+        cell.dateLabel.text = (dateFormatter.stringFromDate(postObjects.createdAt!))
+        
+        //프로파일이미지
+        if let profileImages = (postObjects.objectForKey("profile_picture") as? PFFile){
+            profileImages.getDataInBackgroundWithBlock { (imageData, error) -> Void in
+                let image = UIImage(data: imageData!)
+                cell.profileImageView.image = image
+                
+            }
+            
+        }else{ cell.profileImageView.image = UIImage(named: "AvatarPlaceholder")
+        }
+
         
         return cell
     }

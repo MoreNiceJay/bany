@@ -13,6 +13,8 @@ class CommentTVCE: UITableViewCell {
     
     
     
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var delete: UIButton!
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var comment: UILabel!

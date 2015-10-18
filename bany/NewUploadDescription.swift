@@ -305,7 +305,7 @@ class NewUploadDescription: UIViewController {
                     post["purchasedDate"] = purchasedDate
                     post["userNickName"] = PFUser.currentUser()?.objectForKey("nickName")
                     post["category"] = category
-                
+                    post["sold"] = false
                 if emailSwitch.on == true {
                     
                     post["prefer_email"] = PFUser.currentUser()?.objectForKey("prefer_email")

@@ -10,20 +10,22 @@ import UIKit
 import Parse
 class editDetailVC: UIViewController {
 
-    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var actInd: UIActivityIndicatorView!
+    
+    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var purchasedDateTextField: UITextField!
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var frontImageView: UIImageView!
     @IBOutlet weak var tagTextfield: UITextField!
     @IBOutlet weak var priceTextfield: UITextField!
-    @IBOutlet weak var timeTextField: UITextField!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleTextField: UITextField!
     var parentObjectID = String()
-    var object = []
+    var object : PFObject!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 1000, 0)
         retrievingData()
         
     }
@@ -33,6 +35,12 @@ class editDetailVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.scrollView.frame = self.view.bounds
+        self.scrollView.contentSize.height = 1000
+        self.scrollView.contentSize.width = 0
+    }
 
     /*
     // MARK: - Navigation
@@ -46,32 +54,51 @@ class editDetailVC: UIViewController {
 
     @IBAction func saveButtonTapped(sender: AnyObject) {
         
-        let query = PFQuery(className:"Posts")
-        query.getObjectInBackgroundWithId(parentObjectID) {
-            (post: PFObject?, error: NSError?) -> Void in
-            if error != nil && post == nil {
-                print("go fuck yourslef")
-        
-            }else if let post = post {
-        
-        post["titleText"] = self.titleTextField.text
-        post["descriptionText"] = self.descriptionTextField.text
-        post["priceText"] = self.priceTextfield.text
-        post["purchasedDate"] = self.purchasedDateTextField.text
-        //post["damage_image"] = self.tagTextfield.text
-        //post["front_image"] = 1338
-        post["tagText"] = self.tagTextfield.text
-        
-                
-        post.saveInBackgroundWithBlock({ (success, error) -> Void in
-            if error == nil{
-                (print("good"))
-            }
-        })
-            }
+        if (self.object != nil) {
+            
+            self.titleTextField.text = self.object["titleText"] as? String
+            self.priceTextfield.text = self.object["priceText"] as? String
+            self.tagTextfield.text = self.object["tagText"] as? String
+            self.purchasedDateTextField.text = self.object["purchasedDate"] as? String
+            self.descriptionTextView.text = self.object["descriptionText"] as? String
+            
+        }else {
+
+            self.object = PFObject(className: "Posts")
         }
     }
     
+        
+
+        
+        
+        
+//        let query = PFQuery(className:"Posts")
+//        query.getObjectInBackgroundWithId(parentObjectID) {
+//            (post: PFObject?, error: NSError?) -> Void in
+//            if error != nil && post == nil {
+//                print("go fuck yourslef")
+//        
+//            }else if let post = post {
+//        
+//        post["titleText"] = self.titleTextField.text
+//        post["descriptionText"] = self.descriptionTextView.text
+//        post["priceText"] = self.priceTextfield.text
+//        post["purchasedDate"] = self.purchasedDateTextField.text
+//        //post["damage_image"] = self.tagTextfield.text
+//        //post["front_image"] = 1338
+//        post["tagText"] = self.tagTextfield.text
+//        
+//                
+//        post.saveInBackgroundWithBlock({ (success, error) -> Void in
+//            if error == nil{
+//                (print("good"))
+//            }
+//        })
+//            }
+//        }
+//    }
+//    
 
     
 
@@ -92,10 +119,13 @@ class editDetailVC: UIViewController {
     }
 
 
-
-    func retrievingData() {
+   func retrievingData() {
+    
+    
+    
+    
         let query = PFQuery(className:"Posts")
-        query.getObjectInBackgroundWithId(parentObjectID) {
+        query.getObjectInBackgroundWithId(object.objectId!) {
             (post: PFObject?, error: NSError?) -> Void in
             if error == nil && post != nil {
                 
@@ -103,7 +133,7 @@ class editDetailVC: UIViewController {
                 
                 
                 self.titleTextField.text = post!.valueForKey("titleText") as? String
-                self.descriptionTextField.text = post!.valueForKey("descriptionText") as? String
+                self.descriptionTextView.text = post!.valueForKey("descriptionText") as? String
                 self.priceTextfield.text = post!.valueForKey("priceText") as? String
                 self.purchasedDateTextField.text = post!.valueForKey("purchasedDate") as? String
                 
@@ -117,7 +147,7 @@ class editDetailVC: UIViewController {
                 dateFormatter.dateFormat = "dd/MM/yy"
                 
                 
-                self.timeTextField.text = dateFormatter.stringFromDate(post!.createdAt!)
+                
                 
                 
                 
@@ -192,26 +222,29 @@ class editDetailVC: UIViewController {
    
         }
     
+   
     }
 
-//    func startActivityIndicator() {
-//        self.actInd.hidden = false
-//        self.actInd.startAnimating()
-//        
-//    }
-//    
-//    func stopActivityIndicator() {
-//        self.actInd.hidden = true
-//        self.actInd.stopAnimating()
-//    }
+    func startActivityIndicator() {
+        self.actInd.hidden = false
+        self.actInd.startAnimating()
+        
+    }
+    
+    func stopActivityIndicator() {
+        self.actInd.hidden = true
+        self.actInd.stopAnimating()
+    }
     
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         
         titleTextField.resignFirstResponder()
-        timeTextField.resignFirstResponder()
-        
+        priceTextfield.resignFirstResponder()
+        tagTextfield.resignFirstResponder()
+        purchasedDateTextField.resignFirstResponder()
+        descriptionTextView.resignFirstResponder()
         
     }
     
@@ -243,10 +276,13 @@ class editDetailVC: UIViewController {
     func buttonDisabeld(buttonName: UIButton){
         
         buttonName.enabled = false
+    
     }
     
 
     
+
+
 
 }
 
