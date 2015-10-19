@@ -4491,7 +4491,7 @@
                                                 <color key="backgroundColor" red="0.87628235480000005" green="0.6798415001" blue="0.1118820267" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Edit"/>
                                                 <connections>
-                                                    <segue destination="UUq-8N-dH0" kind="show" identifier="editDetail" id="Clk-hi-Pzi"/>
+                                                    <segue destination="UUq-8N-dH0" kind="show" id="Ex5-zO-Ul0"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4d-hm-jNV">
@@ -4975,7 +4975,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BUm-RR-uAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4197" y="-409"/>
+            <point key="canvasLocation" x="4253" y="-218"/>
         </scene>
         <!--Item-->
         <scene sceneID="lAP-ZF-4HC">
@@ -5120,7 +5120,7 @@
         <segue reference="RPu-0K-xZT"/>
         <segue reference="VmO-7q-XH5"/>
         <segue reference="Oev-0J-NiN"/>
-        <segue reference="4ln-8p-Ekj"/>
+        <segue reference="EbQ-LY-hfU"/>
         <segue reference="0wb-lO-1eF"/>
     </inferredMetricsTieBreakers>
 </document>

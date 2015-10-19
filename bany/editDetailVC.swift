@@ -66,7 +66,7 @@ class editDetailVC: UIViewController {
                 post["descriptionText"] =  self.descriptionTextView.text
                 post["priceText"] = self.priceTextfield.text
                 post["purchasedDate"] = self.purchasedDateTextField.text
-                post["titleText"] = self.titleTextField.text
+                
                 post["tagText"] = self.tagTextfield.text
                 
                 
@@ -147,102 +147,81 @@ class editDetailVC: UIViewController {
     
     
     
-        let query = PFQuery(className:"Posts")
-        query.getObjectInBackgroundWithId(object.objectId!) {
-            (post: PFObject?, error: NSError?) -> Void in
-            if error == nil && post != nil {
-                
-                
-                
-                
-                self.titleTextField.text = post!.valueForKey("titleText") as? String
-                self.descriptionTextView.text = post!.valueForKey("descriptionText") as? String
-                self.priceTextfield.text = post!.valueForKey("priceText") as? String
-                self.purchasedDateTextField.text = post!.valueForKey("purchasedDate") as? String
-                
-                self.tagTextfield.text =  post!.valueForKey("tagText") as? String
-                //self..text = post!.valueForKey("userNickName") as? String
-               
-                
-                               
-                
-                
-                
-                
-                
-                var backPic = post!.valueForKey("damage_image") as? PFFile
-                
-                backPic!.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
-                    
-                    
-                    
-                    if(imageData != nil){
-                        
-                        self.backImageView.image = UIImage(data: imageData!)
-                        
-                        
-                    }
-                        
-                    else{
-                        self.backImageView.image = UIImage(named: "AvatarPlaceholder")
-                        
-                        
-                        
-                    }
-                    
-                    
-                    
-                    
-                    //post!.valueForKey("prefer_phoneNumber") as? String
-                    //post!.valueForKey("prefer_email") as? String
-                    
-                    
-                    
-                    
-                    var frontPic = post!.valueForKey("front_image") as? PFFile
-                    frontPic!.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
-                        
-                        
-                        
-                        if(imageData != nil)
-                            
-                        {
-                            
-                            self.frontImageView.image = UIImage(data: imageData!)
-                            
-                            
-                        }else{
-                            self.frontImageView.image = UIImage(named: "AvatarPlaceholder")
-                            
-                        }
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                    }
-                    
-                    
-                }
-
+    self.titleTextField.text = object!.valueForKey("titleText") as? String
+    self.descriptionTextView.text = object!.valueForKey("descriptionText") as? String
+    self.priceTextfield.text = object!.valueForKey("priceText") as? String
+    self.purchasedDateTextField.text = object!.valueForKey("purchasedDate") as? String
+    
+    self.tagTextfield.text =  object!.valueForKey("tagText") as? String
+    
+    
+    
+    
+    let backPic = object!.valueForKey("damage_image") as? PFFile
+    
+    backPic!.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+        
+        
+        
+        if(imageData != nil){
+            
+            self.backImageView.image = UIImage(data: imageData!)
             
             
-       
+        }
             
+        else{
+            self.backImageView.image = UIImage(named: "AvatarPlaceholder")
+          
+        }
+        
+        
+        
+        
+        //post!.valueForKey("prefer_phoneNumber") as? String
+        //post!.valueForKey("prefer_email") as? String
+        
+        
+        
+        
+        let frontPic = self.object!.valueForKey("front_image") as? PFFile
+        frontPic!.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+            
+            
+            
+            if(imageData != nil)
                 
+            {
+                
+                self.frontImageView.image = UIImage(data: imageData!)
+                
+                
+            }else{
+                self.frontImageView.image = UIImage(named: "AvatarPlaceholder")
                 
             }
-    
-        
-
-    
-   
+            
+            
+            
+            
+            
+            
+            
         }
+        
+        
+    }
+    
+    
     
    
     }
+    
+    
+
+
+
+
 
     func startActivityIndicator() {
         self.actInd.hidden = false
