@@ -13,7 +13,7 @@ class MainTVC: UITableViewController {
     
     @IBOutlet weak var categorySegment: UISegmentedControl!
     
-    
+    var resultSearchController : UISearchController!
     
     
 //    lazy var mainPhoto = [PFFile]()
@@ -25,7 +25,7 @@ class MainTVC: UITableViewController {
 //    lazy var viewed = [String]()
 //    lazy var saved = [String]()
     lazy var postsArray : NSMutableArray = NSMutableArray()
-    
+    lazy var filterdArray : NSMutableArray = NSMutableArray()
     var objectArray = [String]()
    // var objectId = String()
     var parentObjectID = String()
@@ -35,6 +35,7 @@ class MainTVC: UITableViewController {
         super.viewDidAppear(true)
        
         
+      
         bringAllDatafromParse()
     }
     
@@ -92,46 +93,25 @@ class MainTVC: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return postsArray.count
+        
+        return self.postsArray.count
+      
+        
     }
+    
 
     
-//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MainTVCE
-//
-//        
-//        // 제목
-//        cell.titleLabel.text = titleText[indexPath.row]
-//        // 닉네임
-//        cell.nickNameLabel.text = nickName[indexPath.row]
-//        // 시간
-//        cell.timeLabel.text = String(time[indexPath.row])
-//        // 가격
-//        cell.priceLable.text = price[indexPath.row]
-//        // 뷰
-//        //cell.timeLabel.text = titleText[indexPath.row]
-//        // 라이크
-//        //cell.nickNameLabel.text = nickName[indexPath.row]
-//        
-//        
-//        // 이미지
-//        mainPhoto[indexPath.row].getDataInBackgroundWithBlock { (imageData : NSData?, error : NSError?) -> Void in
-//            let image = UIImage(data : imageData!)
-//            cell.mainPhoto.image = image
-//        }
-//        
-//        profilePhoto[indexPath.row].getDataInBackgroundWithBlock { (imageData : NSData?, error : NSError?) -> Void in
-//            let image = UIImage(data : imageData!)
-//            cell.profilePhoto.image = image
-//        }
-//    return cell
-//    }
+       
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
                let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MainTVCE
 
-        let postObjects : PFObject = self.postsArray.objectAtIndex(indexPath.row) as! PFObject
+        
+       
+        
+        
+           var postObjects = self.postsArray.objectAtIndex(indexPath.row) as! PFObject
+        
         
         
         
@@ -237,34 +217,6 @@ class MainTVC: UITableViewController {
             }
          self.tableView.reloadData()
                     
-//   
-//                    
-//                    
-//                for post : PFObject in objects! {
-//
-//                   
-//
-//                    
-//                    self.titleText.append(post["titleText"] as! String)
-//                    self.nickName.append(post["userNickName"] as! String)
-//                    //시간
-//                    let dateFormatter:NSDateFormatter = NSDateFormatter()
-//                    dateFormatter.dateFormat = "dd/MM/yy"
-//                    self.time.append(dateFormatter.stringFromDate(post.createdAt!))
-//                    self.price.append(post["priceText"] as! String)
-//                    
-//                    self.objectArray.append((post.objectId)! as String!)
-//                    
-//                    //self.viewed.append(post["view"] as! Int)
-//                    //  self.saved.append(post["like"] as! Int)
-//                    
-//                    self.mainPhoto.append(post["front_image"] as! PFFile)
-//                  
-//                    
-//                    self.profilePhoto.append(post["profile_picture"] as! PFFile)
-//                    
-//                    self.tableView.reloadData()
-//                }}
             }
 
     }
@@ -276,38 +228,6 @@ class MainTVC: UITableViewController {
     func bringCategoryDataFromParse(category : Int) {
         
         
-//        let query = PFQuery(className: "Posts")
-//        
-//        query.whereKey("category", equalTo: category)
-//        
-//        query.orderByDescending("createdAt")
-//        query.findObjectsInBackgroundWithBlock { (posts, error) -> Void in
-//            if (error == nil) {
-//                //에러없는 경우
-//                for post in posts! {
-//
-//                    //시간
-//                    let dateFormatter:NSDateFormatter = NSDateFormatter()
-//                    dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
-//                    self.time.append(dateFormatter.stringFromDate(post.createdAt!))
-//
-//                    self.titleText.append(post["titleText"] as! String)
-//                    self.nickName.append(post["userNickName"] as! String)
-//                    self.price.append(post["priceText"] as! String)
-//                    self.mainPhoto.append(post["front_image"] as! PFFile)
-//                    self.objectArray.append((post.objectId)! as String!)
-//                    self.profilePhoto.append(post["profile_picture"] as! PFFile)
-//                    self.tableView.reloadData()
-//
-//        }
-//            }else{
-//                print(error)
-//            }
-//
-//         //   self.activityIndicatorOff()
-//
-//
-//        }
 
         let query = PFQuery(className: "Posts")
          query.whereKey("category", equalTo: category)
