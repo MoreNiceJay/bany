@@ -304,12 +304,11 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
 
         if (segue.identifier == "editDetail") {
             
+            
             let destViewController : editDetailVC = segue.destinationViewController as! editDetailVC
-           
-                        destViewController.object = object
+           // destViewController.parentObjectID = parentObjectID
             
-            
-            
+            destViewController.object = object
             
         }
         

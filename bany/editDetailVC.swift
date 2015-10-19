@@ -8,7 +8,7 @@
 
 import UIKit
 import Parse
-class editDetailVC: UIViewController {
+class editDetailVC: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var actInd: UIActivityIndicatorView!
     
@@ -25,8 +25,7 @@ class editDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 1000, 0)
-        retrievingData()
+               retrievingData()
         
     }
 
@@ -35,13 +34,7 @@ class editDetailVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        self.scrollView.frame = self.view.bounds
-        self.scrollView.contentSize.height = 1000
-        self.scrollView.contentSize.width = 0
-    }
-
+    
     /*
     // MARK: - Navigation
 
