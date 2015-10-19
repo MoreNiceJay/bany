@@ -515,14 +515,15 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
 }
     @IBAction func deleteButtonTapped(sender: AnyObject) {
         
-        let query = PFObject(className:"Posts")
-        
-        let tryToDeleteThisObjectId = object.objectId
-        
-       query.objectId = tryToDeleteThisObjectId
-        
-        query.deleteInBackground()
-        
+        let query = PFQuery(className: "Posts")
+        query.getObjectInBackgroundWithId(object.objectId!) { (obj, err) -> Void in
+            if err != nil {
+                //handle error
+            } else {
+                obj!.deleteInBackground()
+                print("deleted")
+            }
+        }
 
         
     }

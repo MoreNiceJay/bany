@@ -345,7 +345,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hzh-cK-kYy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ggp-Ji-yYZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-716" y="1337.25"/>
+            <point key="canvasLocation" x="-711" y="1442"/>
         </scene>
         <!--View Controller11-->
         <scene sceneID="tSt-u4-GEQ">
@@ -2467,7 +2467,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhk-Y2-ZnL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="228" y="3555.75"/>
+            <point key="canvasLocation" x="504" y="3516"/>
         </scene>
         <!--Edit Info-->
         <scene sceneID="1HB-0y-z1M">
@@ -4809,7 +4809,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZoU-1d-k9i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3724" y="-509"/>
+            <point key="canvasLocation" x="3614" y="-525"/>
         </scene>
         <!--CommentVC-->
         <scene sceneID="mpK-Sx-OUl">
@@ -4975,7 +4975,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BUm-RR-uAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4072" y="-657"/>
+            <point key="canvasLocation" x="4197" y="-409"/>
         </scene>
         <!--Item-->
         <scene sceneID="lAP-ZF-4HC">
@@ -5115,12 +5115,12 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ITR-nX-yrf"/>
-        <segue reference="Vs3-qw-qis"/>
-        <segue reference="VmO-7q-XH5"/>
-        <segue reference="4ln-8p-Ekj"/>
-        <segue reference="Oev-0J-NiN"/>
         <segue reference="qhz-BR-2Cd"/>
+        <segue reference="Vs3-qw-qis"/>
+        <segue reference="RPu-0K-xZT"/>
+        <segue reference="VmO-7q-XH5"/>
+        <segue reference="Oev-0J-NiN"/>
+        <segue reference="4ln-8p-Ekj"/>
         <segue reference="0wb-lO-1eF"/>
     </inferredMetricsTieBreakers>
 </document>

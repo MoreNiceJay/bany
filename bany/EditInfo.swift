@@ -64,6 +64,7 @@ class EditInfo: UITableViewController, UIImagePickerControllerDelegate, UINaviga
         user.setObject(phoneNumber, forKey: "phoneNumber")
         user.setObject(email, forKey: "email")
         user.setObject(paseImageFile, forKey: "profile_picture")
+        
         user.saveInBackgroundWithBlock { (success, error) -> Void in
             self.stopActivityIndicator()
             

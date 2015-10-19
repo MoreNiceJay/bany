@@ -54,19 +54,25 @@ class editDetailVC: UIViewController {
 
     @IBAction func saveButtonTapped(sender: AnyObject) {
         
-        if (self.object != nil) {
-            
-            self.titleTextField.text = self.object["titleText"] as? String
-            self.priceTextfield.text = self.object["priceText"] as? String
-            self.tagTextfield.text = self.object["tagText"] as? String
-            self.purchasedDateTextField.text = self.object["purchasedDate"] as? String
-            self.descriptionTextView.text = self.object["descriptionText"] as? String
-            
-        }else {
-
-            self.object = PFObject(className: "Posts")
+        let query = PFQuery(className: "Posts")
+        query.getObjectInBackgroundWithId(object.objectId!) { (obj, err) -> Void in
+            if err != nil {
+                //handle error
+            } else {
+                query["priceText"] = priceText
+                query["tagText"] = tagText
+                query["front_image"] = parseFrontFile
+                query["damage_image"] = parseDamageFile
+                
+                obj!.saveInBackground()
+                print("saved")
+            }
         }
+        
+        
+    
     }
+    
     
         
 
@@ -106,14 +112,17 @@ class editDetailVC: UIViewController {
 
     @IBAction func deleteButtonTapped(sender: AnyObject) {
         
-        let query = PFObject(className:"Posts")
-        
-        query.objectId = parentObjectID
-        query.deleteInBackground()
         
         
-        
-        
+        let query = PFQuery(className: "Posts")
+        query.getObjectInBackgroundWithId(object.objectId!) { (obj, err) -> Void in
+            if err != nil {
+                //handle error
+            } else {
+                obj!.deleteInBackground()
+                print("deleted")
+            }
+        }
         
         
     }
@@ -141,11 +150,7 @@ class editDetailVC: UIViewController {
                 //self..text = post!.valueForKey("userNickName") as? String
                
                 
-               
-                //시간
-                let dateFormatter:NSDateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "dd/MM/yy"
-                
+                               
                 
                 
                 
