@@ -53,32 +53,46 @@ class editDetailVC: UIViewController {
     */
 
     @IBAction func saveButtonTapped(sender: AnyObject) {
-        
-        let query = PFQuery(className: "Posts")
-        query.getObjectInBackgroundWithId(object.objectId!) { (obj, err) -> Void in
-            if err != nil {
-                //handle error
-            } else {
-                query["priceText"] = priceText
-                query["tagText"] = tagText
-                query["front_image"] = parseFrontFile
-                query["damage_image"] = parseDamageFile
+        let query = PFQuery(className:"Posts")
+        query.getObjectInBackgroundWithId(object.objectId!) {
+            (post: PFObject?, error: NSError?) -> Void in
+            if error != nil && post == nil {
                 
-                obj!.saveInBackground()
-                print("saved")
+                
+                
+            }else if let post = post {
+                
+                post["titleText"] = self.titleTextField.text
+                post["descriptionText"] =  self.descriptionTextView.text
+                post["priceText"] = self.priceTextfield.text
+                post["purchasedDate"] = self.purchasedDateTextField.text
+                post["titleText"] = self.titleTextField.text
+                post["tagText"] = self.tagTextfield.text
+                
+                
+                //저장 알림
+                
+                post.saveInBackgroundWithBlock({ (success, error) -> Void in
+                    if error == nil{
+                        (print("good"))
+                        //에러 알림
+                    }
+                })
             }
         }
         
-        
-    
+  
     }
     
-    
-        
+  
 
-        
-        
-        
+
+
+
+
+
+
+
 //        let query = PFQuery(className:"Posts")
 //        query.getObjectInBackgroundWithId(parentObjectID) {
 //            (post: PFObject?, error: NSError?) -> Void in
