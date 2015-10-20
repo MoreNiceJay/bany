@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class UploadFourth: UITableViewController {
+class UploadFourth: UITableViewController,UITextFieldDelegate{
 
     
     
@@ -38,7 +38,8 @@ class UploadFourth: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        actInd.hidden = true
+        
+        self.stopActivityIndicator()
         
         
         
@@ -56,12 +57,12 @@ class UploadFourth: UITableViewController {
     
     @IBAction func emailSwitchOn(sender: AnyObject) {
        startActivityIndicator()
+        buttonDisabeld(uploadButton)
         if let emailFromParse = (PFUser.currentUser()?.objectForKey("email_address") as? String){
             email = emailFromParse
             
         }else{
-            emailSwitch.on = false
-            // textSwitch.enabled = false
+            
             //이메일 저장 시키는 텍스트 필드
             
             
@@ -73,7 +74,14 @@ class UploadFourth: UITableViewController {
                 textField.keyboardType = UIKeyboardType.EmailAddress
             })
             
-            let okAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.Default, handler: nil)
+            let okAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.Default, handler: { Void in
+                self.emailSwitch.on = false
+                
+                self.buttonEnabled(self.uploadButton)
+                
+                self.stopActivityIndicator()
+                
+            })
             emailAlert.addAction(okAction)
             
             
@@ -84,10 +92,15 @@ class UploadFourth: UITableViewController {
                 
                 if !(emailNumberTextField.text!.utf16.count > 10  ) {
                     // 3보다 크고 16보다 작은게 아니라면
+                    
+                    self.emailSwitch.on = false
+                    self.buttonEnabled(self.uploadButton)
+                    
+                    self.stopActivityIndicator()
+
                     self.alert("Invalid", message : "email must be longer than that")
                     
                     
-                    self.stopActivityIndicator()
                     
                 }else{
                     
@@ -98,13 +111,22 @@ class UploadFourth: UITableViewController {
                         
                         if (error != nil)
                         {
+                            self.emailSwitch.on = false
+
+                            self.buttonEnabled(self.uploadButton)
+                            
+                            self.stopActivityIndicator()
+
                             self.alert("error", message: (error?.localizedDescription)!)
                         }
                         
                         if(success) {
                             
                             self.emailSwitch.on = true
+                            self.buttonEnabled(self.uploadButton)
                             
+                            self.stopActivityIndicator()
+
                             
                             self.alert("saved", message : "Email address has been saved")
                             
@@ -120,13 +142,16 @@ class UploadFourth: UITableViewController {
                 
                 
                 
+                
                 }
                 ))
             
             
             
             self.presentViewController(emailAlert, animated: true, completion: nil)
+            self.buttonEnabled(self.uploadButton)
             
+            self.stopActivityIndicator()
         }
 
     }
@@ -150,7 +175,15 @@ class UploadFourth: UITableViewController {
             
             let phoneAlert : UIAlertController = UIAlertController(title: "Phone number", message: "allow your customer text you ", preferredStyle: UIAlertControllerStyle.Alert)
             
-            let okAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.Default, handler: nil)
+            let okAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.Default, handler : { Void in
+                self.emailSwitch.on = false
+                
+                self.buttonEnabled(self.uploadButton)
+                
+                self.stopActivityIndicator()
+                
+                })
+
             phoneAlert.addAction(okAction)
 
             
@@ -166,10 +199,15 @@ class UploadFourth: UITableViewController {
                 
                 if !(phoneNumberTextField.text!.utf16.count == 10  ) {
                     // 3보다 크고 16보다 작은게 아니라면
+                    
+                    self.buttonEnabled(self.uploadButton)
+                    
+                    self.stopActivityIndicator()
+
                self.alert("Invalid", message : "phoneNumber must be 10 digits")
                    
                     
-                    self.stopActivityIndicator()
+                   
                     
                 }else{
 
@@ -179,14 +217,18 @@ class UploadFourth: UITableViewController {
                     self.stopActivityIndicator()
                     
                     if (error != nil)
-                    {
+                    {self.buttonEnabled(self.uploadButton)
+                        
+                        self.stopActivityIndicator()
                         self.alert("error", message: (error?.localizedDescription)!)
                     }
                     
                     if(success) {
                         
                         self.textSwitch.on = true
+                        self.buttonEnabled(self.uploadButton)
                         
+                        self.stopActivityIndicator()
                         
                         self.alert("saved", message : "Phone number has been saved")
 
@@ -301,24 +343,30 @@ class UploadFourth: UITableViewController {
                     post["priceText"] = priceText
                     post["tagText"] = tagText
                     post["front_image"] = parseFrontFile
-                    post["damage_image"] = parseBackFile
+                    post["back_image"] = parseBackFile
                     post["descriptionText"] = descriptionText
                     post["purchasedDate"] = purchasedDate
                
-            //   post["userNickName"] = PFUser.currentUser()?.objectForKey("nickName")
+                if let nickName = PFUser.currentUser()?.objectForKey("nickName") {
+                    post["nickName"] = nickName
+                
+                }
                     post["category"] = category
                     post["sold"] = false
-//                if emailSwitch.on == true {
-//                    
-//                    post["email_address"] = PFUser.currentUser()?.objectForKey("email_address")
-//                }
-//                if textSwitch.on == true {
-//                    post["phone_number"] = PFUser.currentUser()?.objectForKey("phone_number")
-//               }
-//               
+                if emailSwitch.on == true {
+                    
+                    post["email_address"] = PFUser.currentUser()?.objectForKey("email_address")
+                }
+                if textSwitch.on == true {
+                    post["phone_number"] = PFUser.currentUser()?.objectForKey("phone_number")
+               }
+               
                 
                 
-             //   post["profile_picture"] = PFUser.currentUser()?.objectForKey("profile_picture")
+                if let   profilePic = PFUser.currentUser()?.objectForKey("profile_picture"){
+                    
+                    post["profile_picture"] = profilePic
+                }
                
                
                 

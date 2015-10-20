@@ -31,14 +31,14 @@ class UserInfoVC: UIViewController {
         
         
         //이메일
-        if let email = (PFUser.currentUser()?.objectForKey("email") as? String){
+        if let email = (PFUser.currentUser()?.objectForKey("email_address") as? String){
             self.emailLabel.text = email
             
         }else{
             self.emailLabel.text = "NO EMAIL"
         }
         //전화번호
-        if let phoneNumber = (PFUser.currentUser()?.objectForKey("phoneNumber") as? String){
+        if let phoneNumber = (PFUser.currentUser()?.objectForKey("phone_number") as? String){
             self.phoneNumberLabel.text = phoneNumber
             
         }else{

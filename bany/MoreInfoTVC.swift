@@ -23,10 +23,11 @@ class MoreInfoTVC: UITableViewController, UIImagePickerControllerDelegate, UINav
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+userInfoProvider()
         circularImage(profilePhotoImageView)
         actInd.hidden = true
-    }
+        
+          }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -64,13 +65,30 @@ class MoreInfoTVC: UITableViewController, UIImagePickerControllerDelegate, UINav
         
         
         
-        if (phoneNumber.isEmpty || email.isEmpty || name.isEmpty ) {
+        if (phoneNumber.isEmpty || email.isEmpty || name.isEmpty || nickName.isEmpty ) {
             
             alert("Invalid", message : "All fields must be filled")
             
             buttonEnabled(saveButton)
             stopActivityIndicator()
         }else{
+            
+            if !(nickName.utf16.count < 13 && nickName.utf16.count > 2) {
+                alert("Invalid", message : "nickname must be  3 ~ 12 characters")
+                
+                buttonEnabled(saveButton)
+                stopActivityIndicator()
+                
+            }else{
+                
+                if !(name.utf16.count < 25 && name.utf16.count > 2) {
+                    alert("Invalid", message : "nickname must be  3 ~ 24 characters")
+                    
+                    buttonEnabled(saveButton)
+                    stopActivityIndicator()
+                    
+                }else{
+
             
             if !(phoneNumber.utf16.count == 10  ) {
                 // 3보다 크고 16보다 작은게 아니라면
@@ -101,7 +119,7 @@ class MoreInfoTVC: UITableViewController, UIImagePickerControllerDelegate, UINav
                     user.setObject(email, forKey: "email_address")
                     user.setObject(phoneNumber, forKey: "phone_number")
                     user.setObject(name, forKey: "fullName")
-                    
+                    user.setObject(nickName, forKey: "nickName")
                     if( profilePhotoImageView.image != UIImage(named: "AvatarPlaceholder")) {
                         let scaledImage = scaleImageWith(profileIamge, newSize: CGSizeMake(50, 50))
                         let profileImageData = UIImagePNGRepresentation(scaledImage)
@@ -120,18 +138,24 @@ class MoreInfoTVC: UITableViewController, UIImagePickerControllerDelegate, UINav
                         
                         if(success) {
                             
-                            self.performSegueWithIdentifier("moreInfoTVCToMain", sender: self)
                             
                             
                             
-                            self.alert("Success", message: "Your information save in your account")
+                            
+                            let myAlert = UIAlertController(title: "Success", message: "Your information save in your account", preferredStyle: UIAlertControllerStyle.Alert)
+                            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { Void in self.performSegueWithIdentifier("moreInfoTVCToMain", sender: self)})
+                            myAlert.addAction(okAction)
+                            self.presentViewController(myAlert, animated: true, completion: nil)
+
+                            
+                            
                             
                         }
                     }
                 }
             }
-            
-            
+                }
+            }
             
             
         }
@@ -287,38 +311,50 @@ func circularImage(image : UIImageView) {
     image.layer.borderWidth = 3
 }
 
-
-
-
-//        user.setObject(phoneNumber, forKey: "phoneNumber")
-//
-//        //저장전 맞는 형식이 저장 됬나 확인 해야함.
-//
-//        if (preferPhoneNumberSwitch.on == true){
-//            user.setObject(preferPhoneNumber, forKey: "preferPhoneNumber")
-//        }
-//        if (preferEmailSwitch.on == true){
-//            user.setObject(preferEmailAddress, forKey: "preferEmail")
-//        }
-//
-//        // Do any additional setup after loading the view.
-//    }
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-
-
-/*
-// MARK: - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-// Get the new view controller using segue.destinationViewController.
-// Pass the selected object to the new view controller.
-}
-*/
+    func userInfoProvider() {
+        //닉네임
+        if let nickname = (PFUser.currentUser()?.objectForKey("nickName") as? String){
+            self.nickNameTextField.text = nickname
+            
+        }
+        
+        
+        // name
+        if let fullName = (PFUser.currentUser()?.objectForKey("fullName") as? String){
+            self.nameTextField.text = fullName
+        }
+        //이메일
+        if let email = (PFUser.currentUser()?.objectForKey("email_address") as? String){
+            self.emailTextField.text = email
+        
+        }
+        //전화번호
+        if let phoneNumber = (PFUser.currentUser()?.objectForKey("phone_number") as? String){
+            self.phoneNumberTextField.text = phoneNumber
+            
+               }
+        //profile Pic
+        if let profilePictureObject = (PFUser.currentUser()?.objectForKey("profile_picture") as? PFFile){
+            
+            
+            
+            profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+                
+                
+                
+                if(imageData != nil)
+                    
+                {
+                    
+                    self.profilePhotoImageView.image = UIImage(data: imageData!)
+                }        }
+        }else{
+            self.profilePhotoImageView.image = UIImage(named: "AvatarPlaceholder")
+            
+        }
+        
+        
+    }
 
 }
 

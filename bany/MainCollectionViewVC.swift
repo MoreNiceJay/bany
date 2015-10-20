@@ -156,7 +156,7 @@ class MainCollectionViewVC: UIViewController, UICollectionViewDelegate, UICollec
                     
                     
                     self.titleText.append(post["titleText"] as! String)
-                    self.nickName.append(post["userNickName"] as! String)
+                    self.nickName.append(post["nickName"] as! String)
                     //시간
                     let dateFormatter:NSDateFormatter = NSDateFormatter()
                     dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
@@ -196,7 +196,7 @@ class MainCollectionViewVC: UIViewController, UICollectionViewDelegate, UICollec
                     self.time.append(dateFormatter.stringFromDate(post.createdAt!))
                     
                     self.titleText.append(post["titleText"] as! String)
-                    self.nickName.append(post["userNickName"] as! String)
+                    self.nickName.append(post["nickName"] as! String)
                     self.price.append(post["priceText"] as! String)
                     self.mainPhoto.append(post["imageFile"] as! PFFile)
                     self.objectArray.append((post.objectId)! as String!)

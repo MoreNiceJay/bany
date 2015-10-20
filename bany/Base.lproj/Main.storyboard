@@ -1681,6 +1681,9 @@
                                                     <state key="normal" title="Edit">
                                                         <color key="titleColor" red="0.34092881940000003" green="0.10527348089999999" blue="0.095788467160000001" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="selectProfilePhotoButtonTapped:" destination="L8W-Ue-3Lc" eventType="touchUpInside" id="Sd6-jy-L4M"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -3378,7 +3381,8 @@
                                                 </activityIndicatorView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Le8-1n-esu">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="426"/>
-                                                    <state key="normal" title="Front Image">
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                                    <state key="normal" title="front Image">
                                                         <color key="titleColor" red="0.22019649720000001" green="0.22163570029999999" blue="0.72496448859999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
@@ -3463,7 +3467,8 @@
                                                 </activityIndicatorView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E1E-ss-jGP">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="427"/>
-                                                    <state key="normal" title="Back image">
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                                    <state key="normal" title="back image">
                                                         <color key="titleColor" red="0.22019649720000001" green="0.22163570029999999" blue="0.72496448859999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
@@ -3516,7 +3521,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Uvz-7h-Hcj">
-                            <rect key="frame" x="0.0" y="523" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="559" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.22019649720000001" green="0.22163570029999999" blue="0.72496448859999996" alpha="0.63" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="16"/>
@@ -3549,7 +3554,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="2012/05" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2hZ-ca-6fP">
                                                     <rect key="frame" x="98" y="8" width="316" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     <variation key="heightClass=regular" misplaced="YES">
                                                         <rect key="frame" x="88" y="314" width="240" height="30"/>
                                                     </variation>
@@ -3566,8 +3571,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="c0K-fY-JE1">
+                                <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="140" id="u1B-GO-M6d">
-                                        <rect key="frame" x="0.0" y="158" width="414" height="140"/>
+                                        <rect key="frame" x="0.0" y="194" width="414" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u1B-GO-M6d" id="I7P-91-LX2">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="139"/>
@@ -3602,7 +3611,7 @@
                             <tableViewSection headerTitle="contact method" footerTitle="User contact you by" id="XcK-OZ-V1y">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="147" id="dIj-jX-pNv">
-                                        <rect key="frame" x="0.0" y="349" width="414" height="147"/>
+                                        <rect key="frame" x="0.0" y="385" width="414" height="147"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dIj-jX-pNv" id="RtZ-CW-6vo">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="146"/>
@@ -3611,6 +3620,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5ki-JE-9bq">
                                                     <rect key="frame" x="321" y="109" width="51" height="31"/>
                                                     <color key="onTintColor" red="0.69446417299999996" green="0.53853619639999994" blue="0.088963253749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="textFieldOn:" destination="v4C-gE-go3" eventType="valueChanged" id="Pqg-H1-vRC"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jft-Mu-BdI">
                                                     <rect key="frame" x="285" y="67" width="28" height="14"/>
@@ -4735,12 +4747,12 @@
         <image name="PlaceholderPhoto" width="280" height="280"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0wb-lO-1eF"/>
-        <segue reference="SMf-er-OjS"/>
-        <segue reference="Vs3-qw-qis"/>
+        <segue reference="gdt-on-WPk"/>
         <segue reference="fL3-VU-BgV"/>
         <segue reference="EbQ-LY-hfU"/>
-        <segue reference="qhz-BR-2Cd"/>
+        <segue reference="Vs3-qw-qis"/>
+        <segue reference="0wb-lO-1eF"/>
         <segue reference="VmO-7q-XH5"/>
+        <segue reference="qhz-BR-2Cd"/>
     </inferredMetricsTieBreakers>
 </document>

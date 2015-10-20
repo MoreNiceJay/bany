@@ -55,7 +55,7 @@ class EditDetailTVC: UITableViewController {
                 post["tagText"] = self.tagTextfield.text
                 post["front_image"] = self.frontImageView.image
                 
-                    post["damage_image"] = self.backImageView.image
+                    post["back_image"] = self.backImageView.image
                 
                 //저장 알림
                 
@@ -107,7 +107,7 @@ class EditDetailTVC: UITableViewController {
         
         
         
-        let backPic = object!.valueForKey("damage_image") as? PFFile
+        let backPic = object!.valueForKey("back_image") as? PFFile
         
         backPic!.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
             

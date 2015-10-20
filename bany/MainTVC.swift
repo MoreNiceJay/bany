@@ -137,7 +137,7 @@ class MainTVC: UITableViewController {
 
                 // 닉네임
         
-        if let nickNameExists = postObjects.objectForKey("userNickName") as? String {
+        if let nickNameExists = postObjects.objectForKey("nickName") as? String {
             cell.nickNameLabel.text = nickNameExists
         }else {
             cell.nickNameLabel.text = postObjects.objectForKey("username") as? String

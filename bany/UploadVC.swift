@@ -50,7 +50,7 @@ class UploadVC: UIViewController {
     
     
     @IBAction func emailSwitchOn(sender: AnyObject) {
-        if let emailFromParse = (PFUser.currentUser()?.objectForKey("email") as? String){
+        if let emailFromParse = (PFUser.currentUser()?.objectForKey("email_address") as? String){
             email = emailFromParse
             
         }else{
@@ -163,12 +163,12 @@ class UploadVC: UIViewController {
             post["tagText"] = tagText
             post["imageFile"] = paseImageFile
             post["descriptionText"] = descriptionText
-            post["userNickName"] = PFUser.currentUser()?.objectForKey("nickName")
+            post["nickName"] = PFUser.currentUser()?.objectForKey("nickName")
                     if !email.isEmpty {
-                        post["preferEmail"] = email}
+                        post["email_address"] = email}
             
                     if !phoneNumber.isEmpty {
-                        post["preferPhoneNumber"] = phoneNumber}
+                        post["phone_number"] = phoneNumber}
             post["category"] = category
             post["view"] = zero
                     post["like"] = zero

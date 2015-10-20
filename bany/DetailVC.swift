@@ -118,12 +118,12 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
             
             self.tagTextLabel.text =  object!.valueForKey("tagText") as? String
             
-            if let userNickNameCheck = object!.valueForKey("userNickName") as? String {
+            if let userNickNameCheck = object!.valueForKey("nickName") as? String {
                 
                 self.nickNameLabel.text = userNickNameCheck
                 
             }else{
-               self.nickNameLabel.text = object!.valueForKey("userNickName") as? String
+               self.nickNameLabel.text = object!.valueForKey("nickName") as? String
             }
 
             
@@ -146,7 +146,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
             }
             
             
-            let backImage = object.objectForKey("damage_image") as! PFFile
+            let backImage = object.objectForKey("back_image") as! PFFile
             
             
             backImage.getDataInBackgroundWithBlock { (imageData, error) -> Void in
@@ -387,7 +387,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         self.purchasedDateLabel.text = post!.valueForKey("purchasedDate") as? String
 
         self.tagTextLabel.text =  post!.valueForKey("tagText") as? String
-        self.nickNameLabel.text = post!.valueForKey("userNickName") as? String
+        self.nickNameLabel.text = post!.valueForKey("nickName") as? String
         
         
         //시간
@@ -399,7 +399,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         
         
         
-        let backPic = post!.valueForKey("damage_image") as? PFFile
+        let backPic = post!.valueForKey("back_image") as? PFFile
         
         backPic!.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
             
@@ -473,7 +473,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         if object.valueForKey("sold") as! Bool == false{
         
         
-        if let preferEmail = object.valueForKey("userNickName") as? String {
+        if let preferEmail = object.valueForKey("nickName") as? String {
             
             
         

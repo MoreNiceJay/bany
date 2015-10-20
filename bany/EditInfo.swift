@@ -61,8 +61,8 @@ class EditInfo: UITableViewController, UIImagePickerControllerDelegate, UINaviga
         user.setObject(nickName, forKey: "nickName")
         user.setObject(firstName, forKey: "firstName")
         user.setObject(lastName, forKey: "lastName")
-        user.setObject(phoneNumber, forKey: "phoneNumber")
-        user.setObject(email, forKey: "email")
+        user.setObject(phoneNumber, forKey: "phone_number")
+        user.setObject(email, forKey: "email_address")
         user.setObject(paseImageFile, forKey: "profile_picture")
         
         user.saveInBackgroundWithBlock { (success, error) -> Void in
@@ -126,14 +126,14 @@ class EditInfo: UITableViewController, UIImagePickerControllerDelegate, UINaviga
         }
         
         //이메일
-        if let email = (PFUser.currentUser()?.objectForKey("email") as? String){
+        if let email = (PFUser.currentUser()?.objectForKey("email_address") as? String){
             self.emailTextField.text = email
             
         }else{
             self.emailTextField.text = "NO EMAIL"
         }
         //전화번호
-        if let phoneNumber = (PFUser.currentUser()?.objectForKey("phoneNumber") as? String){
+        if let phoneNumber = (PFUser.currentUser()?.objectForKey("phone_number") as? String){
             self.phoneTextField.text = phoneNumber
             
         }else{

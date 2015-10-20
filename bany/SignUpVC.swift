@@ -57,8 +57,7 @@ class SignUpVC: UIViewController {
         let userPassword = passwordTextField.text
         let userPasswordConfirm = passwordConfirmationTextField.text
         
-        let nickname = emailTextField.text
-        
+                
         //빈칸 확인
         if (userEmail!.isEmpty || userPassword!.isEmpty || userPasswordConfirm!.isEmpty)
         {
@@ -111,8 +110,8 @@ class SignUpVC: UIViewController {
                     let user = PFUser()
                     user.username = userEmail
                     user.password = userPassword
-                    user.email = userEmail
-                    user.setObject(nickname!, forKey: "nickName")
+                    user.setObject(userEmail!, forKey: "email_address")
+                    
                     
                     
                     user.signUpInBackgroundWithBlock({ (success, error) -> Void in
