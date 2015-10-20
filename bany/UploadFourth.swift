@@ -9,10 +9,9 @@
 import UIKit
 import Parse
 
-class NewUploadDescription: UIViewController {
+class UploadFourth: UITableViewController {
 
     
-    @IBOutlet weak var priceTextField: UITextField!
     
     @IBOutlet weak var purchasedDateTextField: UITextField!
     
@@ -24,12 +23,13 @@ class NewUploadDescription: UIViewController {
     
     @IBOutlet weak var uploadButton: UIButton!
     
-    
+    var priceText = String()
+
     var category = Int()
     var titleText = String()
     var tagText = String()
     var photoFront = UIImage()
-    var photoDamage = UIImage()
+    var photoBack = UIImage()
     
     var email :String = String()
     var phoneNumber :String = String()
@@ -55,7 +55,8 @@ class NewUploadDescription: UIViewController {
     
     
     @IBAction func emailSwitchOn(sender: AnyObject) {
-        if let emailFromParse = (PFUser.currentUser()?.objectForKey("prefer_email") as? String){
+       startActivityIndicator()
+        if let emailFromParse = (PFUser.currentUser()?.objectForKey("email_address") as? String){
             email = emailFromParse
             
         }else{
@@ -65,12 +66,16 @@ class NewUploadDescription: UIViewController {
             
             
             
-            let emailAlert : UIAlertController = UIAlertController(title: "email ", message: "allow your customer email you ", preferredStyle: UIAlertControllerStyle.Alert)
+            let emailAlert : UIAlertController = UIAlertController(title: "No email address ", message: "Allow your customer email you ", preferredStyle: UIAlertControllerStyle.Alert)
             
             emailAlert.addTextFieldWithConfigurationHandler({ (textField : UITextField) -> Void in
                 textField.placeholder = "email address"
                 textField.keyboardType = UIKeyboardType.EmailAddress
             })
+            
+            let okAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.Default, handler: nil)
+            emailAlert.addAction(okAction)
+            
             
             emailAlert.addAction(UIAlertAction(title: "save", style: UIAlertActionStyle.Default, handler: { alertAction in
                 let textFields : NSArray = emailAlert.textFields as! NSArray
@@ -79,14 +84,14 @@ class NewUploadDescription: UIViewController {
                 
                 if !(emailNumberTextField.text!.utf16.count > 10  ) {
                     // 3보다 크고 16보다 작은게 아니라면
-                    self.alert("Invalid", message : "email must be 10")
+                    self.alert("Invalid", message : "email must be longer than that")
                     
                     
                     self.stopActivityIndicator()
                     
                 }else{
                     
-                    PFUser.currentUser()?.setObject(emailNumberTextField.text!, forKey: "prefer_email")
+                    PFUser.currentUser()?.setObject(emailNumberTextField.text!, forKey: "email_address")
                     
                     PFUser.currentUser()?.saveInBackgroundWithBlock { (success, error) -> Void in
                         self.stopActivityIndicator()
@@ -101,14 +106,7 @@ class NewUploadDescription: UIViewController {
                             self.emailSwitch.on = true
                             
                             
-                            self.alert("saved", message : "email address saved")
-                            
-                            
-                            // self.alert("Success", message: "Your information has been saved in your account")
-                            
-                            //self.performSegueWithIdentifier("moreInfoToMain", sender: self)
-                            
-                            
+                            self.alert("saved", message : "Email address has been saved")
                             
                             
                             
@@ -124,8 +122,7 @@ class NewUploadDescription: UIViewController {
                 
                 }
                 ))
-            let okAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.Default, handler: nil)
-            emailAlert.addAction(okAction)
+            
             
             
             self.presentViewController(emailAlert, animated: true, completion: nil)
@@ -135,7 +132,7 @@ class NewUploadDescription: UIViewController {
     }
     
     @IBAction func textFieldOn(sender: AnyObject) {
-        if let numberFromParse = (PFUser.currentUser()?.objectForKey("prefer_phoneNumber") as? String){
+        if let numberFromParse = (PFUser.currentUser()?.objectForKey("phone_number") as? String){
             
          
 
@@ -153,6 +150,10 @@ class NewUploadDescription: UIViewController {
             
             let phoneAlert : UIAlertController = UIAlertController(title: "Phone number", message: "allow your customer text you ", preferredStyle: UIAlertControllerStyle.Alert)
             
+            let okAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.Default, handler: nil)
+            phoneAlert.addAction(okAction)
+
+            
             phoneAlert.addTextFieldWithConfigurationHandler({ (textField : UITextField) -> Void in
                 textField.placeholder = "phone number"
                 textField.keyboardType = UIKeyboardType.PhonePad
@@ -165,14 +166,14 @@ class NewUploadDescription: UIViewController {
                 
                 if !(phoneNumberTextField.text!.utf16.count == 10  ) {
                     // 3보다 크고 16보다 작은게 아니라면
-               self.alert("Invalid", message : "phoneNumber must be 10")
+               self.alert("Invalid", message : "phoneNumber must be 10 digits")
                    
                     
                     self.stopActivityIndicator()
                     
                 }else{
 
-                PFUser.currentUser()?.setObject(phoneNumberTextField.text!, forKey: "prefer_phoneNumber")
+                PFUser.currentUser()?.setObject(phoneNumberTextField.text!, forKey: "phone_number")
                 
                 PFUser.currentUser()?.saveInBackgroundWithBlock { (success, error) -> Void in
                     self.stopActivityIndicator()
@@ -187,15 +188,8 @@ class NewUploadDescription: UIViewController {
                         self.textSwitch.on = true
                         
                         
-                        self.alert("saved", message : "phone number saved")
+                        self.alert("saved", message : "Phone number has been saved")
 
-                        
-                       // self.alert("Success", message: "Your information has been saved in your account")
-                        
-                        //self.performSegueWithIdentifier("moreInfoToMain", sender: self)
-                        
-                        
-                        
                         
                         
                     }
@@ -210,9 +204,7 @@ class NewUploadDescription: UIViewController {
                 
             }
         ))
-            let okAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.Default, handler: nil)
-            phoneAlert.addAction(okAction)
-
+            
             
             self.presentViewController(phoneAlert, animated: true, completion: nil)
             
@@ -234,13 +226,14 @@ class NewUploadDescription: UIViewController {
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
         
+        startActivityIndicator()
+        buttonDisabeld(uploadButton)
         
-        let priceText = priceTextField.text
         let purchasedDate = purchasedDateTextField.text
         let descriptionText = descriptionTextView.text
         
        
-        if priceText!.isEmpty || purchasedDate!.isEmpty || description.isEmpty{
+        if  purchasedDate!.isEmpty || descriptionText!.isEmpty{
             
             
             //유저에게 채워넣으라고 알럴트
@@ -248,22 +241,27 @@ class NewUploadDescription: UIViewController {
             
         }else {
             
-            if !(purchasedDate!.utf16.count <= 26 && purchasedDate!.utf16.count >= 2 ) {
+            if !(purchasedDate!.utf16.count > 3 && purchasedDate!.utf16.count < 13 ) {
                 // 3보다 크고 16보다 작은게 아니라면
-                alert("Invalid", message : "date must be 2 ~ 26")
+                
                 buttonEnabled(uploadButton)
                 
                 stopActivityIndicator()
+                
+                alert("Invalid", message : "date must be 4 - 12 digit")
+              
                 
             }else{
                 //ㅇㅋ
                 
                 if !(description.utf16.count <= 200 && description.utf16.count >= 2 ) {
                     
-                    alert("Invalid", message : "description 2 ~ 200")
+                    
                     buttonEnabled(uploadButton)
                     
                     stopActivityIndicator()
+
+                    alert("Invalid", message : "Description must be 2 ~ 200 characters")
                     
                     
                     
@@ -283,13 +281,13 @@ class NewUploadDescription: UIViewController {
                     //스케일 조절
                     let scaledImageFront = self.scaleImageWith(photoFront, newSize: CGSizeMake(300, 250))
                 
-                    let scaledImageBack = self.scaleImageWith(photoDamage, newSize: CGSizeMake(300, 250))
+                    let scaledImageBack = self.scaleImageWith(photoBack, newSize: CGSizeMake(300, 250))
                 
                 let imageDataOne = UIImagePNGRepresentation(scaledImageFront)
                 let imageDataTwo = UIImagePNGRepresentation(scaledImageBack)
                 
                     let parseFrontFile = PFFile(name: "front_photo.png", data : imageDataOne!)
-                let parseDamageFile = PFFile(name: "damage_photo.png", data : imageDataTwo!)
+                let parseBackFile = PFFile(name: "back_photo.png", data : imageDataTwo!)
                 
                     let post = PFObject(className: "Posts")
                     
@@ -300,23 +298,24 @@ class NewUploadDescription: UIViewController {
                     post["priceText"] = priceText
                     post["tagText"] = tagText
                     post["front_image"] = parseFrontFile
-                    post["damage_image"] = parseDamageFile
+                    post["damage_image"] = parseBackFile
                     post["descriptionText"] = descriptionText
                     post["purchasedDate"] = purchasedDate
-                    post["userNickName"] = PFUser.currentUser()?.objectForKey("nickName")
+               
+               post["userNickName"] = PFUser.currentUser()?.objectForKey("nickName")
                     post["category"] = category
                     post["sold"] = false
-                if emailSwitch.on == true {
-                    
-                    post["prefer_email"] = PFUser.currentUser()?.objectForKey("prefer_email")
-                }
-                if textSwitch.on == true {
-                    post["prefer_phoneNumber"] = PFUser.currentUser()?.objectForKey("prefer_phoneNumber")
-                }
+//                if emailSwitch.on == true {
+//                    
+//                    post["email_address"] = PFUser.currentUser()?.objectForKey("email_address")
+//                }
+//                if textSwitch.on == true {
+//                    post["phone_number"] = PFUser.currentUser()?.objectForKey("phone_number")
+//                }
+               
                 
                 
-                
-                   // post["profile_picture"] = PFUser.currentUser()?.objectForKey("profile_picture")
+                post["profile_picture"] = PFUser.currentUser()?.objectForKey("profile_picture")
                
                
                 
@@ -327,11 +326,15 @@ class NewUploadDescription: UIViewController {
                         
                         if error == nil {
                             
-                            print("업로드 성공")
+                            self.buttonEnabled(self.uploadButton)
+                            
+                            self.stopActivityIndicator()
+
                             
                             //저장 성공했다고 표시창
                             //self.luxuryAlert( "your post uploaded" )
-                             self.alert("Error", message : "업로드성공")
+                            print("업로드")
+                            self.alert("post saved", message : "see you at main library")
                             
                             
                             
@@ -346,7 +349,7 @@ class NewUploadDescription: UIViewController {
     }
         }
         
-    
+//self.performSegueWithIdentifier("uploadFourthToMain", sender: self)
             
         
     }
@@ -374,7 +377,7 @@ class NewUploadDescription: UIViewController {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
-        priceTextField.resignFirstResponder()
+
         purchasedDateTextField.resignFirstResponder()
                 descriptionTextView.resignFirstResponder()
         
@@ -400,7 +403,7 @@ class NewUploadDescription: UIViewController {
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) {
             action in
             
-            self.performSegueWithIdentifier("u1ploadCompleteToMain", sender: self)
+            self.performSegueWithIdentifier("uploadFourthToMain", sender: self)
         }
         myAlert.addAction(okAction)
         self.presentViewController(myAlert, animated: true, completion: nil)

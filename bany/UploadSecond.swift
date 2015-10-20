@@ -8,13 +8,14 @@
 
 import UIKit
 
-class NewUploadPhoto: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+class UploadSecond : UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    var priceText = String()
     var category = Int()
     var titleText = String()
     var tagText = String()
     @IBOutlet weak var picturButton: UIButton!
     
+    @IBOutlet weak var nextButton: UIButton!
 
     @IBOutlet weak var photoFront: UIImageView!
     
@@ -48,14 +49,23 @@ class NewUploadPhoto: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func nextButtonButton(sender: AnyObject) {
-        
+        startActivityIndicator()
+        buttonDisabeld(nextButton)
+
         if photoFront.image == UIImage(named: "PlaceholderPhoto") {
-            alert("no Image", message: "pic Image")
+            
+            buttonEnabled(nextButton)
+            
+            stopActivityIndicator()
+            alert("no Image", message: "Have a rear Image of your product")
             
             
             
         }else {
-            performSegueWithIdentifier("pictureToPicture", sender: self)
+            buttonEnabled(nextButton)
+            
+            stopActivityIndicator()
+performSegueWithIdentifier("uploadSecondToUploadThrid", sender: self)
         }
         
         
@@ -66,14 +76,15 @@ class NewUploadPhoto: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let photoOne = photoFront.image
         
-        if (segue.identifier == "pictureToPicture") {
+        if (segue.identifier == "uploadSecondToUploadThrid") {
             
             
-            let destViewController : SecondViewController = segue.destinationViewController as! SecondViewController
+            let destViewController : UploadThird = segue.destinationViewController as! UploadThird
             destViewController.category = category
             destViewController.titleText = titleText
             destViewController.tagText = tagText
             destViewController.photoFront   = photoOne!
+            destViewController.priceText = priceText
         }
     }
     
@@ -193,5 +204,15 @@ class NewUploadPhoto: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             return true
         }
+    func buttonEnabled(buttonName: UIButton){
+        
+        buttonName.enabled = true
+    }
+    func buttonDisabeld(buttonName: UIButton){
+        
+        buttonName.enabled = false
+    }
+    
+
     
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewUploadTitle: UIViewController {
+class  UploadFirst: UITableViewController {
 
     
     @IBOutlet weak var actInd: UIActivityIndicatorView!
@@ -19,6 +19,7 @@ class NewUploadTitle: UIViewController {
     @IBOutlet weak var otherSwitch: UISwitch!
     @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
     var category : Int = 0
    
@@ -48,7 +49,7 @@ class NewUploadTitle: UIViewController {
             otherSwitch.on = false
             titleLabel.text = "book title"
             classLabel.text = "class/author"
-            tagTextField.placeholder = "ex) Acom203, author name"
+            tagTextField.placeholder = "ex) Acom203 / author name"
             
         }
     }
@@ -59,9 +60,9 @@ class NewUploadTitle: UIViewController {
             category = 2
             bookSwitch.on = false
             otherSwitch.on = false
-            titleLabel.text = "iclicker"
+            titleTextField.text = "Iclicker"
             classLabel.text = "battery"
-            tagTextField.placeholder = "ex) no battery or yes battery"
+            tagTextField.placeholder = "ex) no battery / yes battery"
 
             
         }
@@ -74,9 +75,10 @@ class NewUploadTitle: UIViewController {
             category = 3
             bookSwitch.on = false
             iclickerSwitch.on = false
-            titleLabel.text = "brand/model"
-            classLabel.text = "model/model number"
-            tagTextField.placeholder = "ex) Mac mini a1347"
+            titleLabel.text = "brand/product"
+            classLabel.text = "model number/ sort"
+            titleTextField.placeholder  = "ex) Apple MacPro"
+            tagTextField.placeholder = "ex) a1347 / laptop"
         }
         
     }
@@ -97,20 +99,21 @@ class NewUploadTitle: UIViewController {
         
         let titleText = titleTextField.text
         let tagText = tagTextField.text
-        
+        let priceText = priceTextField.text
        
         
         
         
         if(!bookSwitch.on && !iclickerSwitch.on && !otherSwitch.on){
-            
             buttonEnabled(nextButton)
             
             stopActivityIndicator()
+
+           
             
             self.alert("invalid", message : "you must choose a category")
         }else{
-        if titleText!.isEmpty || tagText!.isEmpty {
+        if titleText!.isEmpty || tagText!.isEmpty || priceText!.isEmpty{
             
             
             buttonEnabled(nextButton)
@@ -124,31 +127,35 @@ class NewUploadTitle: UIViewController {
             
         }else {
             
-            if !(titleText!.utf16.count <= 26 && titleText!.utf16.count >= 2 ) {
+            if !(titleText!.utf16.count <= 45 && titleText!.utf16.count >= 2 ) {
                 // 3보다 크고 16보다 작은게 아니라면
-                alert("Invalid", message : "nickname 2 ~ 26")
                 buttonEnabled(nextButton)
                 
                 stopActivityIndicator()
+
+                alert("Invalid", message : "title must be  2 ~ 45 characters")
                 
             }else{
                 //ㅇㅋ
                 
-                if !(tagText!.utf16.count <= 26 && tagText!.utf16.count >= 2 ) {
+                if !(tagText!.utf16.count <= 40 && tagText!.utf16.count >= 2 ) {
                     
-                    alert("Invalid", message : "first name 2 ~ 26")
+                    
                     buttonEnabled(nextButton)
                     
                     stopActivityIndicator()
-                    
-                    
+                    alert("Invalid", message : "tag must be 2 ~ 45 characters")
+                
                     
                     
                     }else{
                         //굿투고
 
-            
-                self.performSegueWithIdentifier("uploadTitleToUploadImage", sender: self)
+                    buttonEnabled(nextButton)
+                    
+                    stopActivityIndicator()
+
+                self.performSegueWithIdentifier("uploadFirstToUploadSecond", sender: self)
            
             }
             
@@ -163,14 +170,14 @@ class NewUploadTitle: UIViewController {
  
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if (segue.identifier == "uploadTitleToUploadImage") {
+        if (segue.identifier == "uploadFirstToUploadSecond") {
             
             
-            let destViewController : NewUploadPhoto = segue.destinationViewController as! NewUploadPhoto
+            let destViewController : UploadSecond = segue.destinationViewController as! UploadSecond
             destViewController.category = category
             destViewController.titleText = titleTextField.text!
             destViewController.tagText = tagTextField.text!
-            
+            destViewController.priceText = priceTextField.text!
         }
         
         
@@ -194,7 +201,7 @@ class NewUploadTitle: UIViewController {
         
         titleTextField.resignFirstResponder()
         tagTextField.resignFirstResponder()
-       
+       priceTextField.resignFirstResponder()
         
     }
     

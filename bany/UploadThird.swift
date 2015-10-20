@@ -8,12 +8,13 @@
 
 import UIKit
 import Parse
-class SecondViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UploadThird: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var actInd: UIActivityIndicatorView!
-    @IBOutlet weak var photoDamage: UIImageView!
+    @IBOutlet weak var backPhoto: UIImageView!
     
-    
+    @IBOutlet weak var nextButton: UIButton!
+    var priceText = String()
     var category = Int()
     var titleText = String()
     var tagText = String()
@@ -43,11 +44,21 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @IBAction func nextButtonTapped(sender: AnyObject) {
-        
-        if photoDamage.image == UIImage(named: "PlaceholderPhoto") {
+        startActivityIndicator()
+        buttonDisabeld(nextButton)
+        if backPhoto.image == UIImage(named: "PlaceholderPhoto") {
+            
+            buttonEnabled(nextButton)
+            
+            stopActivityIndicator()
             alert("no Image", message: "pic Image")
         }else{
-        performSegueWithIdentifier("damagePhotoToDescription", sender: self)
+            
+            buttonEnabled(nextButton)
+            
+            stopActivityIndicator()
+
+        performSegueWithIdentifier("uploadThirdToUploadFourth", sender: self)
         }
     }
     
@@ -55,7 +66,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        photoDamage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        backPhoto.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -87,14 +98,14 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if (segue.identifier == "damagePhotoToDescription") {
-        let destViewController : NewUploadDescription = segue.destinationViewController as! NewUploadDescription
+        if (segue.identifier == "uploadThirdToUploadFourth") {
+        let destViewController : UploadFourth = segue.destinationViewController as! UploadFourth
             destViewController.category = category
             destViewController.titleText = titleText
             destViewController.tagText = tagText
             destViewController.photoFront = photoFront
-            
-            destViewController.photoDamage   = photoDamage.image!
+            destViewController.priceText = priceText
+            destViewController.photoBack   = backPhoto.image!
 
         }
     }
@@ -175,7 +186,14 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         return true
     }
 
-
+    func buttonEnabled(buttonName: UIButton){
+        
+        buttonName.enabled = true
+    }
+    func buttonDisabeld(buttonName: UIButton){
+        
+        buttonName.enabled = false
+    }
 
 
 
