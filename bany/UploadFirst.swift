@@ -76,7 +76,7 @@ class  UploadFirst: UITableViewController {
             bookSwitch.on = false
             iclickerSwitch.on = false
             titleLabel.text = "brand/product"
-            classLabel.text = "model number/ sort"
+            classLabel.text = "model#/sort"
             titleTextField.placeholder  = "ex) Apple MacPro"
             tagTextField.placeholder = "ex) a1347 / laptop"
         }
@@ -235,6 +235,11 @@ class  UploadFirst: UITableViewController {
                 buttonName.enabled = false
             }
 
+    @IBAction func keyBoardDismissButton(sender: AnyObject) {
+        UIApplication.sharedApplication().sendAction("resignFirstResponder", to:nil, from:nil, forEvent:nil)
+        
+
+    }
     
 }
 

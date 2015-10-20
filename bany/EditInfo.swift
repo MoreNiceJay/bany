@@ -11,156 +11,180 @@ import Parse
 
 class EditInfo: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var nickNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextfield: UITextField!
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var phoneTextField: UITextField!
     
+   
+    @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var actInd: UIActivityIndicatorView!
-    var userArray = []
+    @IBOutlet weak var nickNameTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var profilePhotoImageView: UIImageView!
+    
+    @IBOutlet weak var saveButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        stopActivityIndicator()
         userInfoProvider()
-        
-        
-        circularImage(profileImageView)
+        circularImage(profilePhotoImageView)
         
     }
-
-    @IBAction func profileButtonTapped(sender: AnyObject) {
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    @IBAction func selectProfilePhotoButtonTapped(sender: AnyObject) {
+        
+         startActivityIndicator()
         
         photoCaptureButtonAction()
         
+        stopActivityIndicator()
         
     }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        profilePhotoImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     @IBAction func saveButtonTapped(sender: AnyObject) {
+        startActivityIndicator()
         
-        let phoneNumber =  phoneTextField.text!
-        let lastName =  lastNameTextfield.text!
-        let firstName =  firstNameTextField.text!
+        let phoneNumber =  phoneNumberTextField.text!
+        let email =  emailTextField.text!
+        let name =  nameTextField.text!
         let nickName =  nickNameTextField.text!
-        let email = emailTextField.text!
-        let profilePic = profileImageView.image
-      //  let profileIamge = profilePhotoImageView.image!
-       // let preferPhoneNumber = phoneNumberTextField.text!
-        //let preferEmailAddress = emailTextField.text!
-        
-        let scaledImage = self.scaleImageWith(profilePic!, newSize: CGSizeMake(320, 200))
+        let profileIamge = profilePhotoImageView.image!
         
         
-        let imageData = UIImagePNGRepresentation(scaledImage)
-        let paseImageFile = PFFile(name: "profile_image", data : imageData!)
-
         
-        let  user = PFUser.currentUser()!
-        
-        user.setObject(nickName, forKey: "nickName")
-        user.setObject(firstName, forKey: "firstName")
-        user.setObject(lastName, forKey: "lastName")
-        user.setObject(phoneNumber, forKey: "phone_number")
-        user.setObject(email, forKey: "email_address")
-        user.setObject(paseImageFile, forKey: "profile_picture")
-        
-        user.saveInBackgroundWithBlock { (success, error) -> Void in
-            self.stopActivityIndicator()
+        if (phoneNumber.isEmpty || email.isEmpty || name.isEmpty || nickName.isEmpty ) {
             
-            if (error != nil)
-            {
-                self.alert("error", message: (error?.localizedDescription)!)
+            alert("Invalid", message : "All fields must be filled")
+            
+            buttonEnabled(saveButton)
+            stopActivityIndicator()
+        }else{
+            
+            if !(nickName.utf16.count < 13 && nickName.utf16.count > 2) {
+                alert("Invalid", message : "nickname must be  3 ~ 12 characters")
+                
+                buttonEnabled(saveButton)
+                stopActivityIndicator()
+                
+            }else{
+                
+                if !(name.utf16.count < 25 && name.utf16.count > 2) {
+                    alert("Invalid", message : "nickname must be  3 ~ 24 characters")
+                    
+                    buttonEnabled(saveButton)
+                    stopActivityIndicator()
+                    
+                }else{
+                    
+                    
+                    if !(phoneNumber.utf16.count == 10  ) {
+                        // 3보다 크고 16보다 작은게 아니라면
+                        alert("Invalid", message : "phoneNumber 10")
+                        
+                        buttonEnabled(saveButton)
+                        stopActivityIndicator()
+                        
+                    }else{
+                        //ㅇㅋ
+                        
+                        if !(email.utf16.count > 7 ) {
+                            
+                            alert("Invalid", message : "email more than 7")
+                            
+                            buttonEnabled(saveButton)
+                            stopActivityIndicator()
+                            
+                            
+                        }else{
+                            //굿투고
+                            
+                            
+                            
+                            //파스저장
+                            let  user = PFUser.currentUser()!
+                            
+                            user.setObject(email, forKey: "email_address")
+                            user.setObject(phoneNumber, forKey: "phone_number")
+                            user.setObject(name, forKey: "fullName")
+                            user.setObject(nickName, forKey: "nickName")
+                            if( profilePhotoImageView.image != UIImage(named: "AvatarPlaceholder")) {
+                                let scaledImage = scaleImageWith(profileIamge, newSize: CGSizeMake(50, 50))
+                                let profileImageData = UIImagePNGRepresentation(scaledImage)
+                                let profileImageFile = PFFile(name: "profile.png", data : profileImageData!)
+                                
+                                user.setObject(profileImageFile, forKey: "profile_picture")
+                                
+                            }
+                            user.saveInBackgroundWithBlock { (success, error) -> Void in
+                                self.stopActivityIndicator()
+                                
+                                if (error != nil)
+                                {
+                                    self.alert("alert", message: (error?.localizedDescription)!)
+                                }
+                                
+                                if(success) {
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    let myAlert = UIAlertController(title: "Success", message: "Your information save in your account", preferredStyle: UIAlertControllerStyle.Alert)
+                                    let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { Void in self.performSegueWithIdentifier("unwindEditToMyPost", sender: self)})
+                                    myAlert.addAction(okAction)
+                                    self.presentViewController(myAlert, animated: true, completion: nil)
+                                    
+                                    
+                                    
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
             }
             
-            if(success) {
-                
-                
-                self.alert("Success", message: "Your information has been saved in your account")
-                
-                //self.performSegueWithIdentifier("moreInfoToMain", sender: self)
-                
-                
-                
-                
-                
-            }
-            
             
         }
-
         
-    
+        
     }
-        
-        
-        
-        
-        
     
     
-    func userInfoProvider() {
-        //닉네임
-        if let nickname = (PFUser.currentUser()?.objectForKey("nickName") as? String){
-            self.nickNameTextField.text = nickname
-            
-            
-        }else{
-            self.nickNameTextField.text = "NO NICKNAME"
-        }
-        
-        //last name
-        if let lastName = (PFUser.currentUser()?.objectForKey("lastName") as? String){
-            self.lastNameTextfield.text = lastName
-            
-        }else{
-            self.lastNameTextfield.text = "NO LASTNAME"
-        }
-        
-        
-        //first name
-        if let firstName = (PFUser.currentUser()?.objectForKey("firstName") as? String){
-            self.firstNameTextField.text = firstName
-        }else{
-            self.firstNameTextField.text = "NO FIRSTNAME"
-        }
-        
-        //이메일
-        if let email = (PFUser.currentUser()?.objectForKey("email_address") as? String){
-            self.emailTextField.text = email
-            
-        }else{
-            self.emailTextField.text = "NO EMAIL"
-        }
-        //전화번호
-        if let phoneNumber = (PFUser.currentUser()?.objectForKey("phone_number") as? String){
-            self.phoneTextField.text = phoneNumber
-            
-        }else{
-            self.phoneTextField.text = "NO PHONE#"
-        }
-        //profile Pic
-        if let profilePictureObject = (PFUser.currentUser()?.objectForKey("profile_picture") as? PFFile){
-        
-        
-        
-        profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
-            
-            
-            
-            if(imageData != nil)
-                
-            {
-                
-                self.profileImageView.image = UIImage(data: imageData!)
-            }        }
-        }else{
-            self.profileImageView.image = UIImage(named: "AvatarPlaceholder")
-
-        }
     
-
+    
+    
+    
+    
+    func scaleImageWith(image : UIImage, newSize : CGSize) -> UIImage {
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
+        let newImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+        
     }
+    
+    
+    
+    
     func startActivityIndicator() {
         self.actInd.hidden = false
         self.actInd.startAnimating()
@@ -172,6 +196,8 @@ class EditInfo: UITableViewController, UIImagePickerControllerDelegate, UINaviga
         self.actInd.stopAnimating()
     }
     
+    
+    
     func alert(title : String, message : String) {
         
         let myAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
@@ -182,13 +208,26 @@ class EditInfo: UITableViewController, UIImagePickerControllerDelegate, UINaviga
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        lastNameTextfield.resignFirstResponder()
-        nickNameTextField.resignFirstResponder()
-        firstNameTextField.resignFirstResponder()
-        phoneTextField.resignFirstResponder()
+        
+        phoneNumberTextField.resignFirstResponder()
         emailTextField.resignFirstResponder()
+        nickNameTextField.resignFirstResponder()
+        nameTextField.resignFirstResponder()
+        
         
     }
+    func buttonEnabled(buttonName: UIButton){
+        
+        buttonName.enabled = true
+    }
+    func buttonDisabeld(buttonName: UIButton){
+        
+        buttonName.enabled = false
+    }
+    //페북 사진 가져오기
+    // var userProfile = "Https://graph.facebook.com/" + userID + "/picture?type=large"
+    
+    
     func photoCaptureButtonAction() {
         let cameraDeviceAvailable: Bool = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         let photoLibraryAvailable: Bool = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)
@@ -198,16 +237,21 @@ class EditInfo: UITableViewController, UIImagePickerControllerDelegate, UINaviga
             
             let takePhotoAction = UIAlertAction(title: NSLocalizedString("Take Photo", comment: ""), style: UIAlertActionStyle.Default, handler: { _ in self.shouldStartCameraController() })
             let choosePhotoAction = UIAlertAction(title: NSLocalizedString("Choose Photo", comment: ""), style: UIAlertActionStyle.Default, handler: { _ in self.shouldStartPhotoLibraryPickerController() })
+            let deleteAction = UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: UIAlertActionStyle.Default, handler: { _ in self.profilePhotoImageView.image
+                = UIImage(named: "AvatarPlaceholder")})
+            
             let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+            
             
             actionController.addAction(takePhotoAction)
             actionController.addAction(choosePhotoAction)
+            actionController.addAction(deleteAction)
             actionController.addAction(cancelAction)
             
             self.presentViewController(actionController, animated: true, completion: nil)
         }
     }
-
+    
     func shouldStartCameraController() -> Bool {
         
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) == false {
@@ -228,7 +272,7 @@ class EditInfo: UITableViewController, UIImagePickerControllerDelegate, UINaviga
             return false
         }
         
-        cameraUI.allowsEditing = true
+        cameraUI.allowsEditing = false
         cameraUI.showsCameraControls = true
         cameraUI.delegate = self
         
@@ -265,36 +309,61 @@ class EditInfo: UITableViewController, UIImagePickerControllerDelegate, UINaviga
         
         return true
     }
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
-        profileImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func scaleImageWith(image : UIImage, newSize : CGSize) -> UIImage {
-        
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-        image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
-        let newImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
-    }
     
     func circularImage(image : UIImageView) {
-    image.layer.cornerRadius = image.frame.size.width / 2
-    image.clipsToBounds  = true
-    image.layer.borderColor  = UIColor.whiteColor().CGColor
-    image.layer.borderWidth = 3
+        image.layer.cornerRadius = image.frame.size.width / 2
+        image.clipsToBounds  = true
+        image.layer.borderColor  = UIColor.whiteColor().CGColor
+        image.layer.borderWidth = 3
+    }
+    
+    func userInfoProvider() {
+        //닉네임
+        if let nickname = (PFUser.currentUser()?.objectForKey("nickName") as? String){
+            self.nickNameTextField.text = nickname
+            
+        }
+        
+        
+        // name
+        if let fullName = (PFUser.currentUser()?.objectForKey("fullName") as? String){
+            self.nameTextField.text = fullName
+        }
+        //이메일
+        if let email = (PFUser.currentUser()?.objectForKey("email_address") as? String){
+            self.emailTextField.text = email
+            
+        }
+        //전화번호
+        if let phoneNumber = (PFUser.currentUser()?.objectForKey("phone_number") as? String){
+            self.phoneNumberTextField.text = phoneNumber
+            
+        }
+        //profile Pic
+        if let profilePictureObject = (PFUser.currentUser()?.objectForKey("profile_picture") as? PFFile){
+            
+            
+            
+            profilePictureObject.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+                
+                
+                
+                if(imageData != nil)
+                    
+                {
+                    
+                    self.profilePhotoImageView.image = UIImage(data: imageData!)
+                }        }
+        }else{
+            self.profilePhotoImageView.image = UIImage(named: "AvatarPlaceholder")
+            
+        }
+        
+        
+    }
+    
+    
+    
 }
 
-
-
-
-
-}

@@ -56,8 +56,7 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
     
     
     @IBAction func emailSwitchOn(sender: AnyObject) {
-       startActivityIndicator()
-        buttonDisabeld(uploadButton)
+       
         if let emailFromParse = (PFUser.currentUser()?.objectForKey("email_address") as? String){
             email = emailFromParse
             
@@ -176,7 +175,7 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
             let phoneAlert : UIAlertController = UIAlertController(title: "Phone number", message: "allow your customer text you ", preferredStyle: UIAlertControllerStyle.Alert)
             
             let okAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.Default, handler : { Void in
-                self.emailSwitch.on = false
+                self.textSwitch.on = false
                 
                 self.buttonEnabled(self.uploadButton)
                 
@@ -251,12 +250,7 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
             self.presentViewController(phoneAlert, animated: true, completion: nil)
             
         }
-        
-        
-        
-    
-        
-    
+       
     }
     
     
@@ -384,10 +378,12 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
                             
                             //저장 성공했다고 표시창
                             //self.luxuryAlert( "your post uploaded" )
-                            print("업로드")
-                            self.alert("post saved", message : "see you at main library")
                             
-                            //self.performSegueWithIdentifier("uploadFourthToMain", sender: self)
+                            
+                            let myAlert = UIAlertController(title: "post saved", message: "see you at main library", preferredStyle: UIAlertControllerStyle.Alert)
+                            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {Void in self.performSegueWithIdentifier("uploadFourthToMain", sender: self)})
+                            myAlert.addAction(okAction)
+                            self.presentViewController(myAlert, animated: true, completion: nil)
 
                             
                         }else {
@@ -473,7 +469,7 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
         buttonName.enabled = true
     }
     func buttonDisabeld(buttonName: UIButton){
-        
+        buttonName.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
         buttonName.enabled = false
     }
     
@@ -483,6 +479,14 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
     //                let profileImageFile = PFFile(name: "profileImage", data: imageData!)
     //                post["profile_picture"] = profileImageFile
     //
+    
+    
+    
+    @IBAction func keyBoardDismissButton(sender: AnyObject) {
+        UIApplication.sharedApplication().sendAction("resignFirstResponder", to:nil, from:nil, forEvent:nil)
+        
+        
+    }
 
     
 }

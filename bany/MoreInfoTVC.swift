@@ -23,9 +23,11 @@ class MoreInfoTVC: UITableViewController, UIImagePickerControllerDelegate, UINav
     
     override func viewDidLoad() {
         super.viewDidLoad()
-userInfoProvider()
+
+        stopActivityIndicator()
+        userInfoProvider()
         circularImage(profilePhotoImageView)
-        actInd.hidden = true
+
         
           }
 
@@ -37,11 +39,11 @@ userInfoProvider()
    
     @IBAction func selectProfilePhotoButtonTapped(sender: AnyObject) {
         
-        // startActivityIndicator()
+         startActivityIndicator()
         
         photoCaptureButtonAction()
         
-        //stopActivityIndicator()
+        stopActivityIndicator()
         
     }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
