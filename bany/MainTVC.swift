@@ -263,7 +263,7 @@ if (segue.identifier == "mainToComment") {
 
 
 let destViewController : CommentVC = segue.destinationViewController as! CommentVC
-destViewController.parentObjectID = parentObjectID
+
     let selectedRowIndex = self.tableView.indexPathForSelectedRow
     
     destViewController.object = objectTwo
@@ -284,18 +284,18 @@ destViewController.parentObjectID = parentObjectID
     }
 }
 
-    @IBAction func commentButtonTapped(sender: AnyObject) {
-        
-        let button = sender as! UIButton
-        let view = button.superview!
-        let cell = view.superview as! MainTVCE
-        let indexPath = tableView.indexPathForCell(cell)
-        parentObjectID = postsArray[(indexPath?.row)!].objectId!!
-        
-        
-        
-    }
-        
+//    @IBAction func commentButtonTapped(sender: AnyObject) {
+//        
+//        let button = sender as! UIButton
+//        let view = button.superview!
+//        let cell = view.superview as! MainTVCE
+//        let indexPath = tableView.indexPathForCell(cell)
+//        parentObjectID = postsArray[(indexPath?.row)!].objectId!!
+//        
+//        
+//        
+//    }
+    
         
         
     

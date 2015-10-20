@@ -302,10 +302,10 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
             
         }
 
-        if (segue.identifier == "editDetail") {
+        if (segue.identifier == "editToDetail") {
             
             
-            let destViewController : editDetailVC = segue.destinationViewController as! editDetailVC
+            let destViewController : EditDetailTVC = segue.destinationViewController as! EditDetailTVC
            // destViewController.parentObjectID = parentObjectID
             
             destViewController.object = object
@@ -314,41 +314,43 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         
     }
 
-    @IBAction func likeButtonTapped(sender: AnyObject){
+//    @IBAction func likeButtonTapped(sender: AnyObject){
+//        
+//        
+//        
+//        let query = PFObject(className:"Like")
+//        
+//        post["parent"] = self.object.objectId
+//        post["uploader"] = PFUser.currentUser()?.objectId
+//
+//        query.saveInBackground()
+//                
+//                
+//            }else if let post = post {
+//                
+//                post["parent"] = self.object.objectId
+//                post["uploader"] = PFUser.currentUser()?.objectId
+//                //저장 알림
+//                
+//                post.saveInBackgroundWithBlock({ (success, error) -> Void in
+//                    if error == nil{
+//                        (print("good"))
+//                        //에러 알림
+//                        
+//                        self.alert("liked", message: "this post has been saved")
+//                        self.likeButton.enabled = false
+//                    }
+//                })
+//            }
+//        }
+//        
+//        
+//    
+//    }
+//
+    
         
-        
-                    let save = PFObject(className: "Like")
-                    
-                    save["parent"] = self.parentObjectID
-                    save["uploader"] = PFUser.currentUser()?.objectId
-                    
-                    save.saveInBackgroundWithBlock { (success, error) -> Void in
-                        if error == nil {
-                            
-                            self.alert("liked", message: "you saved it for later")
-                            
-                            self.likeButton.enabled = false
-                            
-                            
-                        }else{
-                            self.alert("error", message: (error?.localizedDescription)!)
-                            
-                        }
-        }
-                    
-        
-        
-                
-                
-
-                
-                
-            }
-        
-        
-        
-            
-
+    
   
 
       

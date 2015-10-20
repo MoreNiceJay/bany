@@ -1,14 +1,15 @@
 //
-//  editDetailVC.swift
+//  EditDetailTVC.swift
 //  bany
 //
-//  Created by Lee Janghyup on 10/13/15.
+//  Created by Lee Janghyup on 10/19/15.
 //  Copyright © 2015 jay. All rights reserved.
 //
 
 import UIKit
-import Parse
-class editDetailVC: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+import  Parse
+
+class EditDetailTVC: UITableViewController {
 
     @IBOutlet weak var actInd: UIActivityIndicatorView!
     
@@ -18,33 +19,24 @@ class editDetailVC: UITableViewController, UIImagePickerControllerDelegate, UINa
     @IBOutlet weak var frontImageView: UIImageView!
     @IBOutlet weak var tagTextfield: UITextField!
     @IBOutlet weak var priceTextfield: UITextField!
-    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var titleTextField: UITextField!
     var parentObjectID = String()
     var object : PFObject!
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-               retrievingData()
-        
+        retrievingData()
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     @IBAction func saveButtonTapped(sender: AnyObject) {
         let query = PFQuery(className:"Posts")
         query.getObjectInBackgroundWithId(object.objectId!) {
@@ -61,7 +53,9 @@ class editDetailVC: UITableViewController, UIImagePickerControllerDelegate, UINa
                 post["purchasedDate"] = self.purchasedDateTextField.text
                 
                 post["tagText"] = self.tagTextfield.text
+                post["front_image"] = self.frontImageView.image
                 
+                    post["damage_image"] = self.backImageView.image
                 
                 //저장 알림
                 
@@ -69,54 +63,18 @@ class editDetailVC: UITableViewController, UIImagePickerControllerDelegate, UINa
                     if error == nil{
                         (print("good"))
                         //에러 알림
+                        
+                        self.alert("saved", message: "your post has been saved")
                     }
                 })
             }
         }
         
-  
+        
     }
     
-  
-
-
-
-
-
-
-
-
-//        let query = PFQuery(className:"Posts")
-//        query.getObjectInBackgroundWithId(parentObjectID) {
-//            (post: PFObject?, error: NSError?) -> Void in
-//            if error != nil && post == nil {
-//                print("go fuck yourslef")
-//        
-//            }else if let post = post {
-//        
-//        post["titleText"] = self.titleTextField.text
-//        post["descriptionText"] = self.descriptionTextView.text
-//        post["priceText"] = self.priceTextfield.text
-//        post["purchasedDate"] = self.purchasedDateTextField.text
-//        //post["damage_image"] = self.tagTextfield.text
-//        //post["front_image"] = 1338
-//        post["tagText"] = self.tagTextfield.text
-//        
-//                
-//        post.saveInBackgroundWithBlock({ (success, error) -> Void in
-//            if error == nil{
-//                (print("good"))
-//            }
-//        })
-//            }
-//        }
-//    }
-//    
 
     
-
-    
-
     @IBAction func deleteButtonTapped(sender: AnyObject) {
         
         
@@ -134,88 +92,87 @@ class editDetailVC: UITableViewController, UIImagePickerControllerDelegate, UINa
         
     }
 
-
-   func retrievingData() {
-    
-    
-    
-    
-    self.titleTextField.text = object!.valueForKey("titleText") as? String
-    self.descriptionTextView.text = object!.valueForKey("descriptionText") as? String
-    self.priceTextfield.text = object!.valueForKey("priceText") as? String
-    self.purchasedDateTextField.text = object!.valueForKey("purchasedDate") as? String
-    
-    self.tagTextfield.text =  object!.valueForKey("tagText") as? String
-    
-    
-    
-    
-    let backPic = object!.valueForKey("damage_image") as? PFFile
-    
-    backPic!.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
-        
-        
-        
-        if(imageData != nil){
-            
-            self.backImageView.image = UIImage(data: imageData!)
-            
-            
-        }
-            
-        else{
-            self.backImageView.image = UIImage(named: "AvatarPlaceholder")
-          
-        }
+    func retrievingData() {
         
         
         
         
-        //post!.valueForKey("prefer_phoneNumber") as? String
-        //post!.valueForKey("prefer_email") as? String
+        self.titleTextField.text = object!.valueForKey("titleText") as? String
+        self.descriptionTextView.text = object!.valueForKey("descriptionText") as? String
+        self.priceTextfield.text = object!.valueForKey("priceText") as? String
+        self.purchasedDateTextField.text = object!.valueForKey("purchasedDate") as? String
+        
+        self.tagTextfield.text =  object!.valueForKey("tagText") as? String
         
         
         
         
-        let frontPic = self.object!.valueForKey("front_image") as? PFFile
-        frontPic!.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+        let backPic = object!.valueForKey("damage_image") as? PFFile
+        
+        backPic!.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
             
             
             
-            if(imageData != nil)
+            if(imageData != nil){
                 
-            {
-                
-                self.frontImageView.image = UIImage(data: imageData!)
+                self.backImageView.image = UIImage(data: imageData!)
                 
                 
-            }else{
-                self.frontImageView.image = UIImage(named: "AvatarPlaceholder")
+            }
+                
+            else{
+                self.backImageView.image = UIImage(named: "AvatarPlaceholder")
                 
             }
             
             
             
             
+            //post!.valueForKey("prefer_phoneNumber") as? String
+            //post!.valueForKey("prefer_email") as? String
             
+            
+            
+            
+            let frontPic = self.object!.valueForKey("front_image") as? PFFile
+            frontPic!.getDataInBackgroundWithBlock { (imageData:NSData?, error:NSError?) -> Void in
+                
+                
+                
+                if(imageData != nil)
+                    
+                {
+                    
+                    self.frontImageView.image = UIImage(data: imageData!)
+                    
+                    
+                }else{
+                    self.frontImageView.image = UIImage(named: "AvatarPlaceholder")
+                    
+                }
+                
+                
+                
+                
+                
+                
+                
+            }
             
             
         }
         
         
+        
+        
     }
     
     
     
-   
-    }
     
     
-
-
-
-
-
+    
+    
     func startActivityIndicator() {
         self.actInd.hidden = false
         self.actInd.startAnimating()
@@ -267,16 +224,8 @@ class editDetailVC: UITableViewController, UIImagePickerControllerDelegate, UINa
     func buttonDisabeld(buttonName: UIButton){
         
         buttonName.enabled = false
-    
+        
     }
     
 
-    
-
-
-
-}
-
-
-
-
+    }

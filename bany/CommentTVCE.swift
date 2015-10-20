@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Parse
 
 class CommentTVCE: UITableViewCell {
 
-    
+    var object : PFObject!
     
     
     @IBOutlet weak var dateLabel: UILabel!
@@ -18,6 +19,7 @@ class CommentTVCE: UITableViewCell {
     @IBOutlet weak var delete: UIButton!
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var comment: UILabel!
+    var didRequestToShowComment:((cell:UITableViewCell) -> ())?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,6 +30,10 @@ class CommentTVCE: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+        
+        
+    
 
 
   

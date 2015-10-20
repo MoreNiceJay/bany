@@ -38,27 +38,6 @@ class CommentVC: UIViewController, UITableViewDelegate {
 
         // Do any additional setup after loading the view.
     }
-    
-//    override func viewDidAppear(animated: Bool) {
-//        super.viewDidAppear(true)
-//        
-//        let checkForEdit = PFQuery(className: "Commment")
-//
-//        checkForEdit.getObjectInBackgroundWithId(parentObjectID) {
-//            (post: PFObject?, error: NSError?) -> Void in
-//            if error == nil && post != nil {
-//                
-//                
-//                
-//                if  (PFUser.currentUser()?.objectId == post!.valueForKey("parent") as? String){
-//                    self.deleteButton.hidden = false
-//                    
-//                }
-//            }
-//            
-//        }
-//
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -127,41 +106,6 @@ class CommentVC: UIViewController, UITableViewDelegate {
 
         
         
-        
-        
-        
-//        print("button")
-//        print(commentTextField.text!)
-//        print(PFUser.currentUser()?.objectForKey("nickName"))
-//        print(object.objectId)
-//        let comment = PFObject(className:"Comment")
-//        comment["uploader"] = PFUser.currentUser()?.objectId
-//        comment["comment"] =  "" + commentTextField.text!
-//        //comment["parent"] = object.objectId
-//        
-//        if let nickName = PFUser.currentUser()?.objectForKey("nickName"){
-//            comment["username"] = nickName
-//
-//            
-//        }else {
-//            
-//        comment["username"] = PFUser.currentUser()?.username
-//        
-//        comment.saveInBackgroundWithBlock { (success : Bool, error : NSError?) -> Void in
-//            if error == nil {
-//                
-//                self.commentArray = []
-//                self.queryComment()
-//                print(self.commentArray)
-//                self.commentTextField.text = ""
-//                
-//            }else {
-//                
-//                print(error)
-//            }
-//        }
-//            
-//        }
     }
 
 
@@ -196,30 +140,7 @@ class CommentVC: UIViewController, UITableViewDelegate {
     }
 
 
-//        let queryComments = PFQuery(className: "Comments")
-//        queryComments.whereKey("parent", equalTo: ("\(object.objectId)"))
-//        queryComments.orderByDescending("createdAt")
-//        queryComments.findObjectsInBackgroundWithBlock { (comments, error) -> Void in
-//            if error == nil {
-//                //에러 없음 
-//                
-//                for comment in comments! {
-//                    print("nono")
-//                    self.commentArray.append(comment["comment"] as! String)
-//                    self.userIdArray.append(comment["username"] as! String)
-//                    
-//                    
-//                }
-//                
-//            }else{
-//            print(error)
-//            }
-//            self.commentTableView.reloadData()
-//            self.stopActivityIndicator()
-//        }
-//            
-//}
-        
+    
 
    
     func alert(title : String, message : String) {
@@ -228,6 +149,9 @@ class CommentVC: UIViewController, UITableViewDelegate {
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
         myAlert.addAction(okAction)
         self.presentViewController(myAlert, animated: true, completion: nil)
+        
+        
+        
         
 }
     func startActivityIndicator() {
@@ -253,6 +177,8 @@ class CommentVC: UIViewController, UITableViewDelegate {
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell : CommentTVCE = tableView.dequeueReusableCellWithIdentifier("cellForComment", forIndexPath: indexPath) as! CommentTVCE
+        
+        
         
         let postObjects : PFObject = self.commentArray.objectAtIndex(indexPath.row) as! PFObject
         
@@ -286,13 +212,6 @@ class CommentVC: UIViewController, UITableViewDelegate {
         let view = button.superview!
         let cell = view.superview as! CommentTVCE
         let indexPath = commentTableView.indexPathForCell(cell)
-       
-        
-        let query = PFObject(className:"Comments")
-        
-        query.objectId = objectArray[(indexPath?.row)!]
-        query.deleteInBackground()
-
         
         
         
@@ -305,7 +224,6 @@ class CommentVC: UIViewController, UITableViewDelegate {
         self.scrollView.contentSize.width = 0
     }
 
-    // parentObjectID = objectArray[(indexPath?.row)!]
 }
 
 
