@@ -272,6 +272,9 @@ class UploadFourth: UITableViewController {
             
             
             if(!emailSwitch.on && !textSwitch.on){
+                
+                stopActivityIndicator()
+                buttonEnabled(uploadButton)
                 self.alert("invalid", message : "you must choose at least one contact method")
                 
             }else{
@@ -302,7 +305,7 @@ class UploadFourth: UITableViewController {
                     post["descriptionText"] = descriptionText
                     post["purchasedDate"] = purchasedDate
                
-               post["userNickName"] = PFUser.currentUser()?.objectForKey("nickName")
+            //   post["userNickName"] = PFUser.currentUser()?.objectForKey("nickName")
                     post["category"] = category
                     post["sold"] = false
 //                if emailSwitch.on == true {
@@ -311,11 +314,11 @@ class UploadFourth: UITableViewController {
 //                }
 //                if textSwitch.on == true {
 //                    post["phone_number"] = PFUser.currentUser()?.objectForKey("phone_number")
-//                }
-               
+//               }
+//               
                 
                 
-                post["profile_picture"] = PFUser.currentUser()?.objectForKey("profile_picture")
+             //   post["profile_picture"] = PFUser.currentUser()?.objectForKey("profile_picture")
                
                
                 
@@ -336,7 +339,8 @@ class UploadFourth: UITableViewController {
                             print("업로드")
                             self.alert("post saved", message : "see you at main library")
                             
-                            
+                            //self.performSegueWithIdentifier("uploadFourthToMain", sender: self)
+
                             
                         }else {
                             
@@ -349,8 +353,7 @@ class UploadFourth: UITableViewController {
     }
         }
         
-//self.performSegueWithIdentifier("uploadFourthToMain", sender: self)
-            
+        
         
     }
 
