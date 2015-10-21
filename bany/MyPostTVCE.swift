@@ -10,9 +10,11 @@ import UIKit
 
 class MyPostTVCE: UITableViewCell {
 
-    @IBOutlet weak var dateTextField: UILabel!
-    @IBOutlet weak var titleTextLabel: UILabel!
-    @IBOutlet weak var mainPhoto: UIImageView!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var soldLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var mainImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

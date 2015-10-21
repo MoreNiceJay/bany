@@ -155,7 +155,7 @@ class MainTVC: UITableViewController {
                 // 가격
         
         let price = (postObjects.objectForKey("priceText") as! String)
-                cell.priceLable.text = "$ \(price)"
+                cell.priceLable.text = " $ \(price)"
         
         
         // 뷰
@@ -187,6 +187,7 @@ class MainTVC: UITableViewController {
         
         }else{ cell.profilePhoto.image = UIImage(named: "AvatarPlaceholder")
         }
+        circularImage(cell.profilePhoto)
         
         return cell
     }
@@ -282,7 +283,16 @@ let destViewController : CommentVC = segue.destinationViewController as! Comment
 
 
     }
-}
+
+    }
+    
+    func circularImage(image : UIImageView) {
+        image.layer.cornerRadius = image.frame.size.width / 2
+        image.clipsToBounds  = true
+        image.layer.borderColor  = UIColor.blackColor().CGColor
+        image.layer.borderWidth = 1
+    }
+
 
 //    @IBAction func commentButtonTapped(sender: AnyObject) {
 //        

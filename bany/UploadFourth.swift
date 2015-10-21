@@ -318,9 +318,9 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
                     //컨택 메소드 꼭 선택시키고 선택 할때 전화번호/이메일 맞는 지 확인시키기
                     
                     //스케일 조절
-                    let scaledImageFront = self.scaleImageWith(photoFront, newSize: CGSizeMake(300, 250))
+                    let scaledImageFront = self.scaleImageWith(photoFront, newSize: CGSizeMake(300, 233))
                 
-                    let scaledImageBack = self.scaleImageWith(photoBack, newSize: CGSizeMake(300, 250))
+                    let scaledImageBack = self.scaleImageWith(photoBack, newSize: CGSizeMake(300, 233))
                 
                 let imageDataOne = UIImagePNGRepresentation(scaledImageFront)
                 let imageDataTwo = UIImagePNGRepresentation(scaledImageBack)

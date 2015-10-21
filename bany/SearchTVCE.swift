@@ -11,6 +11,7 @@ import UIKit
 class SearchTVCE: UITableViewCell {
 
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var soldLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var mainImageView: UIImageView!

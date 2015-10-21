@@ -38,32 +38,43 @@ class MyPost: UIViewController,  UITableViewDelegate {
        var postObjects = self.postsArray.objectAtIndex(indexPath.row) as! PFObject
         
         
-    
-    
-    // 제목
-    cell.titleTextLabel.text = (postObjects.objectForKey("titleText") as! String)
-    
-    
-    
-    //시간
-    let dateFormatter:NSDateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "MM /dd /yy"
-    cell.dateTextField.text = (dateFormatter.stringFromDate(postObjects.createdAt!))
-    // 가격
-    //cell.priceLabel.text = postObjects.objectForKey("priceText") as! String
-    //이미지
-    
-    let mainImages = postObjects.objectForKey("front_image") as! PFFile
-    
-    
-    mainImages.getDataInBackgroundWithBlock { (imageData, error) -> Void in
-    let image = UIImage(data: imageData!)
-    cell.mainPhoto.image = image
+        
+        
+        //솔드
+        cell.soldLabel.hidden = true
+        
+        if (postObjects.objectForKey("sold") as! Bool) == true {
+            cell.soldLabel.hidden = false
+            
+        }
+        
+        
+        // 제목
+        cell.titleLabel.text = (postObjects.objectForKey("titleText") as! String)
+            
+            + " : " + (postObjects.objectForKey("tagText") as! String)
+        
+        
+        //시간
+        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM / dd / yy"
+        cell.timeLabel.text = (dateFormatter.stringFromDate(postObjects.createdAt!))
+        // 가격
+        cell.priceLabel.text =  "$ " + (postObjects.objectForKey("priceText") as! String)
+        //이미지
+        
+        let mainImages = postObjects.objectForKey("front_image") as! PFFile
+        
+        
+        mainImages.getDataInBackgroundWithBlock { (imageData, error) -> Void in
+            let image = UIImage(data: imageData!)
+            cell.mainImageView.image = image
+        }
+        
+        return cell
+        
     }
     
-    return cell
-    
-}
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {

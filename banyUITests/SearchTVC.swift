@@ -67,6 +67,8 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
         let cell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as! SearchTVCE
         //cell.textLabel!.text = searchResults[indexPath.row]
         
+        
+        
         var postObjects : PFObject!
         
         
@@ -78,6 +80,14 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
             
             
         }
+        //솔드
+        cell.soldLabel.hidden = true
+        
+        if (postObjects.objectForKey("sold") as! Bool) == true {
+            cell.soldLabel.hidden = false
+            
+        }
+
         
         // 제목
         cell.titleLabel.text = (postObjects.objectForKey("titleText") as! String)
@@ -87,10 +97,10 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
             
         //시간
         let dateFormatter:NSDateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM /dd /yy"
+        dateFormatter.dateFormat = "MM / dd / yy"
         cell.timeLabel.text = (dateFormatter.stringFromDate(postObjects.createdAt!))
         // 가격
-        cell.priceLabel.text = postObjects.objectForKey("priceText") as! String
+        cell.priceLabel.text =  "$ " + (postObjects.objectForKey("priceText") as! String)
         //이미지
         
         let mainImages = postObjects.objectForKey("front_image") as! PFFile
@@ -120,7 +130,7 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
             if let tagText = posts["tagText"] as? String {
                 tag = tagText
             }
-            var results = "\(title) \(tag)"
+            let results = "\(title) \(tag)"
             
             if results.lowercaseString.rangeOfString(normalizedSearchText) != nil {
                 self.filterdArray.addObject(posts)
