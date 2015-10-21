@@ -28,7 +28,7 @@ class EditDetailTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+stopActivityIndicator()
         retrievingData()
 
     }
@@ -78,20 +78,36 @@ class EditDetailTVC: UITableViewController {
     @IBAction func deleteButtonTapped(sender: AnyObject) {
         
         
-        
-        let query = PFQuery(className: "Posts")
-        query.getObjectInBackgroundWithId(object.objectId!) { (obj, err) -> Void in
-            if err != nil {
-                //handle error
-            } else {
-                obj!.deleteInBackground()
-                print("deleted")
-            }
-        }
-        
-        
-    }
+            
+            let query = PFQuery(className: "Posts")
+            query.getObjectInBackgroundWithId(self.object.objectId!) { (obj, err) -> Void in
+                if err != nil {
+                    //handle error
+                } else {
+                    
+                    
+                    obj!.deleteInBackgroundWithBlock({ (success, error) -> Void in
+                        if error == nil {
+                            
+                            let myAlert = UIAlertController(title: "Deleted", message: "your post has been deleted", preferredStyle: UIAlertControllerStyle.Alert)
+                            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {Void in self.performSegueWithIdentifier("editDetailTVCToMain", sender: self)})
+                            myAlert.addAction(okAction)
+                            self.presentViewController(myAlert, animated: true, completion: nil)
+                            
 
+                            
+                            
+                        }
+                    })
+                    
+                    
+                }
+            }
+
+            
+            
+       
+    }
     func retrievingData() {
         
         
@@ -226,6 +242,11 @@ class EditDetailTVC: UITableViewController {
         buttonName.enabled = false
         
     }
-    
+    @IBAction func keyBoardDismissButton(sender: AnyObject) {
+        UIApplication.sharedApplication().sendAction("resignFirstResponder", to:nil, from:nil, forEvent:nil)
+        
+        
+    }
+
 
     }
