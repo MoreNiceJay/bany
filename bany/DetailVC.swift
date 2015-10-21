@@ -27,7 +27,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var textButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
-    @IBOutlet weak var deleteButton: UIButton!
+    
     @IBOutlet weak var soldSwitch: UISwitch!
     
     var checkingArray = [String]()
@@ -50,7 +50,6 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         
         
         editButton.hidden = true
-        deleteButton.hidden = true
         soldLabel.hidden = true
         soldSwitch.hidden = true
 
@@ -62,7 +61,6 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         
         if object.valueForKey("uploader") as? String == PFUser.currentUser()?.objectId{
             self.editButton.hidden = false
-            deleteButton.hidden = false
             soldLabel.hidden = false
             soldSwitch.hidden = false
             
@@ -489,7 +487,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
             
             
             }else{//팔렸다 하기
-            print("팔림")
+            
         }
     
     }
@@ -510,26 +508,10 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
             //넘버 없다고 말해주기
         }
     }else { //팔렸다고 말해주기
-    print("팔림")
+    
     }
 
 }
-    @IBAction func deleteButtonTapped(sender: AnyObject) {
-        
-        let query = PFQuery(className: "Posts")
-        query.getObjectInBackgroundWithId(object.objectId!) { (obj, err) -> Void in
-            if err != nil {
-                //handle error
-            } else {
-                obj!.deleteInBackground()
-                print("deleted")
-            }
-        }
-
-        
-    }
-  
-    
     
     
 }
