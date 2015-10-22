@@ -14,14 +14,10 @@ class MainTVCE: UITableViewCell {
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var priceLable: UILabel!
-    @IBOutlet weak var viewCountingLabel: UILabel!
-    @IBOutlet weak var likeCountingLabel: UILabel!
-    
+        
     @IBOutlet weak var soldLabel: UILabel!
     @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var mainPhoto: UIImageView!
-    @IBOutlet weak var textButton: UIButton!
-    @IBOutlet weak var emailButton: UIButton!
     
     @IBOutlet weak var commentButton: UIButton!
     var didRequestToShowComment:((cell:UITableViewCell) -> ())?

@@ -35,7 +35,7 @@ class MyPost: UIViewController,  UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("myPostCell", forIndexPath: indexPath) as! MyPostTVCE
         
         
-       var postObjects = self.postsArray.objectAtIndex(indexPath.row) as! PFObject
+       let postObjects = self.postsArray.objectAtIndex(indexPath.row) as! PFObject
         
         
         

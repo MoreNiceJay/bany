@@ -9,7 +9,7 @@
 import UIKit
 import  Parse
 
-class EditDetailTVC: UITableViewController {
+class EditDetailTVC: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var actInd: UIActivityIndicatorView!
     
@@ -23,6 +23,7 @@ class EditDetailTVC: UITableViewController {
     @IBOutlet weak var titleTextField: UITextField!
     var parentObjectID = String()
     var object : PFObject!
+    @IBOutlet weak var saveButton: UIButton!
 
     
     
@@ -54,7 +55,11 @@ stopActivityIndicator()
                 
                 
                 
-                if !((priceText?.isEmpty) != nil){
+                if (priceText!.isEmpty || descriptionText!.isEmpty || purchasedDate!.isEmpty || tagText!.isEmpty || titleText!.isEmpty){
+                    self.buttonEnabled(self.saveButton)
+                    
+                    self.stopActivityIndicator()
+                    self.alert("Invalid", message : "you must fill in the blank")
                     
                 }else {
                     
@@ -62,11 +67,50 @@ stopActivityIndicator()
                 
                 if !(titleText!.utf16.count <= 45 && titleText!.utf16.count >= 2 ) {
                     
+                    self.buttonEnabled(self.saveButton)
+                    
+                    self.stopActivityIndicator()
+                    
+                    self.alert("Invalid", message : "title must be  2 ~ 45 characters")
+
+
+                    
                 }else{
                     
                      if !(tagText!.utf16.count <= 40 && tagText!.utf16.count >= 2 ) {
                         
+                        self.buttonEnabled(self.saveButton)
+                        
+                        self.stopActivityIndicator()
+                        
+                        self.alert("Invalid", message : "tag must be 2 ~ 45 characters")
+
+                        
                      }else {
+                        
+                        
+                            if !(purchasedDate!.utf16.count > 3 && purchasedDate!.utf16.count < 13 ) {
+                                self.buttonEnabled(self.saveButton)
+                                
+                                self.stopActivityIndicator()
+                                
+                                self.alert("Invalid", message : "Date must be 4 - 12 digit")
+                                
+                            }else{
+                                
+                                if !(descriptionText.utf16.count <= 200 && descriptionText.utf16.count >= 2 ) {
+                                    
+                                    self.buttonEnabled(self.saveButton)
+                                    
+                                    self.stopActivityIndicator()
+                                    
+                                    self.alert("Invalid", message : "Description must be 2 ~ 200 characters")
+                                    
+                                }else{
+                                
+                                            //굿투고
+                            print("버튼눌림")
+                        
                 
                 
                 post["titleText"] = self.titleTextField.text
@@ -77,7 +121,7 @@ stopActivityIndicator()
                 post["tagText"] = self.tagTextfield.text
                 post["front_image"] = self.frontImageView.image
                 
-                    post["back_image"] = self.backImageView.image
+                post["back_image"] = self.backImageView.image
                 
                 //저장 알림
                 
@@ -91,15 +135,23 @@ stopActivityIndicator()
                 })
             }
         }
-        
-        }
+                    
+                }}
         }
     }
-   
+    
+    }
 
     
-
     
+    
+    @IBAction func addBackPicButtonTapped(sender: AnyObject) {
+        startActivityIndicator()
+        
+        photoCaptureButtonAction()
+        stopActivityIndicator()
+    }
+
     @IBAction func deleteButtonTapped(sender: AnyObject) {
         
         
@@ -279,6 +331,94 @@ stopActivityIndicator()
         return true
         
     }
+    func photoCaptureButtonAction() {
+        let cameraDeviceAvailable: Bool = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        let photoLibraryAvailable: Bool = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)
+        
+        if cameraDeviceAvailable && photoLibraryAvailable {
+            let actionController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            
+            let takePhotoAction = UIAlertAction(title: NSLocalizedString("Take Photo", comment: ""), style: UIAlertActionStyle.Default, handler: { _ in self.shouldStartCameraController() })
+            let choosePhotoAction = UIAlertAction(title: NSLocalizedString("Choose Photo", comment: ""), style: UIAlertActionStyle.Default, handler: { _ in self.shouldStartPhotoLibraryPickerController() })
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+            
+            actionController.addAction(takePhotoAction)
+            actionController.addAction(choosePhotoAction)
+            actionController.addAction(cancelAction)
+            
+            self.presentViewController(actionController, animated: true, completion: nil)
+        }
+    }
+    func shouldStartCameraController() -> Bool {
+        
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) == false {
+            return false
+        }
+        
+        let cameraUI = UIImagePickerController()
+        
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        {                cameraUI.sourceType = UIImagePickerControllerSourceType.Camera
+            
+            if UIImagePickerController.isCameraDeviceAvailable(UIImagePickerControllerCameraDevice.Rear) {
+                cameraUI.cameraDevice = UIImagePickerControllerCameraDevice.Rear
+            } else if UIImagePickerController.isCameraDeviceAvailable(UIImagePickerControllerCameraDevice.Front) {
+                cameraUI.cameraDevice = UIImagePickerControllerCameraDevice.Front
+            }
+        } else {
+            return false
+        }
+        
+        cameraUI.allowsEditing = false
+        cameraUI.showsCameraControls = true
+        cameraUI.delegate = self
+        
+        self.presentViewController(cameraUI, animated: true, completion: nil)
+        
+        return true
+    }
+    func shouldStartPhotoLibraryPickerController() -> Bool {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) == false
+            && UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum) == false {
+                return false
+        }
+        
+        let cameraUI = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)
+        {
+            
+            cameraUI.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            
+            
+        } else if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum)
+        {
+            cameraUI.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+            
+            
+        } else {
+            return false
+        }
+        
+        cameraUI.allowsEditing = false
+        cameraUI.delegate = self
+        
+        self.presentViewController(cameraUI, animated: true, completion: nil)
+        
+        return true
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        
+        backImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
 
 
 

@@ -16,19 +16,11 @@ class MainTVC: UITableViewController {
     var resultSearchController : UISearchController!
     
     
-//    lazy var mainPhoto = [PFFile]()
-//    lazy var profilePhoto = [PFFile]()
-//    lazy var titleText = [String]()
-//    lazy var nickName = [String]()
-//    lazy var time = [String]()
-//    lazy var price = [String]()
-//    lazy var viewed = [String]()
-//    lazy var saved = [String]()
+
     lazy var postsArray : NSMutableArray = NSMutableArray()
     lazy var filterdArray : NSMutableArray = NSMutableArray()
     var objectArray = [String]()
-   // var objectId = String()
-    var parentObjectID = String()
+      var parentObjectID = String()
     
     var objectTwo : PFObject!
        override func viewDidAppear(animated: Bool) {
@@ -48,14 +40,6 @@ class MainTVC: UITableViewController {
        
         
         
-//        mainPhoto = []
-//        profilePhoto = []
-//        titleText = []
-//        nickName = []
-//        time = []
-//        price = []
-//        objectArray = []
-        parentObjectID = String()
 
         postsArray = []
         
@@ -98,7 +82,7 @@ class MainTVC: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.postsArray.count
+        return postsArray.count
       
         
     }
@@ -114,7 +98,7 @@ class MainTVC: UITableViewController {
        
         
         
-           var postObjects = self.postsArray.objectAtIndex(indexPath.row) as! PFObject
+           let postObjects = self.postsArray.objectAtIndex(indexPath.row) as! PFObject
         
         
         
@@ -137,7 +121,7 @@ class MainTVC: UITableViewController {
         
                 //제목
         
-        cell.titleLabel.text = postObjects.objectForKey("titleText") as! String
+        cell.titleLabel.text = postObjects.objectForKey("titleText") as? String
 
                 // 닉네임
         
@@ -162,15 +146,6 @@ class MainTVC: UITableViewController {
                 cell.priceLable.text = "   $\(price)"
         
         
-        // 뷰
-                //cell.timeLabel.text = titleText[indexPath.row]
-                // 라이크
-                //cell.nickNameLabel.text = nickName[indexPath.row]
-                // 이미지
-//                mainPhoto[indexPath.row].getDataInBackgroundWithBlock { (imageData : NSData?, error : NSError?) -> Void in
-//                    let image = UIImage(data : imageData!)
-//                    cell.mainPhoto.image = image
-//                }
         
                    // 이미지
         let mainImages = postObjects.objectForKey("front_image") as! PFFile
@@ -202,12 +177,9 @@ class MainTVC: UITableViewController {
 //    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
 //        cell.alpha = 0
 //        
-//        //let rotationTrasform = CATransform3DTranslate(CATransform3DIdentity, -500, 10, 0)
-//       // cell.layer.transform = rotationTrasform
-//        
-//        UIView.animateWithDuration(0.1) { () -> Void in
-//           // cell.layer.transform = CATransform3DIdentity
-//            cell.alpha = 1
+//
+//        UIView.animateWithDuration(0.5) { () -> Void in
+//          //            cell.alpha = 1
 //        }
 //    }
 //
@@ -285,7 +257,7 @@ if (segue.identifier == "mainToComment") {
 
 let destViewController : CommentVC = segue.destinationViewController as! CommentVC
 
-    let selectedRowIndex = self.tableView.indexPathForSelectedRow
+   
     
     destViewController.object = objectTwo
     
@@ -294,9 +266,7 @@ let destViewController : CommentVC = segue.destinationViewController as! Comment
     
     if (segue.identifier == "mainToDetail") {
         
-//        let selectedRowIndex = self.tableView.indexPathForSelectedRow
-//        let destViewController : DetailVC = segue.destinationViewController as! DetailVC
-//        destViewController.parentObjectID = (postsArray[(selectedRowIndex?.row)!].objectId!)!
+
         let selectedRowIndex = self.tableView.indexPathForSelectedRow
                 let destViewController : DetailVC = segue.destinationViewController as! DetailVC
                 destViewController.object = (postsArray[(selectedRowIndex?.row)!] as? PFObject)
@@ -313,10 +283,7 @@ let destViewController : CommentVC = segue.destinationViewController as! Comment
         image.layer.borderWidth = 1
     }
     
-    @IBAction func mainUnwindToSegue (segue : UIStoryboardSegue) {
-        
-        
-    }
+}
 
 
 
@@ -340,7 +307,7 @@ let destViewController : CommentVC = segue.destinationViewController as! Comment
    // }
     
     
-}
+
     /*func howaboutThis() {
         let query = PFQuery(className: "User")
         query.whereKey("objectId", equalTo: (PFUser.currentUser()?.objectId)!)

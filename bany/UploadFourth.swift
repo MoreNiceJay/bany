@@ -273,6 +273,11 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
             
             
             //유저에게 채워넣으라고 알럴트
+            
+            buttonEnabled(uploadButton)
+            
+            stopActivityIndicator()
+
             self.alert("invalid", message : "you must fill in the blank")
             
         }else {
@@ -290,7 +295,7 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
             }else{
                 //ㅇㅋ
                 
-                if !(description.utf16.count <= 200 && description.utf16.count >= 2 ) {
+                if !(descriptionText.utf16.count <= 200 && descriptionText.utf16.count >= 2 ) {
                     
                     
                     buttonEnabled(uploadButton)

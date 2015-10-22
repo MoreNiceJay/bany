@@ -13,9 +13,6 @@
 		6923ADB31BCEEF2300DB733D /* CommentTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6923ADB21BCEEF2300DB733D /* CommentTVCE.swift */; settings = {ASSET_TAGS = (); }; };
 		693983211BCD768900ED28C1 /* FrontImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693983201BCD768900ED28C1 /* FrontImage.swift */; settings = {ASSET_TAGS = (); }; };
 		693983231BCD769600ED28C1 /* BackImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693983221BCD769600ED28C1 /* BackImage.swift */; settings = {ASSET_TAGS = (); }; };
-		693983291BCDFFCE00ED28C1 /* MyLikeTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693983281BCDFFCE00ED28C1 /* MyLikeTVCE.swift */; settings = {ASSET_TAGS = (); }; };
-		6939832B1BCE001200ED28C1 /* MyLikeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6939832A1BCE001200ED28C1 /* MyLikeTVC.swift */; settings = {ASSET_TAGS = (); }; };
-		694534CF1BBB8BB700D3B469 /* UploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694534CE1BBB8BB700D3B469 /* UploadVC.swift */; settings = {ASSET_TAGS = (); }; };
 		6951A2441BC331560005796F /* MyPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6951A2431BC331560005796F /* MyPost.swift */; settings = {ASSET_TAGS = (); }; };
 		6951A2461BC338F70005796F /* MyPostTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6951A2451BC338F70005796F /* MyPostTVCE.swift */; settings = {ASSET_TAGS = (); }; };
 		6967287C1BB36CD90012723B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6967287B1BB36CD90012723B /* AppDelegate.swift */; };
@@ -50,9 +47,6 @@
 		696728D91BB394D20012723B /* UserInfoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696728D81BB394D20012723B /* UserInfoTVC.swift */; settings = {ASSET_TAGS = (); }; };
 		697010E01BC1A8EC003D4400 /* WelcomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697010DF1BC1A8EC003D4400 /* WelcomVC.swift */; settings = {ASSET_TAGS = (); }; };
 		697010E21BC1B30F003D4400 /* EditInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697010E11BC1B30F003D4400 /* EditInfo.swift */; settings = {ASSET_TAGS = (); }; };
-		6988DC541BCA0A0400573E51 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988DC531BCA0A0400573E51 /* MainCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		6988DC581BCA0A6400573E51 /* CollectionViewDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988DC571BCA0A6400573E51 /* CollectionViewDetailVC.swift */; settings = {ASSET_TAGS = (); }; };
-		6988DC5A1BCA0C9700573E51 /* MainCollectionViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988DC591BCA0C9700573E51 /* MainCollectionViewVC.swift */; settings = {ASSET_TAGS = (); }; };
 		6988DC5C1BCABFC300573E51 /* UploadFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988DC5B1BCABFC300573E51 /* UploadFirst.swift */; settings = {ASSET_TAGS = (); }; };
 		6988DC5E1BCAC07200573E51 /* UploadSecond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988DC5D1BCAC07200573E51 /* UploadSecond.swift */; settings = {ASSET_TAGS = (); }; };
 		6988DC601BCAC09F00573E51 /* UploadFourth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988DC5F1BCAC09F00573E51 /* UploadFourth.swift */; settings = {ASSET_TAGS = (); }; };
@@ -64,9 +58,6 @@
 		69BE91311BB5FB90007E7010 /* MainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE91301BB5FB90007E7010 /* MainTVC.swift */; settings = {ASSET_TAGS = (); }; };
 		69BE91331BB60502007E7010 /* PasswordRestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE91321BB60502007E7010 /* PasswordRestVC.swift */; settings = {ASSET_TAGS = (); }; };
 		69BE91351BB859D5007E7010 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE91341BB859D5007E7010 /* ForgotPasswordVC.swift */; settings = {ASSET_TAGS = (); }; };
-		69BE913D1BB9D7A3007E7010 /* ppTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE913C1BB9D7A3007E7010 /* ppTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		69BE913F1BB9D894007E7010 /* addTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE913E1BB9D894007E7010 /* addTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		69BE91411BB9DA46007E7010 /* ppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE91401BB9DA46007E7010 /* ppTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,9 +84,6 @@
 		6923ADB21BCEEF2300DB733D /* CommentTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTVCE.swift; sourceTree = "<group>"; };
 		693983201BCD768900ED28C1 /* FrontImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontImage.swift; sourceTree = "<group>"; };
 		693983221BCD769600ED28C1 /* BackImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackImage.swift; sourceTree = "<group>"; };
-		693983281BCDFFCE00ED28C1 /* MyLikeTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyLikeTVCE.swift; path = ../bany/MyLikeTVCE.swift; sourceTree = "<group>"; };
-		6939832A1BCE001200ED28C1 /* MyLikeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyLikeTVC.swift; path = ../bany/MyLikeTVC.swift; sourceTree = "<group>"; };
-		694534CE1BBB8BB700D3B469 /* UploadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadVC.swift; path = ../bany/UploadVC.swift; sourceTree = "<group>"; };
 		6951A2431BC331560005796F /* MyPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPost.swift; sourceTree = "<group>"; };
 		6951A2451BC338F70005796F /* MyPostTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostTVCE.swift; sourceTree = "<group>"; };
 		696728781BB36CD90012723B /* bany.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bany.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,9 +124,6 @@
 		696728D81BB394D20012723B /* UserInfoTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTVC.swift; sourceTree = "<group>"; };
 		697010DF1BC1A8EC003D4400 /* WelcomVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomVC.swift; sourceTree = "<group>"; };
 		697010E11BC1B30F003D4400 /* EditInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditInfo.swift; sourceTree = "<group>"; };
-		6988DC531BCA0A0400573E51 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainCollectionViewCell.swift; path = ../bany/MainCollectionViewCell.swift; sourceTree = "<group>"; };
-		6988DC571BCA0A6400573E51 /* CollectionViewDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewDetailVC.swift; path = ../bany/CollectionViewDetailVC.swift; sourceTree = "<group>"; };
-		6988DC591BCA0C9700573E51 /* MainCollectionViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainCollectionViewVC.swift; path = ../bany/MainCollectionViewVC.swift; sourceTree = "<group>"; };
 		6988DC5B1BCABFC300573E51 /* UploadFirst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadFirst.swift; sourceTree = "<group>"; };
 		6988DC5D1BCAC07200573E51 /* UploadSecond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadSecond.swift; sourceTree = "<group>"; };
 		6988DC5F1BCAC09F00573E51 /* UploadFourth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadFourth.swift; sourceTree = "<group>"; };
@@ -150,9 +135,6 @@
 		69BE91301BB5FB90007E7010 /* MainTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTVC.swift; sourceTree = "<group>"; };
 		69BE91321BB60502007E7010 /* PasswordRestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordRestVC.swift; sourceTree = "<group>"; };
 		69BE91341BB859D5007E7010 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
-		69BE913C1BB9D7A3007E7010 /* ppTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ppTableViewController.swift; sourceTree = "<group>"; };
-		69BE913E1BB9D894007E7010 /* addTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addTableViewController.swift; sourceTree = "<group>"; };
-		69BE91401BB9DA46007E7010 /* ppTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ppTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,7 +214,6 @@
 			children = (
 				696728B91BB3730F0012723B /* frameworks */,
 				6967287A1BB36CD90012723B /* bany */,
-				69BE913B1BB9D77A007E7010 /* New Group */,
 				696728911BB36CD90012723B /* banyTests */,
 				6967289C1BB36CD90012723B /* banyUITests */,
 				696728791BB36CD90012723B /* Products */,
@@ -343,23 +324,6 @@
 				6951A2451BC338F70005796F /* MyPostTVCE.swift */,
 			);
 			name = userInfo;
-			sourceTree = "<group>";
-		};
-		69BE913B1BB9D77A007E7010 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-				6939832A1BCE001200ED28C1 /* MyLikeTVC.swift */,
-				693983281BCDFFCE00ED28C1 /* MyLikeTVCE.swift */,
-				6988DC591BCA0C9700573E51 /* MainCollectionViewVC.swift */,
-				6988DC531BCA0A0400573E51 /* MainCollectionViewCell.swift */,
-				6988DC571BCA0A6400573E51 /* CollectionViewDetailVC.swift */,
-				694534CE1BBB8BB700D3B469 /* UploadVC.swift */,
-				69BE913C1BB9D7A3007E7010 /* ppTableViewController.swift */,
-				69BE913E1BB9D894007E7010 /* addTableViewController.swift */,
-				69BE91401BB9DA46007E7010 /* ppTableViewCell.swift */,
-			);
-			name = "New Group";
-			path = banyUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -495,21 +459,15 @@
 				6923ADB31BCEEF2300DB733D /* CommentTVCE.swift in Sources */,
 				690C23FE1BBC6D8400245554 /* MainTVCE.swift in Sources */,
 				693983211BCD768900ED28C1 /* FrontImage.swift in Sources */,
-				6988DC541BCA0A0400573E51 /* MainCollectionViewCell.swift in Sources */,
 				693983231BCD769600ED28C1 /* BackImage.swift in Sources */,
-				6988DC581BCA0A6400573E51 /* CollectionViewDetailVC.swift in Sources */,
 				697010E01BC1A8EC003D4400 /* WelcomVC.swift in Sources */,
 				6951A2441BC331560005796F /* MyPost.swift in Sources */,
-				69BE913F1BB9D894007E7010 /* addTableViewController.swift in Sources */,
 				69B8B30F1BC058DD006DD579 /* SearchTVCE.swift in Sources */,
 				6988DC601BCAC09F00573E51 /* UploadFourth.swift in Sources */,
 				697010E21BC1B30F003D4400 /* EditInfo.swift in Sources */,
 				696728801BB36CD90012723B /* UploadThird.swift in Sources */,
 				699C66431BD618E800F9349C /* MoreInfoTVC.swift in Sources */,
-				693983291BCDFFCE00ED28C1 /* MyLikeTVCE.swift in Sources */,
 				69090AAA1BBDD81000C95F56 /* DetailVC.swift in Sources */,
-				6939832B1BCE001200ED28C1 /* MyLikeTVC.swift in Sources */,
-				69BE913D1BB9D7A3007E7010 /* ppTableViewController.swift in Sources */,
 				6988DC5E1BCAC07200573E51 /* UploadSecond.swift in Sources */,
 				696728D91BB394D20012723B /* UserInfoTVC.swift in Sources */,
 				6951A2461BC338F70005796F /* MyPostTVCE.swift in Sources */,
@@ -521,11 +479,8 @@
 				69BE91311BB5FB90007E7010 /* MainTVC.swift in Sources */,
 				69090AAC1BBE153500C95F56 /* CommentVC.swift in Sources */,
 				69BE91351BB859D5007E7010 /* ForgotPasswordVC.swift in Sources */,
-				6988DC5A1BCA0C9700573E51 /* MainCollectionViewVC.swift in Sources */,
 				69B8B30C1BC02FCF006DD579 /* SearchTVC.swift in Sources */,
 				69BE91331BB60502007E7010 /* PasswordRestVC.swift in Sources */,
-				694534CF1BBB8BB700D3B469 /* UploadVC.swift in Sources */,
-				69BE91411BB9DA46007E7010 /* ppTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,7 +31,7 @@ class CommentVC: UIViewController, UITableViewDelegate {
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 1000, 0)
         super.viewDidLoad()
         
-        titleLabel.text = object.valueForKey("titleText") as! String
+        titleLabel.text = object.valueForKey("titleText") as? String
         
         queryComment()
        
@@ -206,16 +206,13 @@ class CommentVC: UIViewController, UITableViewDelegate {
         return cell
     }
     
-    @IBAction func commentDeleteButtonTapped(sender: AnyObject) {
-        
-        let button = sender as! UIButton
-        let view = button.superview!
-        let cell = view.superview as! CommentTVCE
-        let indexPath = commentTableView.indexPathForCell(cell)
-        
-        
-        
-    }
+//    @IBAction func commentDeleteButtonTapped(sender: AnyObject) {
+//        
+//        let button = sender as! UIButton
+//        let view = button.superview!
+//        let cell = view.superview as! CommentTVCE
+//        //let indexPath = commentTableView.indexPathForCell(cell)
+//    }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()

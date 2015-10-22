@@ -23,8 +23,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var purchasedDateLabel: UILabel!
     @IBOutlet weak var descriptionTextLabel: UILabel!
     @IBOutlet weak var tagTextLabel: UILabel!
-    @IBOutlet weak var likeButton: UIButton!
-    
+        
     @IBOutlet weak var textButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
     
