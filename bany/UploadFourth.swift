@@ -381,7 +381,7 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
                             
                             
                             let myAlert = UIAlertController(title: "post saved", message: "see you at main library", preferredStyle: UIAlertControllerStyle.Alert)
-                            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {Void in self.performSegueWithIdentifier("uploadFourthToMain", sender: self)})
+                            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {Void in self.performSegueWithIdentifier("uplaodToMain", sender: self)})
                             myAlert.addAction(okAction)
                             self.presentViewController(myAlert, animated: true, completion: nil)
 
@@ -450,7 +450,7 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) {
             action in
             
-            self.performSegueWithIdentifier("uploadFourthToMain", sender: self)
+            self.performSegueWithIdentifier("uploadToMain", sender: self)
         }
         myAlert.addAction(okAction)
         self.presentViewController(myAlert, animated: true, completion: nil)
@@ -465,7 +465,7 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
     }
     
     func buttonEnabled(buttonName: UIButton){
-        
+        buttonName.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         buttonName.enabled = true
     }
     func buttonDisabeld(buttonName: UIButton){
@@ -487,6 +487,13 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
         
         
     }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        purchasedDateTextField.resignFirstResponder()
+        
+        return true
+        
+    }
+
 
     
 }

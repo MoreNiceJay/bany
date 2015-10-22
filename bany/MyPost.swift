@@ -52,8 +52,15 @@ class MyPost: UIViewController,  UITableViewDelegate {
         // 제목
         cell.titleLabel.text = (postObjects.objectForKey("titleText") as! String)
             
-            + " : " + (postObjects.objectForKey("tagText") as! String)
         
+        //솔드
+        cell.soldLabel.hidden = true
+        
+        if (postObjects.objectForKey("sold") as! Bool) == true {
+            cell.soldLabel.hidden = false
+            
+        }
+
         
         //시간
         let dateFormatter:NSDateFormatter = NSDateFormatter()

@@ -182,7 +182,7 @@ class CommentVC: UIViewController, UITableViewDelegate {
         
         let postObjects : PFObject = self.commentArray.objectAtIndex(indexPath.row) as! PFObject
         
-        cell.comment.text = postObjects.objectForKey("comment") as! String
+        cell.comment.text = postObjects.objectForKey("comment") as? String
 
         cell.nickNameLabel!.text = "Id:  " + (postObjects.objectForKey("nickName") as! String) + "   "
         

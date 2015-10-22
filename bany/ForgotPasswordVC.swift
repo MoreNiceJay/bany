@@ -99,6 +99,14 @@ class ForgotPasswordVC: UIViewController {
         
         
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        
+        return true
+        
+    }
+
     @IBAction func goBack(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
         

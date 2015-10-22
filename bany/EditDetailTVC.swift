@@ -46,6 +46,28 @@ stopActivityIndicator()
                 
                 
             }else if let post = post {
+                let titleText = self.titleTextField.text
+                let tagText = self.tagTextfield.text
+                let priceText = self.priceTextfield.text
+                let purchasedDate = self.purchasedDateTextField.text
+                let descriptionText = self.descriptionTextView.text
+                
+                
+                
+                if !((priceText?.isEmpty) != nil){
+                    
+                }else {
+                    
+                }
+                
+                if !(titleText!.utf16.count <= 45 && titleText!.utf16.count >= 2 ) {
+                    
+                }else{
+                    
+                     if !(tagText!.utf16.count <= 40 && tagText!.utf16.count >= 2 ) {
+                        
+                     }else {
+                
                 
                 post["titleText"] = self.titleTextField.text
                 post["descriptionText"] =  self.descriptionTextView.text
@@ -70,8 +92,11 @@ stopActivityIndicator()
             }
         }
         
-        
+        }
+        }
     }
+   
+
     
 
     
@@ -247,6 +272,14 @@ stopActivityIndicator()
         
         
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        titleTextField.resignFirstResponder()
+        
+        return true
+        
+    }
+
 
 
     }

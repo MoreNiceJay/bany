@@ -11,7 +11,7 @@ import Parse
 import FBSDKCoreKit
 import ParseFacebookUtilsV4
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, UITextFieldDelegate {
    
     
     @IBOutlet weak var facebookButton: UIButton!
@@ -187,11 +187,20 @@ class LoginVC: UIViewController {
         
     }
     
-   
-    @IBAction func unwindToSegue (segue : UIStoryboardSegue) {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        usernameField.resignFirstResponder()
+        
+        return true
+        
+    }
+    
+    
+    @IBAction func loginUnwindToSegue (segue : UIStoryboardSegue) {
         
         
     }
+    
+    
 
 }
 

@@ -11,58 +11,77 @@ import Parse
 
 class PasswordRestVC: UIViewController {
 
+    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var actInd: UIActivityIndicatorView!
     @IBOutlet weak var emailTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        actInd.hidden = true
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     @IBAction func sendButtonTapped(sender: AnyObject) {
+        startActivityIndicator()
+        buttonDisabeld(sendButton)
         
         let emailAddress = emailTextField.text
         
+        
         if (emailAddress!.isEmpty)
         {
-            self.alert("Error", message : "email address is not valid" )
+            self.alert("Error", message : "Email address is not valid" )
+            self.stopActivityIndicator()
+            self.buttonEnabled(self.sendButton)
+            
             return
             
         }
         
         PFUser.requestPasswordResetForEmailInBackground(emailAddress!, block: { (success, error) -> Void in
             if(error != nil)
-            
+                
             {//노굿
                 
                 self.alert("Error", message : (error!.localizedDescription))
+                self.stopActivityIndicator()
+                self.buttonEnabled(self.sendButton)
                 
                 
-                }else {
+            }else {
                 //success
                 self.alert("Success", message : "message was sent to \(emailAddress)")
+                self.stopActivityIndicator()
+                self.buttonEnabled(self.sendButton)
                 
-                }
-            })
+            }
             
-        
+        })
+    }
+    
+    func startActivityIndicator() {
+        self.actInd.hidden = false
+        self.actInd.startAnimating()
         
     }
-
-      func luxuryAlert(userMessage:String) {
+    
+    func stopActivityIndicator() {
+        self.actInd.hidden = true
+        self.actInd.stopAnimating()
+    }
+    
+    func buttonEnabled(buttonName: UIButton){
         
-        let myAlert = UIAlertController(title: "Alert", message: userMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) {
-            action in
-            
-            self.performSegueWithIdentifier("UserInfoVC", sender: self)
-        }
-        myAlert.addAction(okAction)
-        self.presentViewController(myAlert, animated: true, completion: nil)
+        buttonName.enabled = true
+    }
+    func buttonDisabeld(buttonName: UIButton){
+        
+        buttonName.enabled = false
     }
     
     func alert(title : String, message : String) {
@@ -71,18 +90,27 @@ class PasswordRestVC: UIViewController {
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
         myAlert.addAction(okAction)
         self.presentViewController(myAlert, animated: true, completion: nil)
+        
     }
-
+    
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        emailTextField.resignFirstResponder()
+        
+        
+    }
+    
+    @IBAction func keyBoardDismissButton(sender: AnyObject) {
+        UIApplication.sharedApplication().sendAction("resignFirstResponder", to:nil, from:nil, forEvent:nil)
+        
+        
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        
+        return true
+        
+    }
 
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

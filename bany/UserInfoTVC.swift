@@ -9,10 +9,9 @@
 import UIKit
 import Parse
 
-class UserInfoVC: UIViewController {
+class UserInfoTVC: UITableViewController {
 
-    @IBOutlet weak var phoneNumberLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
+
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     
@@ -25,26 +24,12 @@ class UserInfoVC: UIViewController {
             
             
         }else{
-            self.nickNameLabel.text = "NO NICKNAME"
+           self.nickNameLabel.text =   PFUser.currentUser()?.objectForKey("username") as? String
         }
         
         
         
-        //이메일
-        if let email = (PFUser.currentUser()?.objectForKey("email_address") as? String){
-            self.emailLabel.text = email
-            
-        }else{
-            self.emailLabel.text = "NO EMAIL"
-        }
-        //전화번호
-        if let phoneNumber = (PFUser.currentUser()?.objectForKey("phone_number") as? String){
-            self.phoneNumberLabel.text = phoneNumber
-            
-        }else{
-            self.phoneNumberLabel.text = "NO PHONE#"
-        }
-
+        
         //profile Pic
         if let profilePictureObject = (PFUser.currentUser()?.objectForKey("profile_picture") as? PFFile){
             
@@ -81,6 +66,11 @@ class UserInfoVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+   override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool
+   {
+    return true
+    }
+    
     @IBAction func logOutButtonTapped(sender: AnyObject) {
         
         NSUserDefaults.standardUserDefaults().removeObjectForKey("objectId")
@@ -88,8 +78,9 @@ class UserInfoVC: UIViewController {
         
         PFUser.logOutInBackground()
         
-        self.performSegueWithIdentifier("logOutToLogin", sender: self)
-            
+    performSegueWithIdentifier("logoutToLogin", sender: self)
+        
+        
             
             
             
@@ -106,24 +97,14 @@ class UserInfoVC: UIViewController {
       
     }
 
-    @IBAction func changePassword(sender: AnyObject) {
-        
-        self.performSegueWithIdentifier("resetPassword", sender: self)
-    }
     
-    @IBAction func editProfileTapped(sender: AnyObject) {
-        
-        
-        self.performSegueWithIdentifier("userInfoToEditInfo", sender: self)
-        
-    }
-    func circularImage(image : UIImageView){
+       func circularImage(image : UIImageView){
     image.layer.cornerRadius = image.frame.size.width / 2
     image.clipsToBounds = true
     image.layer.borderColor = UIColor.whiteColor().CGColor
     image.layer.borderWidth = 3
     }
-    @IBAction func unwindToSegue (segue : UIStoryboardSegue) {
+    @IBAction func userInfoUnwindToSegue (segue : UIStoryboardSegue) {
         
         
     }

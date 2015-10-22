@@ -362,6 +362,13 @@ class EditInfo: UITableViewController, UIImagePickerControllerDelegate, UINaviga
         
         
     }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        
+        return true
+        
+    }
+
     
     
     

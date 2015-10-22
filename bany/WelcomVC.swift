@@ -30,19 +30,9 @@ class WelcomVC: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
-    */
-    @IBAction func logOutButtonTapped(sender: AnyObject) {
-//        
-//        NSUserDefaults.standardUserDefaults().removeObjectForKey("objectId")
-//        NSUserDefaults.standardUserDefaults().synchronize()
-//        
-//        PFUser.logOutInBackground()
-//        
-//        self.performSegueWithIdentifier("logOutToLogin", sender: self)
-//        
-//
-//        
-   }
+    } */
+@IBAction func welcomeUnwindToSegue (segue : UIStoryboardSegue) {
 
+
+}
 }

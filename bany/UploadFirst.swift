@@ -60,7 +60,7 @@ class  UploadFirst: UITableViewController {
             category = 2
             bookSwitch.on = false
             otherSwitch.on = false
-            titleTextField.text = "Iclicker"
+            titleTextField.text = "iclicker"
             classLabel.text = "battery"
             tagTextField.placeholder = "ex) no battery / yes battery"
 
@@ -240,6 +240,13 @@ class  UploadFirst: UITableViewController {
         
 
     }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        titleTextField.resignFirstResponder()
+        
+        return true
+        
+    }
+
     
 }
 

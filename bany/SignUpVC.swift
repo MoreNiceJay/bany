@@ -263,6 +263,14 @@ class SignUpVC: UIViewController {
         
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        
+        return true
+        
+    }
+
+    
 
 
 }

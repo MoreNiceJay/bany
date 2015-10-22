@@ -33,7 +33,11 @@ class MainTVC: UITableViewController {
     var objectTwo : PFObject!
        override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-       
+      
+        //사이즈 조절
+    
+        //tableView.estimatedRowHeight = tableView.rowHeight
+        //tableView.rowHeight = UITableViewAutomaticDimension
         
       
         bringAllDatafromParse()
@@ -155,7 +159,7 @@ class MainTVC: UITableViewController {
                 // 가격
         
         let price = (postObjects.objectForKey("priceText") as! String)
-                cell.priceLable.text = " $ \(price)"
+                cell.priceLable.text = "   $\(price)"
         
         
         // 뷰
@@ -192,6 +196,22 @@ class MainTVC: UITableViewController {
         return cell
     }
 
+    
+    // MARK: - Animate Table View Cell
+    
+//    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        cell.alpha = 0
+//        
+//        //let rotationTrasform = CATransform3DTranslate(CATransform3DIdentity, -500, 10, 0)
+//       // cell.layer.transform = rotationTrasform
+//        
+//        UIView.animateWithDuration(0.1) { () -> Void in
+//           // cell.layer.transform = CATransform3DIdentity
+//            cell.alpha = 1
+//        }
+//    }
+//
+    
   
     func bringAllDatafromParse() {
         //activityIndicatorOn()
@@ -292,6 +312,12 @@ let destViewController : CommentVC = segue.destinationViewController as! Comment
         image.layer.borderColor  = UIColor.blackColor().CGColor
         image.layer.borderWidth = 1
     }
+    
+    @IBAction func mainUnwindToSegue (segue : UIStoryboardSegue) {
+        
+        
+    }
+
 
 
 //    @IBAction func commentButtonTapped(sender: AnyObject) {
