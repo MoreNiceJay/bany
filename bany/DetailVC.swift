@@ -54,7 +54,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
 
         // Do any additional setup after loading the view.
         
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 1000, 0)
+        //scrollView.contentInset = UIEdgeInsetsMake(0, 0, 1000, 0)
         
         //유저가 맞으면 에딧 하게 해주기
         
@@ -243,9 +243,9 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        self.scrollView.frame = self.view.bounds
-        self.scrollView.contentSize.height = 1000
-        self.scrollView.contentSize.width = 0
+//        self.scrollView.frame = self.view.bounds
+//        self.scrollView.contentSize.height = 1000
+//        self.scrollView.contentSize.width = 0
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -380,7 +380,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
        
        self.titleLabel.text = post!.valueForKey("titleText") as? String
        self.descriptionTextLabel.text = post!.valueForKey("descriptionText") as? String
-        self.priceLabel.text = post!.valueForKey("priceText") as? String
+        self.priceLabel.text =  "$" + (post!.valueForKey("priceText") as? String)!
         self.purchasedDateLabel.text = post!.valueForKey("purchasedDate") as? String
 
         self.tagTextLabel.text =  post!.valueForKey("tagText") as? String

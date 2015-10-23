@@ -122,7 +122,7 @@ class SignUpVC: UIViewController {
                             let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
                             myAlert.addAction(okAction)
                             self.presentViewController(myAlert, animated: true, completion: nil)
-                            self.alert("Invalid", message : (error?.localizedDescription)!)
+                            self.alert("Error", message : (error?.localizedDescription)!)
                             
                             self.buttonEnabled(self.facebookButton)
                             self.buttonEnabled(self.signUpButton)

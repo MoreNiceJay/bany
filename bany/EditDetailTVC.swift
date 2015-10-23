@@ -38,110 +38,6 @@ stopActivityIndicator()
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func saveButtonTapped(sender: AnyObject) {
-        let query = PFQuery(className:"Posts")
-        query.getObjectInBackgroundWithId(object.objectId!) {
-            (post: PFObject?, error: NSError?) -> Void in
-            if error != nil && post == nil {
-                
-                
-                
-            }else if let post = post {
-                let titleText = self.titleTextField.text
-                let tagText = self.tagTextfield.text
-                let priceText = self.priceTextfield.text
-                let purchasedDate = self.purchasedDateTextField.text
-                let descriptionText = self.descriptionTextView.text
-                
-                
-                
-                if (priceText!.isEmpty || descriptionText!.isEmpty || purchasedDate!.isEmpty || tagText!.isEmpty || titleText!.isEmpty){
-                    self.buttonEnabled(self.saveButton)
-                    
-                    self.stopActivityIndicator()
-                    self.alert("Invalid", message : "you must fill in the blank")
-                    
-                }else {
-                    
-                }
-                
-                if !(titleText!.utf16.count <= 45 && titleText!.utf16.count >= 2 ) {
-                    
-                    self.buttonEnabled(self.saveButton)
-                    
-                    self.stopActivityIndicator()
-                    
-                    self.alert("Invalid", message : "title must be  2 ~ 45 characters")
-
-
-                    
-                }else{
-                    
-                     if !(tagText!.utf16.count <= 40 && tagText!.utf16.count >= 2 ) {
-                        
-                        self.buttonEnabled(self.saveButton)
-                        
-                        self.stopActivityIndicator()
-                        
-                        self.alert("Invalid", message : "tag must be 2 ~ 45 characters")
-
-                        
-                     }else {
-                        
-                        
-                            if !(purchasedDate!.utf16.count > 3 && purchasedDate!.utf16.count < 13 ) {
-                                self.buttonEnabled(self.saveButton)
-                                
-                                self.stopActivityIndicator()
-                                
-                                self.alert("Invalid", message : "Date must be 4 - 12 digit")
-                                
-                            }else{
-                                
-                                if !(descriptionText.utf16.count <= 200 && descriptionText.utf16.count >= 2 ) {
-                                    
-                                    self.buttonEnabled(self.saveButton)
-                                    
-                                    self.stopActivityIndicator()
-                                    
-                                    self.alert("Invalid", message : "Description must be 2 ~ 200 characters")
-                                    
-                                }else{
-                                
-                                            //굿투고
-                            print("버튼눌림")
-                        
-                
-                
-                post["titleText"] = self.titleTextField.text
-                post["descriptionText"] =  self.descriptionTextView.text
-                post["priceText"] = self.priceTextfield.text
-                post["purchasedDate"] = self.purchasedDateTextField.text
-                
-                post["tagText"] = self.tagTextfield.text
-                post["front_image"] = self.frontImageView.image
-                
-                post["back_image"] = self.backImageView.image
-                
-                //저장 알림
-                
-                post.saveInBackgroundWithBlock({ (success, error) -> Void in
-                    if error == nil{
-                        (print("good"))
-                        //에러 알림
-                        
-                        self.alert("saved", message: "your post has been saved")
-                    }
-                })
-            }
-        }
-                    
-                }}
-        }
-    }
-    
-    }
-
     
     
     
@@ -152,10 +48,176 @@ stopActivityIndicator()
         stopActivityIndicator()
     }
 
+    
+    @IBAction func saveButtonTapped(sender: AnyObject) {
+        let query = PFQuery(className:"Posts")
+        query.getObjectInBackgroundWithId(object.objectId!) {
+            (object, error) -> Void in
+            if error != nil {
+                print(error)
+            } else {
+                if let object = object {
+                    let titleText = self.titleTextField.text
+                    
+                    let tagText = self.tagTextfield.text
+                    
+                    let priceText = self.priceTextfield.text
+                    
+                    let purchasedDate = self.purchasedDateTextField.text
+                    
+                    let descriptionText = self.descriptionTextView.text
+                    
+                  
+                    if (priceText!.isEmpty || descriptionText!.isEmpty || purchasedDate!.isEmpty || tagText!.isEmpty || titleText!.isEmpty) {
+                        
+                    
+                    self.buttonEnabled(self.saveButton)
+                    
+                    
+                    
+                    self.stopActivityIndicator()
+                    
+                    self.alert("Invalid", message : "you must fill in the blank")
+                    
+                    
+                    
+                }else {
+                    
+                
+                if !(titleText!.utf16.count <= 45 && titleText!.utf16.count >= 2 ) {
+                    
+                    
+                    
+                    self.buttonEnabled(self.saveButton)
+                    
+                    
+                    
+                    self.stopActivityIndicator()
+                    
+                    
+                    
+                    self.alert("Invalid", message : "title must be  2 ~ 45 characters")
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                }else{
+                    
+                    
+                    
+                    if !(tagText!.utf16.count <= 40 && tagText!.utf16.count >= 2 ) {
+                        
+                        
+                        
+                        self.buttonEnabled(self.saveButton)
+                        
+                        
+                        
+                        self.stopActivityIndicator()
+                        
+                        
+                        
+                        self.alert("Invalid", message : "tag must be 2 ~ 45 characters")
+                        
+                        
+                        
+                        
+                        
+                    }else {
+                        
+                        
+                        
+                        
+                        
+                        if !(purchasedDate!.utf16.count > 3 && purchasedDate!.utf16.count < 13 ) {
+                            
+                            self.buttonEnabled(self.saveButton)
+                            
+                            
+                            
+                            self.stopActivityIndicator()
+                            
+                            
+                            
+                            self.alert("Invalid", message : "Date must be 4 - 12 digit")
+                            
+                            
+                            
+                        }else{
+                            
+                            
+                            
+                            if !(descriptionText.utf16.count <= 200 && descriptionText.utf16.count >= 2 ) {
+                                
+                                
+                                
+                                self.buttonEnabled(self.saveButton)
+                                
+                                
+                                
+                                self.stopActivityIndicator()
+                                
+                                
+                                
+                                self.alert("Invalid", message : "Description must be 2 ~ 200 characters")
+                                
+                                
+                                
+                            }else{
+                                
+                        
+                        object["titleText"] = titleText
+                        object["descriptionText"] =  descriptionText
+                        
+                        object["priceText"] = priceText
+                        
+                        object["purchasedDate"] = purchasedDate
+                        
+                                                
+                        object["tagText"] = tagText
+                        
+                        let scaledImageBack = self.scaleImageWith(self.backImageView.image!, newSize: CGSizeMake(300, 233))
+                        
+                        
+                        let imageDataTwo = UIImagePNGRepresentation(scaledImageBack)
+                        
+                        
+                        let parseBackFile = PFFile(name: "back_photo.png", data : imageDataTwo!)
+
+                        
+                        object["back_image"] = parseBackFile
+                        
+                        
+                        object.saveInBackgroundWithBlock({ (success, error) -> Void in
+                            if error == nil {
+                               self.alert("saved", message: "your post has been edited")
+                            }else {
+                                self.alert("error", message: (error?.localizedDescription)!)
+                                
+                            }
+                            
+                        })
+                        
+                    }
+                        }
+                    }
+                    }
+                }
+            }
+        }
+    
+        }
+    }
+
+
+
     @IBAction func deleteButtonTapped(sender: AnyObject) {
+    
+    
         
-        
-            
             let query = PFQuery(className: "Posts")
             query.getObjectInBackgroundWithId(self.object.objectId!) { (obj, err) -> Void in
                 if err != nil {
@@ -177,14 +239,13 @@ stopActivityIndicator()
                         }
                     })
                     
-                    
-                }
-            }
-
-            
-            
-       
+    
     }
+   
+        }
+  
+    }
+
     func retrievingData() {
         
         
@@ -310,16 +371,7 @@ stopActivityIndicator()
         
     }
     
-    func buttonEnabled(buttonName: UIButton){
-        
-        buttonName.enabled = true
-    }
-    func buttonDisabeld(buttonName: UIButton){
-        
-        buttonName.enabled = false
-        
-    }
-    @IBAction func keyBoardDismissButton(sender: AnyObject) {
+        @IBAction func keyBoardDismissButton(sender: AnyObject) {
         UIApplication.sharedApplication().sendAction("resignFirstResponder", to:nil, from:nil, forEvent:nil)
         
         
@@ -420,6 +472,38 @@ stopActivityIndicator()
     }
 
 
-
-
-    }
+    
+                    
+                               func scaleImageWith(image : UIImage, newSize : CGSize) -> UIImage {
+                        
+                        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+                        image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
+                        let newImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+                        UIGraphicsEndImageContext()
+                        
+                        return newImage
+                    }
+                    
+    
+                    
+                    func buttonEnabled(buttonName: UIButton){
+                        buttonName.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+                        buttonName.enabled = true
+                    }
+                    func buttonDisabeld(buttonName: UIButton){
+                        buttonName.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
+                        buttonName.enabled = false
+                    }
+                    
+                    
+                    //
+                    //                let imageData = UIImagePNGRepresentation(UIImage(named: "AvatarPlaceholder")!)
+                    //                let profileImageFile = PFFile(name: "profileImage", data: imageData!)
+                    //                post["profile_picture"] = profileImageFile
+                    //
+                    
+                    
+                    
+    
+                    
+}
