@@ -24,6 +24,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var descriptionTextLabel: UILabel!
     @IBOutlet weak var tagTextLabel: UILabel!
         
+    @IBOutlet weak var firstTagTextLabel: UILabel!
     @IBOutlet weak var textButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
     
@@ -110,10 +111,12 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
             
             self.titleLabel.text = object.objectForKey("titleText") as? String
             self.descriptionTextLabel.text = object.valueForKey("descriptionText") as? String
-            self.priceLabel.text = object.valueForKey("priceText") as? String
+            self.priceLabel.text = "$" + (object.valueForKey("priceText") as? String)!
             self.purchasedDateLabel.text = object.valueForKey("purchasedDate") as? String
             
-            self.tagTextLabel.text =  object!.valueForKey("tagText") as? String
+            self.firstTagTextLabel.text = (object!.valueForKey("tagText") as? String)!
+
+            self.tagTextLabel.text =  (object!.valueForKey("tagText") as? String)!
             
             if let userNickNameCheck = object!.valueForKey("nickName") as? String {
                 
@@ -470,7 +473,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         if object.valueForKey("sold") as! Bool == false{
         
         
-        if let preferEmail = object.valueForKey("nickName") as? String {
+        if let preferEmail = object.valueForKey("email_address") as? String {
             
             
         
@@ -480,13 +483,14 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
 
         }else{
             //없음 알럴트 주기
+            self.alert("text only", message: "seller prefer text")
 
             }
                 
             
             
             }else{//팔렸다 하기
-            
+            self.alert("sold", message: "already sold")
         }
     
     }
@@ -495,7 +499,7 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
     @IBAction func textButtonTapped(sender: AnyObject) {
         if object.valueForKey("sold") as! Bool == false{
        
-        if let preferPhone = (object.valueForKey("prefer_phoneNumber") as? String) {
+        if let preferPhone = (object.valueForKey("phone_number") as? String) {
         
             let textNumber : NSURL = NSURL(string: "sms://\(preferPhone)")!
             
@@ -504,9 +508,12 @@ class DetailVC: UIViewController, UIScrollViewDelegate {
         
         
         }else{
+            
+            self.alert("Email only", message: "seller prefer Email")
             //넘버 없다고 말해주기
         }
     }else { //팔렸다고 말해주기
+            self.alert("sold", message: "already sold")
     
     }
 

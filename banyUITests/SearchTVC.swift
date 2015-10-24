@@ -22,6 +22,7 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
     var price = [String]()
     var searchResults = [String]()
     var objectArray = [String]()
+    var myData = PFObject()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -57,7 +58,18 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
     
     }
     
+     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if (self.resultSearchController.active) {
+          myData =  (self.filterdArray[indexPath.row]) as! PFObject
+        } else {
+          myData = (self.postsArray[indexPath.row]) as! PFObject
+        }
+    }
+    
+    
     
     
     
@@ -316,9 +328,9 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
             
             let selectedRowIndex = self.myTable.indexPathForSelectedRow
             let destViewController : DetailVC = segue.destinationViewController as! DetailVC
-            destViewController.object = postsArray[(selectedRowIndex?.row)!] as! PFObject
+            destViewController.object = myData as! PFObject
 
-            
+            resultSearchController.active = false
         }
     }
     
