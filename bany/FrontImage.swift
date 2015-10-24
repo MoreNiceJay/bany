@@ -17,6 +17,8 @@ class FrontImage: UIViewController {
         super.viewDidLoad()
        frontImage.image = frontImageView.image
 
+        
+        
         // Do any additional setup after loading the view.
     }
 

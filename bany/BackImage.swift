@@ -16,7 +16,6 @@ class BackImage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
        backImage.image = backImageView.image
 
         // Do any additional setup after loading the view.
