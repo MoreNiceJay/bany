@@ -28,10 +28,10 @@ class CommentVC: UIViewController, UITableViewDelegate {
     @IBOutlet weak var deleteButton: UIButton!
     override func viewDidLoad() {
         
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 1000, 0)
+//        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 1000, 0)
         super.viewDidLoad()
         
-        titleLabel.text = object.valueForKey("titleText") as? String
+//        titleLabel.text = object.valueForKey("titleText") as? String
         
         queryComment()
        

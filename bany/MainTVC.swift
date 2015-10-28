@@ -12,39 +12,23 @@ import Parse
 class MainTVC: UITableViewController {
     
     @IBOutlet weak var categorySegment: UISegmentedControl!
-    
-    var resultSearchController : UISearchController!
-    
-    
-
-    lazy var postsArray : NSMutableArray = NSMutableArray()
-    lazy var filterdArray : NSMutableArray = NSMutableArray()
-    var objectArray = [String]()
-      var parentObjectID = String()
-    
+   
+   var postsArray : NSMutableArray = NSMutableArray()
+    var filterdArray : NSMutableArray = NSMutableArray()
     var objectTwo : PFObject!
-       override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-      
-        //사이즈 조절
     
-        //tableView.estimatedRowHeight = tableView.rowHeight
-        //tableView.rowHeight = UITableViewAutomaticDimension
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
         
-      
         bringAllDatafromParse()
     }
     
-    
     @IBAction func segmentTapped(sender: AnyObject) {
-       
-        
-        
-
+    
+        // Empty postArray
         postsArray = []
-        
-        
-        
+      
+        // get post's data by categories
         switch categorySegment.selectedSegmentIndex {
         case 0 :
             bringAllDatafromParse()
@@ -59,221 +43,157 @@ class MainTVC: UITableViewController {
             
         default :
             bringAllDatafromParse()
-            
-            
-        
-        }
+       }
         self.tableView.reloadData()
-        
-            }
+    }
 
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+   
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+    
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return postsArray.count
-      
-        
     }
-    
-
-    
-       
-
+   
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-               let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MainTVCE
-
-        
-       
-        
-        
-           let postObjects = self.postsArray.objectAtIndex(indexPath.row) as! PFObject
+    
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MainTVCE
+        let postObjects = self.postsArray.objectAtIndex(indexPath.row) as! PFObject
         
         
-        
-        
+        // IndexPath for comment button on tableView
         cell.didRequestToShowComment = { (cell) in
             let indexPath = tableView.indexPathForCell(cell)
             let objectToSend = self.postsArray[indexPath!.row] as? PFObject
             // Show your Comment view controller here, and set object to send here
             self.objectTwo = objectToSend!
             self.performSegueWithIdentifier("mainToComment", sender: self)
-            
-            
         }
+       
+        
+        // Show sold label or not
         cell.soldLabel.hidden = true
         
         if (postObjects.objectForKey("sold") as! Bool) == true {
             cell.soldLabel.hidden = false
-            
         }
         
-                //제목
         
+        // title Label of post
         cell.titleLabel.text = postObjects.objectForKey("titleText") as? String
 
-                // 닉네임
         
+        // nick name of user
         if let nickNameExists = postObjects.objectForKey("nickName") as? String {
-            cell.nickNameLabel.text = nickNameExists
+           cell.nickNameLabel.text = nickNameExists
         }else {
             cell.nickNameLabel.text = postObjects.objectForKey("username") as? String
         }
         
         
-      
-        //시간
+        // time label for posts
         let dateFormatter:NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM /dd /yy"
         cell.timeLabel.text = (dateFormatter.stringFromDate(postObjects.createdAt!))
         
        
-        
-                // 가격
-        
+        // price label
         let price = (postObjects.objectForKey("priceText") as! String)
                 cell.priceLable.text = "   $\(price)"
         
-        
-        
-                   // 이미지
+       
+        // main Image for post
         let mainImages = postObjects.objectForKey("front_image") as! PFFile
-            
-        
         mainImages.getDataInBackgroundWithBlock { (imageData, error) -> Void in
             let image = UIImage(data: imageData!)
             cell.mainPhoto.image = image
         }
         
-        // 프로필
+        
+        //profile picture for user
         if let profileImages = (postObjects.objectForKey("profile_picture") as? PFFile){
                     profileImages.getDataInBackgroundWithBlock { (imageData, error) -> Void in
                         let image = UIImage(data: imageData!)
                         cell.profilePhoto.image = image
-          
             }
-        
         }else{ cell.profilePhoto.image = UIImage(named: "AvatarPlaceholder")
         }
         circularImage(cell.profilePhoto)
+        
+        
         
         return cell
     }
 
     
-    // MARK: - Animate Table View Cell
-    
-//    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        cell.alpha = 0
-//        
-//
-//        UIView.animateWithDuration(0.5) { () -> Void in
-//          //            cell.alpha = 1
-//        }
-//    }
-//
-    
   
     func bringAllDatafromParse() {
-        //activityIndicatorOn()
-       
+    
+        //empty postArray
         postsArray = []
-        let query = PFQuery(className: "Posts")
         
+        //bring data from parse
+        let query = PFQuery(className: "Posts")
         query.orderByAscending("createdAt")
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
             if error == nil && objects != nil{
-
                 for object : PFObject in objects! {
-                    
+
                     self.postsArray.addObject(object)
-                    
                 }
-                
                 let array : Array = self.postsArray.reverseObjectEnumerator().allObjects
-               
-               
                 self.postsArray = array as! NSMutableArray
-               
-                
             }
          self.tableView.reloadData()
-                    
-            }
+       
+        }
 
     }
 
-
-
     
-
     func bringCategoryDataFromParse(category : Int) {
-        
-        
-
+    
         let query = PFQuery(className: "Posts")
-         query.whereKey("category", equalTo: category)
+        query.whereKey("category", equalTo: category)
         query.orderByAscending("createdAt")
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
             if error == nil && objects != nil{
-                
                 for object : PFObject in objects! {
-                    
                     self.postsArray.addObject(object)
-                    
                 }
-                
                 let array : Array = self.postsArray.reverseObjectEnumerator().allObjects
-                
                 
                 self.postsArray = array as! NSMutableArray
                 self.tableView.reloadData()
-                
             }
-
-        
         }
-    
     }
 
-    
 
-
-override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
-if (segue.identifier == "mainToComment") {
-
-
-let destViewController : CommentVC = segue.destinationViewController as! CommentVC
-
-   
-    
-    destViewController.object = objectTwo
-    
-    
-    }
-    
-    if (segue.identifier == "mainToDetail") {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // send object to commentViewController
+        if (segue.identifier == "mainToComment") {
+            let destViewController : CommentVC = segue.destinationViewController as! CommentVC
+            destViewController.object = objectTwo
+        }
         
-
-        let selectedRowIndex = self.tableView.indexPathForSelectedRow
-                let destViewController : DetailVC = segue.destinationViewController as! DetailVC
+        // send object to DetailViewController
+        if (segue.identifier == "mainToDetail") {
+            let selectedRowIndex = self.tableView.indexPathForSelectedRow
+            let destViewController : DetailVC = segue.destinationViewController as! DetailVC
                 destViewController.object = (postsArray[(selectedRowIndex?.row)!] as? PFObject)
 
-
-    }
-
+        }
     }
     
     func circularImage(image : UIImageView) {
@@ -282,7 +202,6 @@ let destViewController : CommentVC = segue.destinationViewController as! Comment
         image.layer.borderColor  = UIColor.blackColor().CGColor
         image.layer.borderWidth = 1
     }
-    
 }
 
 

@@ -8,8 +8,9 @@
 
 import UIKit
 
-class FrontImage: UIViewController {
+class FrontImage: UIViewController, UIScrollViewDelegate {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var frontImage: UIImageView!
      var frontImageView = UIImageView()
@@ -17,7 +18,8 @@ class FrontImage: UIViewController {
         super.viewDidLoad()
        frontImage.image = frontImageView.image
 
-        
+        self.scrollView.minimumZoomScale = 1.0
+        self.scrollView.maximumZoomScale = 3.0
         
         // Do any additional setup after loading the view.
     }
@@ -26,16 +28,7 @@ class FrontImage: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return self.frontImage
     }
-    */
-
 }

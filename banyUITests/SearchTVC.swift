@@ -57,16 +57,16 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
     
     }
     
-     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        if (self.resultSearchController.active) {
-         let myData =  (self.filterdArray[indexPath.row])
-        } else {
-         let myData = (self.postsArray[indexPath.row])
-        }
-    }
+//     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        
+//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//        
+//        if (self.resultSearchController.active) {
+//         let myData =  (self.filterdArray[indexPath.row])
+//        } else {
+//         let myData = (self.postsArray[indexPath.row])
+//        }
+//    }
     
     
     
