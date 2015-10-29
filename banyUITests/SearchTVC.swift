@@ -14,8 +14,8 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
     @IBOutlet weak var myTable: UITableView!
     
     var resultSearchController : UISearchController!
-    var postsArray : NSMutableArray = NSMutableArray()
-    var filterdArray : NSMutableArray = NSMutableArray()
+    var postsArray = [PFObject]()
+    var filterdArray = [PFObject]()
     
     var mainPhoto = [PFFile]()
     var time = [String]()
@@ -84,10 +84,10 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
         
         
         if self.resultSearchController.active{
-             postObjects = self.filterdArray.objectAtIndex(indexPath.row) as! PFObject
+             postObjects = self.filterdArray[indexPath.row] 
         }else {
             
-              postObjects = self.postsArray.objectAtIndex(indexPath.row) as! PFObject
+              postObjects = self.postsArray[indexPath.row] 
             
             
         }
@@ -130,7 +130,7 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
 
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        self.filterdArray.removeAllObjects()
+        self.filterdArray = []
         let normalizedSearchText = searchController.searchBar.text!.lowercaseString
         for posts in self.postsArray {
             var title = ""
@@ -144,7 +144,7 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
             let results = "\(title) \(tag)"
             
             if results.lowercaseString.rangeOfString(normalizedSearchText) != nil {
-                self.filterdArray.addObject(posts)
+                self.filterdArray.append(posts)
             }
             
         }
@@ -267,18 +267,11 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
                 
                 for object : PFObject in objects! {
                     
-                    self.postsArray.addObject(object)
+                    self.postsArray.append(object)
+                    self.myTable.reloadData()
                     
                 }
-                
-                let array : Array = self.postsArray.reverseObjectEnumerator().allObjects
-                
-                
-                self.postsArray = array as! NSMutableArray
-                
-                
-            }
-            self.myTable.reloadData()
+                            }
             
 
         
@@ -329,9 +322,9 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
             let destViewController : DetailVC = segue.destinationViewController as! DetailVC
             
             if (self.resultSearchController.active) {
-               destViewController.object = filterdArray[(selectedRowIndex?.row)!] as! PFObject
+               destViewController.object = filterdArray[(selectedRowIndex?.row)!]
             }else {
-                 destViewController.object = postsArray[(selectedRowIndex?.row)!] as! PFObject
+                 destViewController.object = postsArray[(selectedRowIndex?.row)!] 
             }
            
 

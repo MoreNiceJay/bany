@@ -14,13 +14,14 @@ class MainTVC: UITableViewController {
     @IBOutlet weak var categorySegment: UISegmentedControl!
    
    var postsArray = [PFObject]()
-    var filterdArray : NSMutableArray = NSMutableArray()
+    
     var objectTwo : PFObject!
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+        print(postsArray)
         
-        bringAllDatafromParse()
+                self.fetchAllObjectsFromLocalDataStore()
     }
     
 //    @IBAction func segmentTapped(sender: AnyObject) {
@@ -132,26 +133,50 @@ class MainTVC: UITableViewController {
         return cell
     }
 
-    
-  
-    func bringAllDatafromParse() {
-    
+    func fetchAllObjectsFromLocalDataStore() {
         //empty postArray
         postsArray = []
         
         //bring data from parse
         let query = PFQuery(className: "Posts")
-       // query.cachePolicy = PFCachePolicy.NetworkOnly
+        query.fromLocalDatastore()
         query.orderByAscending("createdAt")
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
             if error == nil && objects != nil{
                 for object in objects! {
-
-                   self.postsArray.append(object)
+                    
+                    self.postsArray.append(object)
+                    self.tableView.reloadData()
+                    
                 }
+            }else{
+                print(error?.localizedDescription)
+
                 
             }
-         self.tableView.reloadData()
+        }
+    }
+  
+    func bringAllDatafromParse() {
+    
+        PFObject.unpinAllObjectsInBackgroundWithBlock(nil)
+        //empty postArray
+        postsArray = []
+        
+        //bring data from parse
+        let query = PFQuery(className: "Posts")
+      
+        query.orderByAscending("createdAt")
+        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
+            if error == nil && objects != nil{
+                
+
+                   PFObject.pinAllInBackground(objects, block: nil)
+                    self.fetchAllObjectsFromLocalDataStore()
+                
+                self.tableView.reloadData()
+            }
+         
             
         }
         
