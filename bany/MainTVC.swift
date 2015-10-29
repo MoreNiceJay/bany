@@ -13,39 +13,39 @@ class MainTVC: UITableViewController {
     
     @IBOutlet weak var categorySegment: UISegmentedControl!
    
-   var postsArray : NSMutableArray = NSMutableArray()
+   var postsArray = [PFObject]()
     var filterdArray : NSMutableArray = NSMutableArray()
     var objectTwo : PFObject!
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
         
         bringAllDatafromParse()
     }
     
-    @IBAction func segmentTapped(sender: AnyObject) {
-    
-        // Empty postArray
-        postsArray = []
-      
-        // get post's data by categories
-        switch categorySegment.selectedSegmentIndex {
-        case 0 :
-            bringAllDatafromParse()
-        case 1 :
-            bringCategoryDataFromParse(1)
-            
-        case 2 :
-            bringCategoryDataFromParse(2)
-            
-        case 3 :
-            bringCategoryDataFromParse(3)
-            
-        default :
-            bringAllDatafromParse()
-       }
-        self.tableView.reloadData()
-    }
+//    @IBAction func segmentTapped(sender: AnyObject) {
+//    
+//        // Empty postArray
+//        postsArray = []
+//      
+//        // get post's data by categories
+//        switch categorySegment.selectedSegmentIndex {
+//        case 0 :
+//            bringAllDatafromParse()
+//        case 1 :
+//            bringCategoryDataFromParse(1)
+//            
+//        case 2 :
+//            bringCategoryDataFromParse(2)
+//            
+//        case 3 :
+//            bringCategoryDataFromParse(3)
+//            
+//        default :
+//            bringAllDatafromParse()
+//       }
+//        self.tableView.reloadData()
+//    }
 
 
     override func didReceiveMemoryWarning() {
@@ -68,8 +68,8 @@ class MainTVC: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MainTVCE
-        let postObjects = self.postsArray.objectAtIndex(indexPath.row) as! PFObject
-        
+        //let postObjects = self.postsArray.objectAtIndex(indexPath.row) as! PFObject
+        let postObjects = self.postsArray[indexPath.row]
         
         // IndexPath for comment button on tableView
         cell.didRequestToShowComment = { (cell) in
@@ -82,11 +82,7 @@ class MainTVC: UITableViewController {
        
         
         // Show sold label or not
-        cell.soldLabel.hidden = true
-        
-        if (postObjects.objectForKey("sold") as! Bool) == true {
-            cell.soldLabel.hidden = false
-        }
+        cell.soldLabel.hidden = !(postObjects.objectForKey("sold") as! Bool)
         
         
         // title Label of post
@@ -94,12 +90,12 @@ class MainTVC: UITableViewController {
 
         
         // nick name of user
-        if let nickNameExists = postObjects.objectForKey("nickName") as? String {
-           cell.nickNameLabel.text = nickNameExists
-        }else {
-            cell.nickNameLabel.text = postObjects.objectForKey("username") as? String
-        }
+         cell.nickNameLabel.text = postObjects.objectForKey("username") as? String
         
+        if (postObjects.objectForKey("nickName") as? String) != nil {
+            
+            cell.nickNameLabel.text = postObjects.objectForKey("nickName") as? String
+        }
         
         // time label for posts
         let dateFormatter:NSDateFormatter = NSDateFormatter()
@@ -121,12 +117,13 @@ class MainTVC: UITableViewController {
         
         
         //profile picture for user
+        cell.profilePhoto.image = UIImage(named: "AvatarPlaceholder")
+        
         if let profileImages = (postObjects.objectForKey("profile_picture") as? PFFile){
                     profileImages.getDataInBackgroundWithBlock { (imageData, error) -> Void in
                         let image = UIImage(data: imageData!)
                         cell.profilePhoto.image = image
             }
-        }else{ cell.profilePhoto.image = UIImage(named: "AvatarPlaceholder")
         }
         circularImage(cell.profilePhoto)
         
@@ -144,40 +141,46 @@ class MainTVC: UITableViewController {
         
         //bring data from parse
         let query = PFQuery(className: "Posts")
+       // query.cachePolicy = PFCachePolicy.NetworkOnly
         query.orderByAscending("createdAt")
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
             if error == nil && objects != nil{
-                for object : PFObject in objects! {
+                for object in objects! {
 
-                    self.postsArray.addObject(object)
+                   self.postsArray.append(object)
                 }
-                let array : Array = self.postsArray.reverseObjectEnumerator().allObjects
-                self.postsArray = array as! NSMutableArray
+                
             }
          self.tableView.reloadData()
-       
+            
         }
+        
+        
+        
+        
+        
+
 
     }
-
+   
     
-    func bringCategoryDataFromParse(category : Int) {
-    
-        let query = PFQuery(className: "Posts")
-        query.whereKey("category", equalTo: category)
-        query.orderByAscending("createdAt")
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
-            if error == nil && objects != nil{
-                for object : PFObject in objects! {
-                    self.postsArray.addObject(object)
-                }
-                let array : Array = self.postsArray.reverseObjectEnumerator().allObjects
-                
-                self.postsArray = array as! NSMutableArray
-                self.tableView.reloadData()
-            }
-        }
-    }
+//    func bringCategoryDataFromParse(category : Int) {
+//    
+//        let query = PFQuery(className: "Posts")
+//        query.whereKey("category", equalTo: category)
+//        query.orderByAscending("createdAt")
+//        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
+//            if error == nil && objects != nil{
+//                for object : PFObject in objects! {
+//                    self.postsArray.addObject(object)
+//                }
+//                let array : Array = self.postsArray.reverseObjectEnumerator().allObjects
+//                
+//                self.postsArray = array as! NSMutableArray
+//                self.tableView.reloadData()
+//            }
+//        }
+//    }
 
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
