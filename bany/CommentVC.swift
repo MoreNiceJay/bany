@@ -26,10 +26,12 @@ class CommentVC: UIViewController, UITableViewDelegate {
     var postsArray = []
     
     @IBOutlet weak var deleteButton: UIButton!
-    override func viewDidLoad() {
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+    
         
 //        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 1000, 0)
-        super.viewDidLoad()
+       actInd.hidden = true
         
 //        titleLabel.text = object.valueForKey("titleText") as? String
         

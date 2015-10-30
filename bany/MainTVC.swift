@@ -19,9 +19,10 @@ class MainTVC: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        print(postsArray)
         
-                self.fetchAllObjectsFromLocalDataStore()
+        self.fetchAllObjectsFromLocalDataStore()
+        self.fetchAllObjects()
+        
     }
     
 //    @IBAction func segmentTapped(sender: AnyObject) {
@@ -135,17 +136,19 @@ class MainTVC: UITableViewController {
 
     func fetchAllObjectsFromLocalDataStore() {
         //empty postArray
-        postsArray = []
+       // postsArray = []
         
         //bring data from parse
         let query = PFQuery(className: "Posts")
         query.fromLocalDatastore()
-        query.orderByAscending("createdAt")
+        
+        query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
             if error == nil && objects != nil{
                 for object in objects! {
                     
                     self.postsArray.append(object)
+                    
                     self.tableView.reloadData()
                     
                 }
@@ -157,16 +160,15 @@ class MainTVC: UITableViewController {
         }
     }
   
-    func bringAllDatafromParse() {
+    func fetchAllObjects() {
     
         PFObject.unpinAllObjectsInBackgroundWithBlock(nil)
-        //empty postArray
-        postsArray = []
+        //postsArray = []
         
         //bring data from parse
         let query = PFQuery(className: "Posts")
-      
-        query.orderByAscending("createdAt")
+        query.limit = 1000
+        query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
             if error == nil && objects != nil{
                 
@@ -175,6 +177,8 @@ class MainTVC: UITableViewController {
                     self.fetchAllObjectsFromLocalDataStore()
                 
                 self.tableView.reloadData()
+            }else{
+                print(error?.userInfo)
             }
          
             
@@ -189,23 +193,9 @@ class MainTVC: UITableViewController {
     }
    
     
-//    func bringCategoryDataFromParse(category : Int) {
-//    
-//        let query = PFQuery(className: "Posts")
-//        query.whereKey("category", equalTo: category)
-//        query.orderByAscending("createdAt")
-//        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
-//            if error == nil && objects != nil{
-//                for object : PFObject in objects! {
-//                    self.postsArray.addObject(object)
-//                }
-//                let array : Array = self.postsArray.reverseObjectEnumerator().allObjects
-//                
-//                self.postsArray = array as! NSMutableArray
-//                self.tableView.reloadData()
-//            }
-//        }
-//    }
+    func bringCategoryDataFromParse(category : Int) {
+    
+            }
 
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

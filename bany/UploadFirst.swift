@@ -49,6 +49,8 @@ class  UploadFirst: UITableViewController {
             otherSwitch.on = false
             titleLabel.text = "book title"
             classLabel.text = "class/author"
+            titleTextField.placeholder  = ""
+            titleTextField.text = ""
             tagTextField.placeholder = "ex) Acom203 / author name"
             
         }
@@ -60,9 +62,12 @@ class  UploadFirst: UITableViewController {
             category = 2
             bookSwitch.on = false
             otherSwitch.on = false
-            titleTextField.text = "iclicker"
+            titleTextField.text = "Iclicker"
+            titleTextField.placeholder  = ""
             classLabel.text = "battery"
             tagTextField.placeholder = "ex) no battery / yes battery"
+            titleLabel.text = "Iclicker"
+
 
             
         }
@@ -75,8 +80,9 @@ class  UploadFirst: UITableViewController {
             category = 3
             bookSwitch.on = false
             iclickerSwitch.on = false
-            titleLabel.text = "brand/product"
-            classLabel.text = "model#/sort"
+            titleLabel.text = "Brand/Product"
+            classLabel.text = "Model#/Sort"
+            titleTextField.text = ""
             titleTextField.placeholder  = "ex) Apple MacPro"
             tagTextField.placeholder = "ex) a1347 / laptop"
         }
