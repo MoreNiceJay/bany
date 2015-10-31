@@ -11,6 +11,7 @@ import Parse
 
 class MainTVC: UITableViewController {
     
+    @IBOutlet weak var actInd: UIActivityIndicatorView!
     @IBOutlet weak var categorySegment: UISegmentedControl!
    
    var postsArray = [PFObject]()
@@ -21,7 +22,7 @@ class MainTVC: UITableViewController {
         super.viewWillAppear(true)
         
         self.fetchAllObjectsFromLocalDataStore()
-        self.fetchAllObjects()
+      //  self.fetchAllObjects()
         
     }
     
@@ -136,11 +137,11 @@ class MainTVC: UITableViewController {
 
     func fetchAllObjectsFromLocalDataStore() {
         //empty postArray
-       // postsArray = []
+        postsArray = []
         
         //bring data from parse
         let query = PFQuery(className: "Posts")
-        query.fromLocalDatastore()
+        query.limit = 10
         
         query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
@@ -149,8 +150,10 @@ class MainTVC: UITableViewController {
                     
                     self.postsArray.append(object)
                     
+                  dispatch_async(dispatch_get_main_queue(),{
                     self.tableView.reloadData()
-                    
+                  })
+                
                 }
             }else{
                 print(error?.localizedDescription)
@@ -160,37 +163,38 @@ class MainTVC: UITableViewController {
         }
     }
   
-    func fetchAllObjects() {
-    
-        PFObject.unpinAllObjectsInBackgroundWithBlock(nil)
-        //postsArray = []
-        
-        //bring data from parse
-        let query = PFQuery(className: "Posts")
-        query.limit = 1000
-        query.orderByDescending("createdAt")
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
-            if error == nil && objects != nil{
-                
-
-                   PFObject.pinAllInBackground(objects, block: nil)
-                    self.fetchAllObjectsFromLocalDataStore()
-                
-                self.tableView.reloadData()
-            }else{
-                print(error?.userInfo)
-            }
-         
-            
-        }
-        
-        
-        
-        
-        
-
-
-    }
+//    func fetchAllObjects() {
+//    
+//       // PFObject.unpinAllObjectsInBackgroundWithBlock(nil)
+//        //postsArray = []
+//        
+//        //bring data from parse
+//        let query = PFQuery(className: "Posts")
+//        //query.limit = 1000
+//        query.orderByDescending("createdAt")
+//          query.cachePolicy = .NetworkOnly
+//        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
+//            if error == nil && objects != nil{
+//                
+//
+//                   PFObject.pinAllInBackground(objects, block: nil)
+//                    self.fetchAllObjectsFromLocalDataStore()
+//                
+//                self.tableView.reloadData()
+//            }else{
+//                print(error?.userInfo)
+//            }
+//         
+//            
+//        }
+//        
+//        
+//        
+//        
+//        
+//
+//
+//    }
    
     
     func bringCategoryDataFromParse(category : Int) {

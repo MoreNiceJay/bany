@@ -16,13 +16,11 @@ class MyPost: UIViewController,  UITableViewDelegate {
     var myPostPic = [PFFile]()
     var myPostDate = [String]()
     var objectArray = [String]()
-    var postsArray : NSMutableArray = NSMutableArray()
+    var postsArray = [PFObject]()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        bringAllDatafromParse()
-        
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        fetchAllObjectsFromLocalDataStore()
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,44 +33,34 @@ class MyPost: UIViewController,  UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("myPostCell", forIndexPath: indexPath) as! MyPostTVCE
         
         
-       let postObjects = self.postsArray.objectAtIndex(indexPath.row) as! PFObject
+       let postObjects = self.postsArray[indexPath.row]
         
         
         
         
-        //솔드
-        cell.soldLabel.hidden = true
         
-        if (postObjects.objectForKey("sold") as! Bool) == true {
-            cell.soldLabel.hidden = false
-            
-        }
+        // Show sold label or not
+        cell.soldLabel.hidden = !(postObjects.objectForKey("sold") as! Bool)
         
-        
-        // 제목
-        cell.titleLabel.text = (postObjects.objectForKey("titleText") as! String)
+        // title Label of post
+        cell.titleLabel.text = postObjects.objectForKey("titleText") as? String
             
         
-        //솔드
-        cell.soldLabel.hidden = true
+        // Show sold label or not
+        cell.soldLabel.hidden = !(postObjects.objectForKey("sold") as! Bool)
         
-        if (postObjects.objectForKey("sold") as! Bool) == true {
-            cell.soldLabel.hidden = false
-            
-        }
-
-        
-        //시간
+        // time label for posts
         let dateFormatter:NSDateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM / dd / yy"
+        dateFormatter.dateFormat = "MM /dd /yy"
         cell.timeLabel.text = (dateFormatter.stringFromDate(postObjects.createdAt!))
-        // 가격
-        cell.priceLabel.text =  "$ " + (postObjects.objectForKey("priceText") as! String)
-        //이미지
         
+        // price label
+        let price = (postObjects.objectForKey("priceText") as! String)
+        cell.priceLabel.text = "   $\(price)"
+        
+
+        // main Image for post
         let mainImages = postObjects.objectForKey("front_image") as! PFFile
-        
-        
         mainImages.getDataInBackgroundWithBlock { (imageData, error) -> Void in
             let image = UIImage(data: imageData!)
             cell.mainImageView.image = image
@@ -81,7 +69,8 @@ class MyPost: UIViewController,  UITableViewDelegate {
         return cell
         
     }
-    
+
+
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -127,39 +116,40 @@ class MyPost: UIViewController,  UITableViewDelegate {
             
             let selectedRowIndex = self.tableView.indexPathForSelectedRow
             let destViewController : DetailVC = segue.destinationViewController as! DetailVC
-            destViewController.object = postsArray[(selectedRowIndex?.row)!] as! PFObject
+            destViewController.object = postsArray[(selectedRowIndex?.row)!] 
             
             
         }
+    
     }
 
-    
-    func bringAllDatafromParse() {
-        //activityIndicatorOn()
-        
-        
-        
+
+    func fetchAllObjectsFromLocalDataStore() {
+        //empty postArray
         postsArray = []
+        
+        //bring data from parse
         let query = PFQuery(className: "Posts")
+        //query.fromLocalDatastore()
         query.whereKey("uploader", equalTo: (PFUser.currentUser()?.objectId)!)
-                query.orderByAscending("createdAt")
+        query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
             if error == nil && objects != nil{
-                
-                for object : PFObject in objects! {
+                for object in objects! {
                     
-                    self.postsArray.addObject(object)
+                    self.postsArray.append(object)
                     
+                    dispatch_async(dispatch_get_main_queue(),{
+                        self.tableView.reloadData()
+                    })
                 }
-                
-                let array : Array = self.postsArray.reverseObjectEnumerator().allObjects
-                
-                
-                self.postsArray = array as! NSMutableArray
-                
+            }else{
+                print(error?.localizedDescription)
                 
             }
-            self.tableView.reloadData()
-      }
-    }
+        }
+
+        }
 }
+
+

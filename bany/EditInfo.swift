@@ -122,14 +122,13 @@ class EditInfo: UITableViewController, UIImagePickerControllerDelegate, UINaviga
                             user.setObject(phoneNumber, forKey: "phone_number")
                             user.setObject(name, forKey: "fullName")
                             user.setObject(nickName, forKey: "nickName")
-                            if( profilePhotoImageView.image != UIImage(named: "AvatarPlaceholder")) {
                                 let scaledImage = scaleImageWith(profileIamge, newSize: CGSizeMake(50, 50))
                                 let profileImageData = UIImagePNGRepresentation(scaledImage)
                                 let profileImageFile = PFFile(name: "profile.png", data : profileImageData!)
                                 
                                 user.setObject(profileImageFile, forKey: "profile_picture")
                                 
-                            }
+                            
                             user.saveInBackgroundWithBlock { (success, error) -> Void in
                                 self.stopActivityIndicator()
                                 

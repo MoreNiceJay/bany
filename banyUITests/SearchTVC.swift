@@ -35,7 +35,7 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
         self.myTable.tableHeaderView = self.resultSearchController.searchBar
         self.myTable.reloadData()
         
-        self.bringAllDatafromParse()
+        self.fetchAllObjectsFromLocalDataStore()
         
     }
 
@@ -253,35 +253,40 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
 //    
 //    }
     
-    func bringAllDatafromParse() {
-        //activityIndicatorOn()
-        
-        
-        
-        postsArray = []
-        let query = PFQuery(className: "Posts")
-        
-        query.orderByAscending("createdAt")
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
-            if error == nil && objects != nil{
-                
-                for object : PFObject in objects! {
-                    
-                    self.postsArray.append(object)
-                    self.myTable.reloadData()
-                    
-                }
-                            }
-            
-
-        
-    }
+    func fetchAllObjectsFromLocalDataStore() {
+    //empty postArray
+    postsArray = []
     
-        
-        
-        
+    //bring data from parse
+    let query = PFQuery(className: "Posts")
+    //query.fromLocalDatastore()
+    
+    query.orderByDescending("createdAt")
+    query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
+        if error == nil && objects != nil{
+            for object in objects! {
+                
+                self.postsArray.append(object)
+                
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.myTable.reloadData()
+                })
+                
+            }
+        }else{
+            print(error?.localizedDescription)
+            
+            
+        }
+    }
+}
+
+
+
+
+
 //        let query = PFQuery(className: "Posts")
-//        
+//
 //        query.findObjectsInBackgroundWithBlock { (posts, error) -> Void in
 //            if error == nil {
 //                
@@ -312,7 +317,9 @@ class SearchTVC: UIViewController, UITableViewDataSource ,UITableViewDelegate, U
 //            }
 //        }
     
-}
+
+
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if (segue.identifier == "searchToDetail") {

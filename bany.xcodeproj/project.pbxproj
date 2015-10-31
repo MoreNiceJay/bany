@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		69090AAA1BBDD81000C95F56 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69090AA91BBDD81000C95F56 /* DetailVC.swift */; settings = {ASSET_TAGS = (); }; };
-		69090AAC1BBE153500C95F56 /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69090AAB1BBE153500C95F56 /* CommentVC.swift */; settings = {ASSET_TAGS = (); }; };
-		690C23FE1BBC6D8400245554 /* MainTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690C23FD1BBC6D8400245554 /* MainTVCE.swift */; settings = {ASSET_TAGS = (); }; };
-		6923ADB31BCEEF2300DB733D /* CommentTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6923ADB21BCEEF2300DB733D /* CommentTVCE.swift */; settings = {ASSET_TAGS = (); }; };
-		693983211BCD768900ED28C1 /* FrontImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693983201BCD768900ED28C1 /* FrontImage.swift */; settings = {ASSET_TAGS = (); }; };
-		693983231BCD769600ED28C1 /* BackImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693983221BCD769600ED28C1 /* BackImage.swift */; settings = {ASSET_TAGS = (); }; };
-		6951A2441BC331560005796F /* MyPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6951A2431BC331560005796F /* MyPost.swift */; settings = {ASSET_TAGS = (); }; };
-		6951A2461BC338F70005796F /* MyPostTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6951A2451BC338F70005796F /* MyPostTVCE.swift */; settings = {ASSET_TAGS = (); }; };
+		69090AAA1BBDD81000C95F56 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69090AA91BBDD81000C95F56 /* DetailVC.swift */; };
+		69090AAC1BBE153500C95F56 /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69090AAB1BBE153500C95F56 /* CommentVC.swift */; };
+		690C23FE1BBC6D8400245554 /* MainTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690C23FD1BBC6D8400245554 /* MainTVCE.swift */; };
+		6923ADB31BCEEF2300DB733D /* CommentTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6923ADB21BCEEF2300DB733D /* CommentTVCE.swift */; };
+		693983211BCD768900ED28C1 /* FrontImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693983201BCD768900ED28C1 /* FrontImage.swift */; };
+		693983231BCD769600ED28C1 /* BackImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693983221BCD769600ED28C1 /* BackImage.swift */; };
+		6951A2441BC331560005796F /* MyPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6951A2431BC331560005796F /* MyPost.swift */; };
+		6951A2461BC338F70005796F /* MyPostTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6951A2451BC338F70005796F /* MyPostTVCE.swift */; };
 		6967287C1BB36CD90012723B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6967287B1BB36CD90012723B /* AppDelegate.swift */; };
 		6967287E1BB36CD90012723B /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6967287D1BB36CD90012723B /* LoginVC.swift */; };
 		696728801BB36CD90012723B /* UploadThird.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6967287F1BB36CD90012723B /* UploadThird.swift */; };
@@ -23,12 +23,12 @@
 		696728881BB36CD90012723B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 696728861BB36CD90012723B /* LaunchScreen.storyboard */; };
 		696728931BB36CD90012723B /* banyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696728921BB36CD90012723B /* banyTests.swift */; };
 		6967289E1BB36CD90012723B /* banyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6967289D1BB36CD90012723B /* banyUITests.swift */; };
-		696728B21BB373060012723B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728AB1BB373060012723B /* Bolts.framework */; settings = {ASSET_TAGS = (); }; };
-		696728B31BB373060012723B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728AC1BB373060012723B /* Parse.framework */; settings = {ASSET_TAGS = (); }; };
-		696728B41BB373060012723B /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728AD1BB373060012723B /* ParseCrashReporting.framework */; settings = {ASSET_TAGS = (); }; };
-		696728B61BB373060012723B /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728AF1BB373060012723B /* ParseFacebookUtilsV4.framework */; settings = {ASSET_TAGS = (); }; };
-		696728B71BB373060012723B /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728B01BB373060012723B /* ParseTwitterUtils.framework */; settings = {ASSET_TAGS = (); }; };
-		696728B81BB373060012723B /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728B11BB373060012723B /* ParseUI.framework */; settings = {ASSET_TAGS = (); }; };
+		696728B21BB373060012723B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728AB1BB373060012723B /* Bolts.framework */; };
+		696728B31BB373060012723B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728AC1BB373060012723B /* Parse.framework */; };
+		696728B41BB373060012723B /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728AD1BB373060012723B /* ParseCrashReporting.framework */; };
+		696728B61BB373060012723B /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728AF1BB373060012723B /* ParseFacebookUtilsV4.framework */; };
+		696728B71BB373060012723B /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728B01BB373060012723B /* ParseTwitterUtils.framework */; };
+		696728B81BB373060012723B /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728B11BB373060012723B /* ParseUI.framework */; };
 		696728BB1BB3734C0012723B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728BA1BB3734C0012723B /* AudioToolbox.framework */; };
 		696728BD1BB373530012723B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728BC1BB373530012723B /* CFNetwork.framework */; };
 		696728BF1BB3735A0012723B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728BE1BB3735A0012723B /* CoreGraphics.framework */; };
@@ -41,24 +41,24 @@
 		696728CD1BB3738F0012723B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728CC1BB3738F0012723B /* libsqlite3.tbd */; };
 		696728CF1BB373990012723B /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728CE1BB373990012723B /* Accounts.framework */; };
 		696728D11BB3739E0012723B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728D01BB3739E0012723B /* Social.framework */; };
-		696728D51BB37AA20012723B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728D21BB37AA20012723B /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
-		696728D61BB37AA20012723B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728D31BB37AA20012723B /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
-		696728D71BB37AA20012723B /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728D41BB37AA20012723B /* FBSDKShareKit.framework */; settings = {ASSET_TAGS = (); }; };
-		696728D91BB394D20012723B /* UserInfoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696728D81BB394D20012723B /* UserInfoTVC.swift */; settings = {ASSET_TAGS = (); }; };
-		697010E01BC1A8EC003D4400 /* WelcomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697010DF1BC1A8EC003D4400 /* WelcomVC.swift */; settings = {ASSET_TAGS = (); }; };
-		697010E21BC1B30F003D4400 /* EditInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697010E11BC1B30F003D4400 /* EditInfo.swift */; settings = {ASSET_TAGS = (); }; };
-		6988DC5C1BCABFC300573E51 /* UploadFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988DC5B1BCABFC300573E51 /* UploadFirst.swift */; settings = {ASSET_TAGS = (); }; };
-		6988DC5E1BCAC07200573E51 /* UploadSecond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988DC5D1BCAC07200573E51 /* UploadSecond.swift */; settings = {ASSET_TAGS = (); }; };
-		6988DC601BCAC09F00573E51 /* UploadFourth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988DC5F1BCAC09F00573E51 /* UploadFourth.swift */; settings = {ASSET_TAGS = (); }; };
-		699C663F1BD59A8000F9349C /* EditDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699C663E1BD59A8000F9349C /* EditDetailTVC.swift */; settings = {ASSET_TAGS = (); }; };
-		699C66431BD618E800F9349C /* MoreInfoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699C66421BD618E800F9349C /* MoreInfoTVC.swift */; settings = {ASSET_TAGS = (); }; };
-		69B8B30C1BC02FCF006DD579 /* SearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B8B30B1BC02FCF006DD579 /* SearchTVC.swift */; settings = {ASSET_TAGS = (); }; };
-		69B8B30F1BC058DD006DD579 /* SearchTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B8B30E1BC058DD006DD579 /* SearchTVCE.swift */; settings = {ASSET_TAGS = (); }; };
-		69BE912B1BB47AC8007E7010 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE912A1BB47AC8007E7010 /* SignUpVC.swift */; settings = {ASSET_TAGS = (); }; };
-		69BE91311BB5FB90007E7010 /* MainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE91301BB5FB90007E7010 /* MainTVC.swift */; settings = {ASSET_TAGS = (); }; };
-		69BE91331BB60502007E7010 /* PasswordRestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE91321BB60502007E7010 /* PasswordRestVC.swift */; settings = {ASSET_TAGS = (); }; };
-		69BE91351BB859D5007E7010 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE91341BB859D5007E7010 /* ForgotPasswordVC.swift */; settings = {ASSET_TAGS = (); }; };
-		69D19D8D1BE1C8C20096675A /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D19D8C1BE1C8C20096675A /* Data.swift */; settings = {ASSET_TAGS = (); }; };
+		696728D51BB37AA20012723B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728D21BB37AA20012723B /* FBSDKCoreKit.framework */; };
+		696728D61BB37AA20012723B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728D31BB37AA20012723B /* FBSDKLoginKit.framework */; };
+		696728D71BB37AA20012723B /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696728D41BB37AA20012723B /* FBSDKShareKit.framework */; };
+		696728D91BB394D20012723B /* UserInfoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696728D81BB394D20012723B /* UserInfoTVC.swift */; };
+		697010E01BC1A8EC003D4400 /* WelcomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697010DF1BC1A8EC003D4400 /* WelcomVC.swift */; };
+		697010E21BC1B30F003D4400 /* EditInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697010E11BC1B30F003D4400 /* EditInfo.swift */; };
+		6988DC5C1BCABFC300573E51 /* UploadFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988DC5B1BCABFC300573E51 /* UploadFirst.swift */; };
+		6988DC5E1BCAC07200573E51 /* UploadSecond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988DC5D1BCAC07200573E51 /* UploadSecond.swift */; };
+		6988DC601BCAC09F00573E51 /* UploadFourth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988DC5F1BCAC09F00573E51 /* UploadFourth.swift */; };
+		699C663F1BD59A8000F9349C /* EditDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699C663E1BD59A8000F9349C /* EditDetailTVC.swift */; };
+		699C66431BD618E800F9349C /* MoreInfoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699C66421BD618E800F9349C /* MoreInfoTVC.swift */; };
+		69B8B30C1BC02FCF006DD579 /* SearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B8B30B1BC02FCF006DD579 /* SearchTVC.swift */; };
+		69B8B30F1BC058DD006DD579 /* SearchTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B8B30E1BC058DD006DD579 /* SearchTVCE.swift */; };
+		69BE912B1BB47AC8007E7010 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE912A1BB47AC8007E7010 /* SignUpVC.swift */; };
+		69BE91311BB5FB90007E7010 /* MainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE91301BB5FB90007E7010 /* MainTVC.swift */; };
+		69BE91331BB60502007E7010 /* PasswordRestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE91321BB60502007E7010 /* PasswordRestVC.swift */; };
+		69BE91351BB859D5007E7010 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE91341BB859D5007E7010 /* ForgotPasswordVC.swift */; };
+		69D19D8D1BE1C8C20096675A /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D19D8C1BE1C8C20096675A /* Data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
