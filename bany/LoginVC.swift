@@ -112,7 +112,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         if (username?.utf16.count < 7 || password?.utf16.count < 6) {
            
            
-            self.alert("Invalid", message : "please write valid email and password")
+            self.alert("Invalid", message : "please write valid email address and password")
             buttonEnabled(loginButton)
             buttonEnabled(facebookButton)
             self.stopActivityIndicator()

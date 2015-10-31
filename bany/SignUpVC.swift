@@ -96,7 +96,7 @@ class SignUpVC: UIViewController {
                 //패스워드 두번 체크
                 if(userPassword != userPasswordConfirm)
                 {
-                    self.alert("Invalid", message : "Password are not mached")
+                    self.alert("Invalid", message : "Passwords are not mached")
                     buttonEnabled(facebookButton)
                     buttonEnabled(signUpButton)
                     stopActivityIndicator()
@@ -142,7 +142,7 @@ class SignUpVC: UIViewController {
                             self.performSegueWithIdentifier("resisterToMoreInfo", sender: self)
                             
                             
-                            self.alert("Welcome", message : "Succesully signed up!                         please go check email verificatoin")
+                            self.alert("Welcome", message : "Succesully signed up!")
                             
                             //개인정보 페이지로 보내기
                             self.buttonEnabled(self.facebookButton)

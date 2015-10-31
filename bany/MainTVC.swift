@@ -26,6 +26,14 @@ class MainTVC: UITableViewController {
         
     }
     
+    override func reloadInputViews() {
+        
+        print("begin reload")
+        super.reloadInputViews()
+        
+        print("end reload")
+    }
+    
 //    @IBAction func segmentTapped(sender: AnyObject) {
 //    
 //        // Empty postArray
@@ -136,12 +144,14 @@ class MainTVC: UITableViewController {
     }
 
     func fetchAllObjectsFromLocalDataStore() {
+        var limit = 0
+        var skip = 0
         //empty postArray
         postsArray = []
         
         //bring data from parse
         let query = PFQuery(className: "Posts")
-        query.limit = 10
+        query.limit = limit
         
         query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
@@ -150,10 +160,23 @@ class MainTVC: UITableViewController {
                     
                     self.postsArray.append(object)
                     
+                    if (objects!.count == limit){
+                        skip += limit
+                        query.skip = skip
+                        query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                            if error == nil && objects != nil {
+                                for object in objects! {
+                                     self.postsArray.append(object)
+                                }
+                            }
+                        })
+                    
+                    
+                    
                   dispatch_async(dispatch_get_main_queue(),{
                     self.tableView.reloadData()
                   })
-                
+                }
                 }
             }else{
                 print(error?.localizedDescription)
