@@ -45,7 +45,7 @@ class parsePractice : PFQueryTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         let cellIdentifier = "Cell1"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? parseCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? parseCell
         
         // Show sold label or not
         cell!.soldLabel.hidden = !(object!["sold"] as! Bool)
@@ -56,16 +56,9 @@ class parsePractice : PFQueryTableViewController {
         
         // price label
         let price = (object!["priceText"] as! String)
-        cell!.priceLable.text = "   $\(price)"
+        cell!.priceLable.text = " $\(price)"
         
 
-        // nick name of user
-        cell!.nickNameLabel.text = object!["username"] as? String
-        
-        if (object?["nickName"] as? String) != nil {
-            
-            cell!.nickNameLabel.text = object!["nickName"] as? String
-        }
         
         // time label for posts
         let dateFormatter:NSDateFormatter = NSDateFormatter()
@@ -80,19 +73,8 @@ class parsePractice : PFQueryTableViewController {
             cell?.mainPhoto.image = image
         }
         
-        //profile picture for user
-        cell!.profilePhoto.image = UIImage(named: "profile_image")
-        
-        if let profileImages = (object!["profile_picture"] as? PFFile){
-            profileImages.getDataInBackgroundWithBlock { (imageData, error) -> Void in
-                let image = UIImage(data: imageData!)
-                cell!.profilePhoto.image = image
-            }
-        }
-        circularImage(cell!.profilePhoto)
-
-
-//        if cell == nil {
+       
+//    if cell == nil {
 //            cell = PFTableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
 //        }
         
@@ -110,19 +92,12 @@ class parsePractice : PFQueryTableViewController {
             as! DetailVC
         if segue.identifier == "mainToDetail"{
          let indexPath = self.tableView.indexPathForSelectedRow
-            detailViewController.object! = self.objects![indexPath!.row] as! PFObject
-        
+            detailViewController.object = (self.objects![indexPath!.row] as! PFObject)
+        print((self.objects![indexPath!.row] as! PFObject))
         }
         
             
     }
     
-    
-    func circularImage(image : UIImageView) {
-        image.layer.cornerRadius = image.frame.size.width / 2
-        image.clipsToBounds  = true
-        image.layer.borderColor  = UIColor.blackColor().CGColor
-        image.layer.borderWidth = 1
-    }
-
+  
 }
