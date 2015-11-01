@@ -10,7 +10,10 @@ import UIKit
 import Parse
 import ParseUI
 
-class SearchPFTVC : PFQueryTableViewController {
+class SearchPFTVC : PFQueryTableViewController  {
+    
+   
+    
     
     override init(style: UITableViewStyle, className: String?) {
         super.init(style: style, className: className)
