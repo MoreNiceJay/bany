@@ -5,11 +5,11 @@
 //  Created by Lee Janghyup on 9/30/15.
 //  Copyright © 2015 jay. All rights reserved.
 //
-
 import UIKit
 import Parse
 import ParseUI
-class MainTVCE: UITableViewCell {
+
+class MainTVCE: PFTableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var nickNameLabel: UILabel!

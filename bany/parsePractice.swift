@@ -45,13 +45,13 @@ class parsePractice : PFQueryTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         let cellIdentifier = "Cell1"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? parseCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? MainTVCE
         
         // main Image for post
         let mainImages = object!["front_image"] as! PFFile
         mainImages.getDataInBackgroundWithBlock { (imageData, error) -> Void in
             let image = UIImage(data: imageData!)
-            cell?.mainImage.image = image
+            cell?.mainPhoto.image = image
         }
 
 //        if cell == nil {

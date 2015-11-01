@@ -33,8 +33,7 @@ class MainTVC: UITableViewController {
     override func reloadInputViews() {
         
         super.reloadInputViews()
-        fetchAllObjectsFromParse()
-
+        
         print("end reload")
     }
     
