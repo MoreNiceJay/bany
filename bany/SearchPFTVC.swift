@@ -1,5 +1,5 @@
 //
-//  MyPostPF.swift
+//  SearchPFTVC.swift
 //  bany
 //
 //  Created by Lee Janghyup on 11/1/15.
@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 
-class MyPostPF : PFQueryTableViewController {
+class SearchPFTVC : PFQueryTableViewController {
     
     override init(style: UITableViewStyle, className: String?) {
         super.init(style: style, className: className)
@@ -30,10 +30,8 @@ class MyPostPF : PFQueryTableViewController {
     
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
-        query.whereKey("uploader", equalTo: (PFUser.currentUser()?.objectId)!)
-
-        //query.whereKey("uploader", equalTo: (PFUser.currentUser()?.objectId)!)
-
+        
+        
         // If no objects are loaded in memory, we look to the cache first to fill the table
         // and then subsequently do a query against the network.
         //if self.objects!.count == 0 {
@@ -46,9 +44,9 @@ class MyPostPF : PFQueryTableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
-        let cellIdentifier = "myPostCell"
+        let cellIdentifier = "searchCell"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? MyPostPfTVCE
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? SearchPFTVCE
         
         // Show sold label or not
         cell!.soldLabel.hidden = !(object!["sold"] as! Bool)
@@ -78,23 +76,23 @@ class MyPostPF : PFQueryTableViewController {
         
         return cell
     }
-
     
-        //    if cell == nil {
-        //            cell = PFTableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
-        //        }
-        
-        //        // Configure the cell to show todo item with a priority at the bottom
-        //        if let object = object {
-        //            cell!.textLabel?.text = object["titleText"] as? String
-        //
-        //        }
-        
-            override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+    //    if cell == nil {
+    //            cell = PFTableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
+    //        }
+    
+    //        // Configure the cell to show todo item with a priority at the bottom
+    //        if let object = object {
+    //            cell!.textLabel?.text = object["titleText"] as? String
+    //
+    //        }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         let detailViewController = segue.destinationViewController
             as! DetailVC
-        if segue.identifier == "MyPostToDetail"{
+        if segue.identifier == "searchToDetail"{
             let indexPath = self.tableView.indexPathForSelectedRow
             detailViewController.object = (self.objects![indexPath!.row] as! PFObject)
             print((self.objects![indexPath!.row] as! PFObject))

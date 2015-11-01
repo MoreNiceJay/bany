@@ -84,7 +84,7 @@ class MoreInfoTVC: UITableViewController, UIImagePickerControllerDelegate, UINav
             }else{
                 
                 if !(name.utf16.count < 25 && name.utf16.count > 2) {
-                    alert("Invalid", message : "nickname must be  3 ~ 24 characters")
+                    alert("Invalid", message : "Your name must be  3 ~ 24 characters")
                     
                     buttonEnabled(saveButton)
                     stopActivityIndicator()
@@ -94,7 +94,7 @@ class MoreInfoTVC: UITableViewController, UIImagePickerControllerDelegate, UINav
             
             if !(phoneNumber.utf16.count == 10  ) {
                 // 3보다 크고 16보다 작은게 아니라면
-                alert("Invalid", message : "phoneNumber 10")
+                alert("Invalid", message : "PhoneNumber must be 10 digit")
                 
                 buttonEnabled(saveButton)
                 stopActivityIndicator()
@@ -104,7 +104,7 @@ class MoreInfoTVC: UITableViewController, UIImagePickerControllerDelegate, UINav
                 
                 if !(email.utf16.count > 7 ) {
                     
-                    alert("Invalid", message : "email more than 7")
+                    alert("Invalid", message : "Email must be a valid form")
                     
                     buttonEnabled(saveButton)
                     stopActivityIndicator()

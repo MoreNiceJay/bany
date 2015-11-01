@@ -50,6 +50,8 @@
 		696728D91BB394D20012723B /* UserInfoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696728D81BB394D20012723B /* UserInfoTVC.swift */; };
 		697010E01BC1A8EC003D4400 /* WelcomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697010DF1BC1A8EC003D4400 /* WelcomVC.swift */; };
 		697010E21BC1B30F003D4400 /* EditInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697010E11BC1B30F003D4400 /* EditInfo.swift */; };
+		697AC45E1BE6B99900ED1D6D /* searchPFTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697AC45D1BE6B99900ED1D6D /* searchPFTVCE.swift */; };
+		697AC4601BE6B9AE00ED1D6D /* SearchPFTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697AC45F1BE6B9AE00ED1D6D /* SearchPFTVC.swift */; };
 		6988DC5C1BCABFC300573E51 /* UploadFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988DC5B1BCABFC300573E51 /* UploadFirst.swift */; };
 		6988DC5E1BCAC07200573E51 /* UploadSecond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988DC5D1BCAC07200573E51 /* UploadSecond.swift */; };
 		6988DC601BCAC09F00573E51 /* UploadFourth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988DC5F1BCAC09F00573E51 /* UploadFourth.swift */; };
@@ -133,6 +135,8 @@
 		696728D81BB394D20012723B /* UserInfoTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTVC.swift; sourceTree = "<group>"; };
 		697010DF1BC1A8EC003D4400 /* WelcomVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomVC.swift; sourceTree = "<group>"; };
 		697010E11BC1B30F003D4400 /* EditInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditInfo.swift; sourceTree = "<group>"; };
+		697AC45D1BE6B99900ED1D6D /* searchPFTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchPFTVCE.swift; sourceTree = "<group>"; };
+		697AC45F1BE6B9AE00ED1D6D /* SearchPFTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPFTVC.swift; sourceTree = "<group>"; };
 		6988DC5B1BCABFC300573E51 /* UploadFirst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadFirst.swift; sourceTree = "<group>"; };
 		6988DC5D1BCAC07200573E51 /* UploadSecond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadSecond.swift; sourceTree = "<group>"; };
 		6988DC5F1BCAC09F00573E51 /* UploadFourth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadFourth.swift; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 		690256AD1BE5D9630045F19E /* 일단 */ = {
 			isa = PBXGroup;
 			children = (
+				6951A2431BC331560005796F /* MyPost.swift */,
+				6951A2451BC338F70005796F /* MyPostTVCE.swift */,
 				69BE91301BB5FB90007E7010 /* MainTVC.swift */,
 				690C23FD1BBC6D8400245554 /* MainTVCE.swift */,
 			);
@@ -319,6 +325,8 @@
 		69B8B30D1BC05646006DD579 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				697AC45F1BE6B9AE00ED1D6D /* SearchPFTVC.swift */,
+				697AC45D1BE6B99900ED1D6D /* searchPFTVCE.swift */,
 				69B8B30B1BC02FCF006DD579 /* SearchTVC.swift */,
 				69B8B30E1BC058DD006DD579 /* SearchTVCE.swift */,
 			);
@@ -343,8 +351,6 @@
 				69BE91321BB60502007E7010 /* PasswordRestVC.swift */,
 				697010DF1BC1A8EC003D4400 /* WelcomVC.swift */,
 				697010E11BC1B30F003D4400 /* EditInfo.swift */,
-				6951A2431BC331560005796F /* MyPost.swift */,
-				6951A2451BC338F70005796F /* MyPostTVCE.swift */,
 				690256A51BE497EA0045F19E /* SuggestUsTVC.swift */,
 				69E190151BE62FF100B576D6 /* MyPostPF.swift */,
 				69E190171BE63D9D00B576D6 /* MyPostPfTVCE.swift */,
@@ -493,6 +499,7 @@
 				6988DC601BCAC09F00573E51 /* UploadFourth.swift in Sources */,
 				697010E21BC1B30F003D4400 /* EditInfo.swift in Sources */,
 				690256AC1BE5C6AE0045F19E /* parseCell.swift in Sources */,
+				697AC45E1BE6B99900ED1D6D /* searchPFTVCE.swift in Sources */,
 				696728801BB36CD90012723B /* UploadThird.swift in Sources */,
 				699C66431BD618E800F9349C /* MoreInfoTVC.swift in Sources */,
 				69090AAA1BBDD81000C95F56 /* DetailVC.swift in Sources */,
@@ -509,6 +516,7 @@
 				69BE91311BB5FB90007E7010 /* MainTVC.swift in Sources */,
 				69D19D8D1BE1C8C20096675A /* Data.swift in Sources */,
 				69090AAC1BBE153500C95F56 /* CommentVC.swift in Sources */,
+				697AC4601BE6B9AE00ED1D6D /* SearchPFTVC.swift in Sources */,
 				69BE91351BB859D5007E7010 /* ForgotPasswordVC.swift in Sources */,
 				69E190181BE63D9D00B576D6 /* MyPostPfTVCE.swift in Sources */,
 				69B8B30C1BC02FCF006DD579 /* SearchTVC.swift in Sources */,

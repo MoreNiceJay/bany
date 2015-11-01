@@ -1,8 +1,8 @@
 //
-//  SearchTVCE.swift
+//  searchPFTVCE.swift
 //  bany
 //
-//  Created by Lee Janghyup on 10/3/15.
+//  Created by Lee Janghyup on 11/1/15.
 //  Copyright © 2015 jay. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 
-class SearchTVCE: PFTableViewCell {
+class SearchPFTVCE: PFTableViewCell {
     
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var soldLabel: UILabel!
