@@ -13,7 +13,15 @@ import ParseUI
 class parseCell: PFTableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var mainImage: UIImageView!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var priceLable: UILabel!
+    
+    @IBOutlet weak var soldLabel: UILabel!
+    @IBOutlet weak var mainPhoto: UIImageView!
+    @IBOutlet weak var nickNameLabel: UILabel!
+    @IBOutlet weak var profilePhoto: UIImageView!
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

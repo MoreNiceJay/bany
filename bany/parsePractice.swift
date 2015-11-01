@@ -45,14 +45,52 @@ class parsePractice : PFQueryTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         let cellIdentifier = "Cell1"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? MainTVCE
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? parseCell
         
-        // main Image for post
+        // Show sold label or not
+        cell!.soldLabel.hidden = !(object!["sold"] as! Bool)
+        
+        
+        // title Label of post      
+        cell!.titleLabel.text = " " + (object!["titleText"] as! String)
+        
+        // price label
+        let price = (object!["priceText"] as! String)
+        cell!.priceLable.text = "   $\(price)"
+        
+
+        // nick name of user
+        cell!.nickNameLabel.text = object!["username"] as? String
+        
+        if (object?["nickName"] as? String) != nil {
+            
+            cell!.nickNameLabel.text = object!["nickName"] as? String
+        }
+        
+        // time label for posts
+        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM /dd /yy"
+        cell!.timeLabel.text = (dateFormatter.stringFromDate(object!.createdAt!))
+        
+        
+      //   main Image for post
         let mainImages = object!["front_image"] as! PFFile
         mainImages.getDataInBackgroundWithBlock { (imageData, error) -> Void in
             let image = UIImage(data: imageData!)
             cell?.mainPhoto.image = image
         }
+        
+        //profile picture for user
+        cell!.profilePhoto.image = UIImage(named: "profile_image")
+        
+        if let profileImages = (object!["profile_picture"] as? PFFile){
+            profileImages.getDataInBackgroundWithBlock { (imageData, error) -> Void in
+                let image = UIImage(data: imageData!)
+                cell!.profilePhoto.image = image
+            }
+        }
+        circularImage(cell!.profilePhoto)
+
 
 //        if cell == nil {
 //            cell = PFTableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
@@ -66,4 +104,25 @@ class parsePractice : PFQueryTableViewController {
         
         return cell
     }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let detailViewController = segue.destinationViewController
+            as! DetailVC
+        if segue.identifier == "mainToDetail"{
+         let indexPath = self.tableView.indexPathForSelectedRow
+            detailViewController.object! = self.objects![indexPath!.row] as! PFObject
+        
+        }
+        
+            
+    }
+    
+    
+    func circularImage(image : UIImageView) {
+        image.layer.cornerRadius = image.frame.size.width / 2
+        image.clipsToBounds  = true
+        image.layer.borderColor  = UIColor.blackColor().CGColor
+        image.layer.borderWidth = 1
+    }
+
 }

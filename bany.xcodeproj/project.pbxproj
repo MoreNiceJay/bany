@@ -191,11 +191,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		690C23FC1BBC6C5B00245554 /* MainHome */ = {
+		690256AD1BE5D9630045F19E /* 일단 */ = {
 			isa = PBXGroup;
 			children = (
 				69BE91301BB5FB90007E7010 /* MainTVC.swift */,
 				690C23FD1BBC6D8400245554 /* MainTVCE.swift */,
+			);
+			name = "일단";
+			sourceTree = "<group>";
+		};
+		690C23FC1BBC6C5B00245554 /* MainHome */ = {
+			isa = PBXGroup;
+			children = (
+				690256AD1BE5D9630045F19E /* 일단 */,
 				69090AA91BBDD81000C95F56 /* DetailVC.swift */,
 				69090AAB1BBE153500C95F56 /* CommentVC.swift */,
 				6923ADB21BCEEF2300DB733D /* CommentTVCE.swift */,

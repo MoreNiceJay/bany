@@ -120,7 +120,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             self.passwordField.text = ""
         } else {
             
-            
             PFUser.logInWithUsernameInBackground(username!, password: password!, block: { (user, error) -> Void in
                 
                 
