@@ -30,7 +30,7 @@ class MyPostPF : PFQueryTableViewController {
     
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
-        query.whereKey("uploader", equalTo: (PFUser.currentUser()?.objectId)!)
+        //query.whereKey("uploader", equalTo: (PFUser.currentUser()?.objectId)!)
 
         // If no objects are loaded in memory, we look to the cache first to fill the table
         // and then subsequently do a query against the network.
@@ -46,7 +46,7 @@ class MyPostPF : PFQueryTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         let cellIdentifier = "myPostCell"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? MyPostTVCE
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? MyPostPfTVCE
         
         // Show sold label or not
         cell!.soldLabel.hidden = !(object!["sold"] as! Bool)
@@ -74,7 +74,10 @@ class MyPostPF : PFQueryTableViewController {
             cell?.mainImageView.image = image
         }
         
-        
+        return cell
+    }
+
+    
         //    if cell == nil {
         //            cell = PFTableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
         //        }
@@ -85,13 +88,11 @@ class MyPostPF : PFQueryTableViewController {
         //
         //        }
         
-        return cell
-    }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+            override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         let detailViewController = segue.destinationViewController
             as! DetailVC
-        if segue.identifier == "mainToDetail"{
+        if segue.identifier == "MyPostToDetail"{
             let indexPath = self.tableView.indexPathForSelectedRow
             detailViewController.object = (self.objects![indexPath!.row] as! PFObject)
             print((self.objects![indexPath!.row] as! PFObject))

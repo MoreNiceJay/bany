@@ -63,6 +63,7 @@
 		69BE91351BB859D5007E7010 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE91341BB859D5007E7010 /* ForgotPasswordVC.swift */; };
 		69D19D8D1BE1C8C20096675A /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D19D8C1BE1C8C20096675A /* Data.swift */; };
 		69E190161BE62FF100B576D6 /* MyPostPF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E190151BE62FF100B576D6 /* MyPostPF.swift */; };
+		69E190181BE63D9D00B576D6 /* MyPostPfTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E190171BE63D9D00B576D6 /* MyPostPfTVCE.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +146,7 @@
 		69BE91341BB859D5007E7010 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		69D19D8C1BE1C8C20096675A /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		69E190151BE62FF100B576D6 /* MyPostPF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostPF.swift; sourceTree = "<group>"; };
+		69E190171BE63D9D00B576D6 /* MyPostPfTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostPfTVCE.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,9 +344,10 @@
 				697010DF1BC1A8EC003D4400 /* WelcomVC.swift */,
 				697010E11BC1B30F003D4400 /* EditInfo.swift */,
 				6951A2431BC331560005796F /* MyPost.swift */,
+				6951A2451BC338F70005796F /* MyPostTVCE.swift */,
 				690256A51BE497EA0045F19E /* SuggestUsTVC.swift */,
 				69E190151BE62FF100B576D6 /* MyPostPF.swift */,
-				6951A2451BC338F70005796F /* MyPostTVCE.swift */,
+				69E190171BE63D9D00B576D6 /* MyPostPfTVCE.swift */,
 			);
 			name = userInfo;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				69D19D8D1BE1C8C20096675A /* Data.swift in Sources */,
 				69090AAC1BBE153500C95F56 /* CommentVC.swift in Sources */,
 				69BE91351BB859D5007E7010 /* ForgotPasswordVC.swift in Sources */,
+				69E190181BE63D9D00B576D6 /* MyPostPfTVCE.swift in Sources */,
 				69B8B30C1BC02FCF006DD579 /* SearchTVC.swift in Sources */,
 				69BE91331BB60502007E7010 /* PasswordRestVC.swift in Sources */,
 			);
