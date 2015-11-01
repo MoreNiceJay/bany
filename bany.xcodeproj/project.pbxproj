@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		690256A61BE497EA0045F19E /* SuggestUsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690256A51BE497EA0045F19E /* SuggestUsTVC.swift */; };
-		690256A81BE585A60045F19E /* shipmentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690256A71BE585A60045F19E /* shipmentListViewController.swift */; };
+		690256AA1BE591000045F19E /* parsePractice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690256A91BE591000045F19E /* parsePractice.swift */; };
+		690256AC1BE5C6AE0045F19E /* parseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690256AB1BE5C6AE0045F19E /* parseCell.swift */; };
 		69090AAA1BBDD81000C95F56 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69090AA91BBDD81000C95F56 /* DetailVC.swift */; };
 		69090AAC1BBE153500C95F56 /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69090AAB1BBE153500C95F56 /* CommentVC.swift */; };
 		690C23FE1BBC6D8400245554 /* MainTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690C23FD1BBC6D8400245554 /* MainTVCE.swift */; };
@@ -82,7 +83,8 @@
 
 /* Begin PBXFileReference section */
 		690256A51BE497EA0045F19E /* SuggestUsTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestUsTVC.swift; sourceTree = "<group>"; };
-		690256A71BE585A60045F19E /* shipmentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shipmentListViewController.swift; sourceTree = "<group>"; };
+		690256A91BE591000045F19E /* parsePractice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = parsePractice.swift; sourceTree = "<group>"; };
+		690256AB1BE5C6AE0045F19E /* parseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = parseCell.swift; sourceTree = "<group>"; };
 		69090AA91BBDD81000C95F56 /* DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		69090AAB1BBE153500C95F56 /* CommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentVC.swift; sourceTree = "<group>"; };
 		690C23FD1BBC6D8400245554 /* MainTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTVCE.swift; sourceTree = "<group>"; };
@@ -200,7 +202,8 @@
 				693983201BCD768900ED28C1 /* FrontImage.swift */,
 				693983221BCD769600ED28C1 /* BackImage.swift */,
 				699C663E1BD59A8000F9349C /* EditDetailTVC.swift */,
-				690256A71BE585A60045F19E /* shipmentListViewController.swift */,
+				690256A91BE591000045F19E /* parsePractice.swift */,
+				690256AB1BE5C6AE0045F19E /* parseCell.swift */,
 			);
 			name = MainHome;
 			sourceTree = "<group>";
@@ -465,7 +468,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				690256A81BE585A60045F19E /* shipmentListViewController.swift in Sources */,
 				6923ADB31BCEEF2300DB733D /* CommentTVCE.swift in Sources */,
 				690C23FE1BBC6D8400245554 /* MainTVCE.swift in Sources */,
 				693983211BCD768900ED28C1 /* FrontImage.swift in Sources */,
@@ -476,12 +478,14 @@
 				69B8B30F1BC058DD006DD579 /* SearchTVCE.swift in Sources */,
 				6988DC601BCAC09F00573E51 /* UploadFourth.swift in Sources */,
 				697010E21BC1B30F003D4400 /* EditInfo.swift in Sources */,
+				690256AC1BE5C6AE0045F19E /* parseCell.swift in Sources */,
 				696728801BB36CD90012723B /* UploadThird.swift in Sources */,
 				699C66431BD618E800F9349C /* MoreInfoTVC.swift in Sources */,
 				69090AAA1BBDD81000C95F56 /* DetailVC.swift in Sources */,
 				6988DC5E1BCAC07200573E51 /* UploadSecond.swift in Sources */,
 				696728D91BB394D20012723B /* UserInfoTVC.swift in Sources */,
 				6951A2461BC338F70005796F /* MyPostTVCE.swift in Sources */,
+				690256AA1BE591000045F19E /* parsePractice.swift in Sources */,
 				6967287C1BB36CD90012723B /* AppDelegate.swift in Sources */,
 				69BE912B1BB47AC8007E7010 /* SignUpVC.swift in Sources */,
 				6967287E1BB36CD90012723B /* LoginVC.swift in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9pv-A4-QxB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -380,16 +380,16 @@
                         <viewControllerLayoutGuide type="bottom" id="TRq-hd-nas"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xMd-AP-vbV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3ug-Iq-3fH">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="myCell" rowHeight="63" id="kus-1q-5U1" customClass="SearchTVCE" customModule="bany" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="414" height="63"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="63"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kus-1q-5U1" id="6gD-Rm-LsR">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="62"/>
@@ -2717,7 +2717,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H5i-KK-N66" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2839" y="-407"/>
+            <point key="canvasLocation" x="2950" y="-410"/>
         </scene>
         <!--post-->
         <scene sceneID="PT5-aT-tQB">
@@ -3968,7 +3968,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6Pe-av-hpy"/>
-        <segue reference="Oev-0J-NiN"/>
-        <segue reference="EbQ-LY-hfU"/>
+        <segue reference="4ln-8p-Ekj"/>
+        <segue reference="fL3-VU-BgV"/>
     </inferredMetricsTieBreakers>
 </document>

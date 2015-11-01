@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import Parse
+import ParseUI
 class MainTVCE: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!

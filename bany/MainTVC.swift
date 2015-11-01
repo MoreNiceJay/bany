@@ -13,6 +13,10 @@ class MainTVC: UITableViewController {
     
     @IBOutlet weak var actInd: UIActivityIndicatorView!
     @IBOutlet weak var categorySegment: UISegmentedControl!
+    
+    
+    var limit = 10
+    var skip = 0
    
    var postsArray = [PFObject]()
     
@@ -21,18 +25,70 @@ class MainTVC: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        self.fetchAllObjectsFromLocalDataStore()
-      //  self.fetchAllObjects()
+        self.fetchAllObjectsFromParse()
+   
         
     }
     
     override func reloadInputViews() {
         
-        print("begin reload")
         super.reloadInputViews()
-        
+        fetchAllObjectsFromParse()
+
         print("end reload")
     }
+    
+    
+    
+    func fetchAllObjectsFromParse() {
+        
+        //empty postArray
+        postsArray = []
+        
+        //bring data from parse
+        let query = PFQuery(className: "Posts")
+        query.limit = limit
+        
+        query.orderByDescending("createdAt")
+        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
+            if error == nil && objects != nil{
+                for object in objects! {
+                    
+                    self.postsArray.append(object)
+                                    }
+
+                    if (objects!.count == self.limit){
+                        
+                        let query = PFQuery(className: "Posts")
+                        self.skip += self.limit
+                        query.skip = self.skip
+                        query.limit = self.limit
+                        print(self.limit)
+                       print(self.skip)
+                        query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                            if error == nil && objects != nil {
+                                for object in objects! {
+                                    self.postsArray.append(object)
+                                    print(objects?.count)
+                                }
+                            }
+                        })
+                        
+                        
+                        
+                        dispatch_async(dispatch_get_main_queue(),{
+                            self.tableView.reloadData()
+                        })
+                    }
+                
+            }else{
+                print(error?.localizedDescription)
+                
+                
+            }
+        }
+    }
+    
     
 //    @IBAction func segmentTapped(sender: AnyObject) {
 //    
@@ -142,50 +198,6 @@ class MainTVC: UITableViewController {
         
         return cell
     }
-
-    func fetchAllObjectsFromLocalDataStore() {
-        var limit = 0
-        var skip = 0
-        //empty postArray
-        postsArray = []
-        
-        //bring data from parse
-        let query = PFQuery(className: "Posts")
-        query.limit = limit
-        
-        query.orderByDescending("createdAt")
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error) -> Void in
-            if error == nil && objects != nil{
-                for object in objects! {
-                    
-                    self.postsArray.append(object)
-                    
-                    if (objects!.count == limit){
-                        skip += limit
-                        query.skip = skip
-                        query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-                            if error == nil && objects != nil {
-                                for object in objects! {
-                                     self.postsArray.append(object)
-                                }
-                            }
-                        })
-                    
-                    
-                    
-                  dispatch_async(dispatch_get_main_queue(),{
-                    self.tableView.reloadData()
-                  })
-                }
-                }
-            }else{
-                print(error?.localizedDescription)
-
-                
-            }
-        }
-    }
-  
 //    func fetchAllObjects() {
 //    
 //       // PFObject.unpinAllObjectsInBackgroundWithBlock(nil)
