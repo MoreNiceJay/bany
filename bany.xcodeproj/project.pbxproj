@@ -57,6 +57,7 @@
 		6988DC601BCAC09F00573E51 /* UploadFourth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6988DC5F1BCAC09F00573E51 /* UploadFourth.swift */; };
 		699C663F1BD59A8000F9349C /* EditDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699C663E1BD59A8000F9349C /* EditDetailTVC.swift */; };
 		699C66431BD618E800F9349C /* MoreInfoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699C66421BD618E800F9349C /* MoreInfoTVC.swift */; };
+		69A2CA101BE72F140043E9C4 /* TermsOfUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA0F1BE72F140043E9C4 /* TermsOfUse.swift */; };
 		69B8B30C1BC02FCF006DD579 /* SearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B8B30B1BC02FCF006DD579 /* SearchTVC.swift */; };
 		69B8B30F1BC058DD006DD579 /* SearchTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B8B30E1BC058DD006DD579 /* SearchTVCE.swift */; };
 		69BE912B1BB47AC8007E7010 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BE912A1BB47AC8007E7010 /* SignUpVC.swift */; };
@@ -142,6 +143,7 @@
 		6988DC5F1BCAC09F00573E51 /* UploadFourth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadFourth.swift; sourceTree = "<group>"; };
 		699C663E1BD59A8000F9349C /* EditDetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDetailTVC.swift; sourceTree = "<group>"; };
 		699C66421BD618E800F9349C /* MoreInfoTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoTVC.swift; sourceTree = "<group>"; };
+		69A2CA0F1BE72F140043E9C4 /* TermsOfUse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsOfUse.swift; sourceTree = "<group>"; };
 		69B8B30B1BC02FCF006DD579 /* SearchTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchTVC.swift; path = banyUITests/SearchTVC.swift; sourceTree = SOURCE_ROOT; };
 		69B8B30E1BC058DD006DD579 /* SearchTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTVCE.swift; sourceTree = "<group>"; };
 		69BE912A1BB47AC8007E7010 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				6967287D1BB36CD90012723B /* LoginVC.swift */,
 				69BE91341BB859D5007E7010 /* ForgotPasswordVC.swift */,
 				699C66421BD618E800F9349C /* MoreInfoTVC.swift */,
+				69A2CA0F1BE72F140043E9C4 /* TermsOfUse.swift */,
 			);
 			name = signUpLogin;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				690C23FE1BBC6D8400245554 /* MainTVCE.swift in Sources */,
 				693983211BCD768900ED28C1 /* FrontImage.swift in Sources */,
 				693983231BCD769600ED28C1 /* BackImage.swift in Sources */,
+				69A2CA101BE72F140043E9C4 /* TermsOfUse.swift in Sources */,
 				690256A61BE497EA0045F19E /* SuggestUsTVC.swift in Sources */,
 				697010E01BC1A8EC003D4400 /* WelcomVC.swift in Sources */,
 				6951A2441BC331560005796F /* MyPost.swift in Sources */,

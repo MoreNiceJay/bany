@@ -603,6 +603,99 @@
             </objects>
             <point key="canvasLocation" x="1939" y="1146"/>
         </scene>
+        <!--Terms Of Use-->
+        <scene sceneID="zMg-cL-N5u">
+            <objects>
+                <tableViewController id="eci-ue-KpC" customClass="TermsOfUse" customModule="bany" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="540" sectionHeaderHeight="18" sectionFooterHeight="18" id="i25-Gf-c1n">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection headerTitle="use of temrs" id="fSs-jP-oYa">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="1200" id="Nls-Hm-2Zz">
+                                        <rect key="frame" x="0.0" y="50" width="414" height="1200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nls-Hm-2Zz" id="Wio-Dj-vnk">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="1199"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifQ-Ql-4FB">
+                                                    <rect key="frame" x="8" y="58" width="398" height="1093"/>
+                                                    <animations/>
+                                                    <mutableString key="text">The following is an terms and conditions agreement (“Agreement”) between registered users (“Users”) and us. (“Bany”) that governs your access to and use of the application and Services. 
+
+Rights of the Users
+On Bany (the “App”), Users are able to use the following services (collectively “Services”), but not limited to: Browsing, Uploading and any of service.
+
+User must provide accurate information.. Failure to provide accurate information for     the use of the Site, the User’s account may be suspended or removed from the Site. 
+User is responsible for any activity including the use of Service, fraud, breach. Users are prohibited to sell, trade or transfer the Site’s account to another party. It is the responsibility of the User to keep confidential information from other parties.
+User may upload products using the App’s Uploading service.
+User may not send out any abusive, harassing, obscene, offensive, or insulting emails and text to other user.
+User may not use the App as a platform for unsolicited advertisement or personal advertisement.
+User and posts will be suspended or removed from the Site if the User abuse the Services for the purpose of the following, but not limited to: bulk electronic communications, advertisement, offense, or spam.
+User understands that all information will be exposed to other Users for using service.
+User is prohibited from the use, manipulation, distortion, and sales of any of App’s trademarks, Service symbols, logos, product names, algorithm, or other characteristic brand features, etc. User must ask permission from Bany (via banycustomer@gmail.com) to use aforementioned features. 
+
+Rights of Bany
+Bany collects the email address, personal Information and any other data.
+Users upon agreeing to the Agreement at registration. Personal Information is collected for the operation and improvement of the Services. Personal Information, may be provided to analytics for diagnosis for the improvement of the Services.
+Many may remove user account, information or any of other data without notice. 
+Bany may collect additional information from Users including the log, but not limited to username, physical address, social media information,, etc., which, when provided, will also be collectively defined as part of Personal Information.
+Personal Information may be provided to the outsourcing entity under mutual confidentiality agreement. 
+Bany may submit Personal Information to US government authorities or other third parties, when required by law. 
+Bany holds the right to add, amend, or remove any portion of the Rights and Terms of this Agreement at any time. Any adjustment to the Agreement will be notified via e-mail that is provided at registration. Bany is not responsible for the failure of notification due to filtering services or other reasons unintended by Bany. 
+Access to and the use of the Site and Services will be considered acceptance of the adjustments.
+
+
+
+Contact us
+If you have any questions, comments, or concerns regarding the Agreement, please email us at  banycustomer@gmail.com
+
+Effective Date
+This Agreement is effective November 10, 2015</mutableString>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAa-pD-5ry">
+                                                    <rect key="frame" x="355" y="22" width="34" height="30"/>
+                                                    <animations/>
+                                                    <state key="normal" title="Back"/>
+                                                    <connections>
+                                                        <action selector="backButtonTapped:" destination="eci-ue-KpC" eventType="touchUpInside" id="caa-ll-gYq"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="vAa-pD-5ry" secondAttribute="trailing" constant="17" id="8bp-eJ-hfW"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ifQ-Ql-4FB" secondAttribute="trailing" id="TH7-Mh-bTv"/>
+                                                <constraint firstItem="vAa-pD-5ry" firstAttribute="top" secondItem="Wio-Dj-vnk" secondAttribute="topMargin" constant="14" id="dJy-gF-Gj7"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ifQ-Ql-4FB" secondAttribute="bottom" constant="40" id="kii-0r-baI"/>
+                                                <constraint firstItem="ifQ-Ql-4FB" firstAttribute="top" secondItem="Wio-Dj-vnk" secondAttribute="topMargin" constant="50" id="n6c-qs-WAA"/>
+                                                <constraint firstItem="ifQ-Ql-4FB" firstAttribute="leading" secondItem="Wio-Dj-vnk" secondAttribute="leadingMargin" id="t4g-RR-xLw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="eci-ue-KpC" id="wH4-Y8-lC1"/>
+                            <outlet property="delegate" destination="eci-ue-KpC" id="Y6P-Nk-xvX"/>
+                        </connections>
+                    </tableView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="1200"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qc2-y5-n4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2041" y="-125"/>
+        </scene>
         <!--Sign up-->
         <scene sceneID="WDZ-tQ-FT7">
             <objects>
@@ -757,6 +850,9 @@
                                 <state key="normal" title="terms">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="eci-ue-KpC" kind="show" id="E6f-Mu-gUy"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2i-eb-8M1">
                                 <rect key="frame" x="162" y="65" width="90" height="90"/>
@@ -1260,7 +1356,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="GVK-hw-4Ne" kind="show" id="pDv-Z4-ZzZ"/>
+                                            <segue destination="q7h-a3-gvK" kind="show" id="pL1-kG-xTY"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="L1a-xM-9HJ">
@@ -1285,6 +1381,9 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="Rhd-Zs-wm2" kind="show" id="mfH-7g-s2Y"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1305,6 +1404,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KQD-iL-sgB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1903" y="1937"/>
+        </scene>
+        <!--About us-->
+        <scene sceneID="EAz-WW-BYK">
+            <objects>
+                <viewController id="Rhd-Zs-wm2" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MH8-2p-51D"/>
+                        <viewControllerLayoutGuide type="bottom" id="fuZ-7p-VE5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vS7-TS-LBZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="oSd-VA-Xh2">
+                                <rect key="frame" x="162" y="116" width="90" height="90"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="NCE-a7-gFi"/>
+                                    <constraint firstAttribute="height" constant="90" id="w6i-k8-1E4"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9D-Ct-tMi">
+                                <rect key="frame" x="28" y="225" width="359" height="342"/>
+                                <animations/>
+                                <string key="text">    We are students of SUNY Albany.   This is our first app, we would  upgrade this app gradually.  If you want to participate with us like designing, programing,  any other activity, send  us email. we need help.  I hope that this app help our students. Thank you.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bany" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vWx-x8-iHc">
+                                <rect key="frame" x="188" y="196" width="38" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.99036829699999995" green="0.87273203040000003" blue="0.15544769459999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="U9D-Ct-tMi" secondAttribute="trailing" constant="7" id="4sz-gu-oHI"/>
+                            <constraint firstItem="vWx-x8-iHc" firstAttribute="centerX" secondItem="oSd-VA-Xh2" secondAttribute="centerX" id="7li-oN-cI7"/>
+                            <constraint firstItem="fuZ-7p-VE5" firstAttribute="top" secondItem="U9D-Ct-tMi" secondAttribute="bottom" constant="120" id="AUy-mq-LcH"/>
+                            <constraint firstItem="U9D-Ct-tMi" firstAttribute="leading" secondItem="vS7-TS-LBZ" secondAttribute="leadingMargin" constant="8" id="Dyu-xm-j1Z"/>
+                            <constraint firstItem="vWx-x8-iHc" firstAttribute="top" secondItem="oSd-VA-Xh2" secondAttribute="bottom" constant="-10" id="FYn-Ge-tqu"/>
+                            <constraint firstItem="oSd-VA-Xh2" firstAttribute="top" secondItem="MH8-2p-51D" secondAttribute="bottom" constant="52" id="Gaz-Ar-qGD"/>
+                            <constraint firstItem="U9D-Ct-tMi" firstAttribute="top" secondItem="oSd-VA-Xh2" secondAttribute="bottom" constant="19" id="eqj-VU-Dd5"/>
+                            <constraint firstItem="oSd-VA-Xh2" firstAttribute="centerX" secondItem="vS7-TS-LBZ" secondAttribute="centerX" id="lwM-7V-9Z8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="About us" id="nRo-9T-Cqt"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4pO-dO-vfJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1880" y="2915"/>
         </scene>
         <!--Edit User Info-->
         <scene sceneID="1HB-0y-z1M">
@@ -1538,7 +1693,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NCC-YG-6ev" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4H6-uQ-bcr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2565" y="2119"/>
+            <point key="canvasLocation" x="2441" y="2175"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tZN-kE-m6b">
+            <objects>
+                <viewController id="q7h-a3-gvK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4nM-FP-p7y"/>
+                        <viewControllerLayoutGuide type="bottom" id="VuM-Ti-LMf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JeH-ON-BuF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="IzH-lZ-ig2">
+                                <rect key="frame" x="162" y="117" width="90" height="90"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="J8G-DB-jin"/>
+                                    <constraint firstAttribute="width" constant="90" id="Wv5-fQ-Vfw"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="banycustomer@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7P-AP-2EI">
+                                <rect key="frame" x="106" y="300" width="203" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.99036829699999995" green="0.87273203040000003" blue="0.15544769459999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="IzH-lZ-ig2" firstAttribute="centerX" secondItem="JeH-ON-BuF" secondAttribute="centerX" id="RyZ-aN-8AW"/>
+                            <constraint firstItem="Q7P-AP-2EI" firstAttribute="top" secondItem="IzH-lZ-ig2" secondAttribute="bottom" constant="93" id="btI-wT-ZBt"/>
+                            <constraint firstItem="Q7P-AP-2EI" firstAttribute="centerX" secondItem="IzH-lZ-ig2" secondAttribute="centerX" id="lfb-nt-T0u"/>
+                            <constraint firstItem="IzH-lZ-ig2" firstAttribute="top" secondItem="4nM-FP-p7y" secondAttribute="bottom" constant="97" id="rxA-rq-Jot"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PfW-9t-SnC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3028" y="2413"/>
         </scene>
         <!--Suggest UsTVC-->
         <scene sceneID="F2M-Qa-UNR">
@@ -1550,7 +1748,7 @@
                         <animations/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3CS-w9-EL2">
-                            <rect key="frame" x="0.0" y="425" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="361" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <color key="backgroundColor" red="0.99036829699999995" green="0.87273203040000003" blue="0.15544769459999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1566,7 +1764,7 @@
                             <tableViewSection headerTitle="YOUR email address" id="TVR-iF-UAj">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="h33-bx-LSM">
-                                        <rect key="frame" x="0.0" y="114" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h33-bx-LSM" id="O6X-bC-f5e">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
@@ -1594,7 +1792,7 @@
                             <tableViewSection headerTitle="suggestion?" id="DQk-UY-7xg">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="198" id="qLU-HM-UCT">
-                                        <rect key="frame" x="0.0" y="209" width="414" height="198"/>
+                                        <rect key="frame" x="0.0" y="145" width="414" height="198"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qLU-HM-UCT" id="42f-pr-0Be">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="197"/>
@@ -1633,7 +1831,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2o9-le-zdZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2528" y="2928"/>
+            <point key="canvasLocation" x="2139" y="-1557"/>
         </scene>
         <!--Reset Password-->
         <scene sceneID="ExC-47-rPd">
@@ -1751,7 +1949,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7IU-FD-R6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2010" y="3274"/>
+            <point key="canvasLocation" x="2373" y="2955"/>
         </scene>
         <!--Sell-->
         <scene sceneID="VaD-bm-UBj">
@@ -2406,22 +2604,10 @@
                                                         <constraint firstAttribute="height" constant="90" id="gVh-nS-Uxx"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZ8-rb-4Cb">
-                                                    <rect key="frame" x="8" y="87" width="201" height="45"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go trade at the lIbrary" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZ8-rb-4Cb">
+                                                    <rect key="frame" x="8" y="87" width="147" height="18"/>
                                                     <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="45" id="S3g-8D-Zsd"/>
-                                                        <constraint firstAttribute="width" constant="114" id="WOd-DV-pjm"/>
-                                                    </constraints>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="Go trade at the lIbrary">
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -2438,6 +2624,8 @@
                                                 <constraint firstItem="5ki-JE-9bq" firstAttribute="centerX" secondItem="3cv-Vw-bV6" secondAttribute="centerX" id="ljh-OK-43A"/>
                                                 <constraint firstAttribute="topMargin" secondItem="lo6-Sh-ftU" secondAttribute="top" id="nou-72-4dY"/>
                                                 <constraint firstItem="iIw-jx-F8o" firstAttribute="centerY" secondItem="5ki-JE-9bq" secondAttribute="centerY" id="obq-Gf-Q0n"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="iZ8-rb-4Cb" secondAttribute="leading" id="qFJ-ge-zKw"/>
+                                                <constraint firstItem="iZ8-rb-4Cb" firstAttribute="top" secondItem="lo6-Sh-ftU" secondAttribute="bottom" constant="-11" id="sdC-cK-QHC"/>
                                                 <constraint firstItem="3cv-Vw-bV6" firstAttribute="leading" secondItem="jft-Mu-BdI" secondAttribute="trailing" constant="8" id="sfF-GL-df5"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -4197,9 +4385,9 @@
         <image name="profile_image" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6Pe-av-hpy"/>
-        <segue reference="Nep-fx-Ehf"/>
-        <segue reference="EbQ-LY-hfU"/>
+        <segue reference="ITR-nX-yrf"/>
         <segue reference="ua6-ii-9wd"/>
+        <segue reference="qWc-Ge-R1W"/>
+        <segue reference="EbQ-LY-hfU"/>
     </inferredMetricsTieBreakers>
 </document>
