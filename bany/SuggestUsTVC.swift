@@ -128,6 +128,9 @@ class SuggestUsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    */override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+
 
 }

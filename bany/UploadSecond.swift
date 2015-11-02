@@ -120,6 +120,7 @@ performSegueWithIdentifier("uploadSecondToUploadThrid", sender: self)
         myAlert.addAction(okAction)
         self.presentViewController(myAlert, animated: true, completion: nil)
         
+        
     }
 //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 //        
@@ -212,6 +213,10 @@ performSegueWithIdentifier("uploadSecondToUploadThrid", sender: self)
         
         buttonName.enabled = false
     }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+
     
 
     

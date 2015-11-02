@@ -503,7 +503,10 @@ stopActivityIndicator()
                     //
                     
                     
-                    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+
     
-                    
+    
 }

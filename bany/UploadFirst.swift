@@ -81,10 +81,10 @@ class  UploadFirst: UITableViewController {
             bookSwitch.on = false
             iclickerSwitch.on = false
             titleLabel.text = "Product"
-            classLabel.text = "Model#/Sort"
+            classLabel.text = "Model #"
             titleTextField.text = ""
-            titleTextField.placeholder  = "Brand & Product ex) Apple Laptop"
-            tagTextField.placeholder = "ex) A1347 / Laptop"
+            titleTextField.placeholder  = "Brand & Product "
+            tagTextField.placeholder = "ex) A1347"
         }
         
     }
@@ -252,6 +252,10 @@ class  UploadFirst: UITableViewController {
         return true
         
     }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+
 
     
 }

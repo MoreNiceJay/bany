@@ -505,6 +505,10 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
         return true
         
     }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+
 
 
     

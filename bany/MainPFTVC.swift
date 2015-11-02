@@ -93,10 +93,14 @@ class MainPFTVC : PFQueryTableViewController {
         if segue.identifier == "mainToDetail"{
          let indexPath = self.tableView.indexPathForSelectedRow
             detailViewController.object = (self.objects![indexPath!.row] as! PFObject)
-        print((self.objects![indexPath!.row] as! PFObject))
+        
         }
         
             
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
   

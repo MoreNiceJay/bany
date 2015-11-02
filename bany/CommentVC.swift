@@ -222,6 +222,8 @@ class CommentVC: UIViewController, UITableViewDelegate {
         self.scrollView.contentSize.height = 1000
         self.scrollView.contentSize.width = 0
     }
+  
+
 
 }
 
