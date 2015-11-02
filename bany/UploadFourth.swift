@@ -320,6 +320,9 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
                 
             }else{
                 
+                var searchText = (titleText + " " + tagText + " " + descriptionText).lowercaseString
+
+                
                     //컨택 메소드 꼭 선택시키고 선택 할때 전화번호/이메일 맞는 지 확인시키기
                     
                     //스케일 조절
@@ -345,7 +348,11 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
                     post["back_image"] = parseBackFile
                     post["descriptionText"] = descriptionText
                     post["purchasedDate"] = purchasedDate
-               
+                    post["searchText"] = searchText
+                
+                
+                
+                
                 if let nickName = PFUser.currentUser()?.objectForKey("nickName") {
                     post["nickName"] = nickName
                 

@@ -10,9 +10,18 @@ import UIKit
 import Parse
 import ParseUI
 
-class SearchPFTVC : PFQueryTableViewController  {
+class SearchPFTVC : PFQueryTableViewController, UISearchBarDelegate,UISearchDisplayDelegate  {
     
+    @IBOutlet weak var searchBar: UISearchBar!
    
+    override func viewDidAppear(animated: Bool) {
+        
+        // Refresh the table to ensure any data changes are displayed
+        tableView.reloadData()
+        
+        // Delegate the search bar to this table view class
+        searchBar.delegate = self
+    }
     
     
     override init(style: UITableViewStyle, className: String?) {
@@ -33,7 +42,11 @@ class SearchPFTVC : PFQueryTableViewController  {
     
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
+            if searchBar.text != " " {
+                query.whereKey("searchText", containsString: searchBar.text!.lowercaseString)
+        }
         
+       
         
         // If no objects are loaded in memory, we look to the cache first to fill the table
         // and then subsequently do a query against the network.
@@ -56,7 +69,7 @@ class SearchPFTVC : PFQueryTableViewController  {
         
         
         // title Label of post
-        cell!.titleLabel.text = " " + (object!["titleText"] as! String)
+        cell!.titleLabel.text = (object!["titleText"] as! String) + " : " + (object!["tagText"] as! String)
         
         // price label
         let price = (object!["priceText"] as! String)
@@ -104,5 +117,34 @@ class SearchPFTVC : PFQueryTableViewController  {
         
     }
     
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        
+        // Dismiss the keyboard
+        searchBar.resignFirstResponder()
+        
+        // Force reload of table data
+        self.loadObjects()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
+        // Dismiss the keyboard
+        searchBar.resignFirstResponder()
+        
+        // Force reload of table data
+        self.loadObjects()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        
+        // Clear any search criteria
+        searchBar.text = ""
+        
+        // Dismiss the keyboard
+        searchBar.resignFirstResponder()
+        
+        // Force reload of table data
+        self.loadObjects()
+    }
     
 }

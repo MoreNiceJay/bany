@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		690256A61BE497EA0045F19E /* SuggestUsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690256A51BE497EA0045F19E /* SuggestUsTVC.swift */; };
-		690256AA1BE591000045F19E /* parsePractice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690256A91BE591000045F19E /* parsePractice.swift */; };
-		690256AC1BE5C6AE0045F19E /* parseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690256AB1BE5C6AE0045F19E /* parseCell.swift */; };
+		690256AA1BE591000045F19E /* MainPFTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690256A91BE591000045F19E /* MainPFTVC.swift */; };
+		690256AC1BE5C6AE0045F19E /* MainPFTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690256AB1BE5C6AE0045F19E /* MainPFTVCE.swift */; };
 		69090AAA1BBDD81000C95F56 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69090AA91BBDD81000C95F56 /* DetailVC.swift */; };
 		69090AAC1BBE153500C95F56 /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69090AAB1BBE153500C95F56 /* CommentVC.swift */; };
 		690C23FE1BBC6D8400245554 /* MainTVCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690C23FD1BBC6D8400245554 /* MainTVCE.swift */; };
@@ -87,8 +87,8 @@
 
 /* Begin PBXFileReference section */
 		690256A51BE497EA0045F19E /* SuggestUsTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestUsTVC.swift; sourceTree = "<group>"; };
-		690256A91BE591000045F19E /* parsePractice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = parsePractice.swift; sourceTree = "<group>"; };
-		690256AB1BE5C6AE0045F19E /* parseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = parseCell.swift; sourceTree = "<group>"; };
+		690256A91BE591000045F19E /* MainPFTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPFTVC.swift; sourceTree = "<group>"; };
+		690256AB1BE5C6AE0045F19E /* MainPFTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPFTVCE.swift; sourceTree = "<group>"; };
 		69090AA91BBDD81000C95F56 /* DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		69090AAB1BBE153500C95F56 /* CommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentVC.swift; sourceTree = "<group>"; };
 		690C23FD1BBC6D8400245554 /* MainTVCE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTVCE.swift; sourceTree = "<group>"; };
@@ -202,6 +202,8 @@
 		690256AD1BE5D9630045F19E /* 일단 */ = {
 			isa = PBXGroup;
 			children = (
+				69B8B30B1BC02FCF006DD579 /* SearchTVC.swift */,
+				69B8B30E1BC058DD006DD579 /* SearchTVCE.swift */,
 				6951A2431BC331560005796F /* MyPost.swift */,
 				6951A2451BC338F70005796F /* MyPostTVCE.swift */,
 				69BE91301BB5FB90007E7010 /* MainTVC.swift */,
@@ -220,8 +222,8 @@
 				693983201BCD768900ED28C1 /* FrontImage.swift */,
 				693983221BCD769600ED28C1 /* BackImage.swift */,
 				699C663E1BD59A8000F9349C /* EditDetailTVC.swift */,
-				690256A91BE591000045F19E /* parsePractice.swift */,
-				690256AB1BE5C6AE0045F19E /* parseCell.swift */,
+				690256A91BE591000045F19E /* MainPFTVC.swift */,
+				690256AB1BE5C6AE0045F19E /* MainPFTVCE.swift */,
 			);
 			name = MainHome;
 			sourceTree = "<group>";
@@ -327,8 +329,6 @@
 			children = (
 				697AC45F1BE6B9AE00ED1D6D /* SearchPFTVC.swift */,
 				697AC45D1BE6B99900ED1D6D /* searchPFTVCE.swift */,
-				69B8B30B1BC02FCF006DD579 /* SearchTVC.swift */,
-				69B8B30E1BC058DD006DD579 /* SearchTVCE.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -498,7 +498,7 @@
 				69B8B30F1BC058DD006DD579 /* SearchTVCE.swift in Sources */,
 				6988DC601BCAC09F00573E51 /* UploadFourth.swift in Sources */,
 				697010E21BC1B30F003D4400 /* EditInfo.swift in Sources */,
-				690256AC1BE5C6AE0045F19E /* parseCell.swift in Sources */,
+				690256AC1BE5C6AE0045F19E /* MainPFTVCE.swift in Sources */,
 				697AC45E1BE6B99900ED1D6D /* searchPFTVCE.swift in Sources */,
 				696728801BB36CD90012723B /* UploadThird.swift in Sources */,
 				699C66431BD618E800F9349C /* MoreInfoTVC.swift in Sources */,
@@ -506,7 +506,7 @@
 				6988DC5E1BCAC07200573E51 /* UploadSecond.swift in Sources */,
 				696728D91BB394D20012723B /* UserInfoTVC.swift in Sources */,
 				6951A2461BC338F70005796F /* MyPostTVCE.swift in Sources */,
-				690256AA1BE591000045F19E /* parsePractice.swift in Sources */,
+				690256AA1BE591000045F19E /* MainPFTVC.swift in Sources */,
 				6967287C1BB36CD90012723B /* AppDelegate.swift in Sources */,
 				69E190161BE62FF100B576D6 /* MyPostPF.swift in Sources */,
 				69BE912B1BB47AC8007E7010 /* SignUpVC.swift in Sources */,

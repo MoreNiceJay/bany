@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 
-class parseCell: PFTableViewCell {
+class MainPFTVCE: PFTableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!

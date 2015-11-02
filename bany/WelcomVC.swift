@@ -14,6 +14,7 @@ class WelcomVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBarHidden = true
         // Do any additional setup after loading the view.
     }
 
@@ -23,6 +24,16 @@ class WelcomVC: UIViewController {
     }
     
 
+    @IBAction func logOutButtonTapped(sender: AnyObject) {
+        
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("objectId")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+        PFUser.logOutInBackground()
+        
+        performSegueWithIdentifier("welcomeToLogOut", sender: self)
+        
+    }
     /*
     // MARK: - Navigation
 
@@ -33,6 +44,7 @@ class WelcomVC: UIViewController {
     } */
 @IBAction func welcomeUnwindToSegue (segue : UIStoryboardSegue) {
 
+    
 
 }
 }

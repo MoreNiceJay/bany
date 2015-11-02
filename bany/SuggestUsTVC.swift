@@ -18,7 +18,7 @@ class SuggestUsTVC: UITableViewController, MFMailComposeViewControllerDelegate {
         
         if (MFMailComposeViewController.canSendMail()) {
             
-            let subjectText = "From Albany student"
+            let subjectText = "To Bany"
             let messageBody = body.text
             
             let toRecipients = ["morenicejay@gmail.com"]

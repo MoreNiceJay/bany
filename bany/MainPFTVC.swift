@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 
-class parsePractice : PFQueryTableViewController {
+class MainPFTVC : PFQueryTableViewController {
     
     override init(style: UITableViewStyle, className: String?) {
         super.init(style: style, className: className)
@@ -43,9 +43,9 @@ class parsePractice : PFQueryTableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
-        let cellIdentifier = "Cell1"
+        let cellIdentifier = "mainCell"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? parseCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? MainPFTVCE
         
         // Show sold label or not
         cell!.soldLabel.hidden = !(object!["sold"] as! Bool)
