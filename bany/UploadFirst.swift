@@ -80,10 +80,10 @@ class  UploadFirst: UITableViewController {
             category = 3
             bookSwitch.on = false
             iclickerSwitch.on = false
-            titleLabel.text = "Brand/Product"
+            titleLabel.text = "Product"
             classLabel.text = "Model#/Sort"
             titleTextField.text = ""
-            titleTextField.placeholder  = "ex) Apple MacPro"
+            titleTextField.placeholder  = "Brand & Product ex) Apple Laptop"
             tagTextField.placeholder = "ex) A1347 / Laptop"
         }
         
