@@ -13,7 +13,8 @@ import FBSDKCoreKit
 import ParseFacebookUtilsV4
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    var reachability : Reachability?
+    var reachable :Bool = true
     var window: UIWindow?
 
 
@@ -33,6 +34,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
+        //리치어빌리티
+        do {
+            let reachability = try Reachability.reachabilityForInternetConnection()
+            self.reachability = reachability
+        } catch ReachabilityError.FailedToCreateWithAddress(let address) {
+        }
+        catch {}
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: nil)
+        
+        do {
+            try reachability?.startNotifier()
+            
+        }catch {}
+
+        
         
         //자동로그인
         let objectIdCheck : String? = NSUserDefaults.standardUserDefaults().stringForKey("objectId")
@@ -41,11 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
          if(objectIdCheck != nil)
         {
-            
-            
-            
-            
-            
             
             let mainStroyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             
@@ -66,6 +78,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
     }
+    
+    func reachabilityChanged(notification : NSNotification) {
+        
+        let reachability = notification.object as! Reachability
+        
+        if reachability.isReachable() {
+            
+            
+        }else {
+            
+        }
+        
+        
+    }
+
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         

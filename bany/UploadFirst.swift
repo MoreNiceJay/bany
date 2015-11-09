@@ -10,6 +10,10 @@ import UIKit
 
 class  UploadFirst: UITableViewController {
 
+    var reachability : Reachability?
+    var networkConnection :  Bool = false
+    
+    
     
     @IBOutlet weak var actInd: UIActivityIndicatorView!
     @IBOutlet weak var titleTextField: UITextField!
@@ -25,12 +29,74 @@ class  UploadFirst: UITableViewController {
    
     @IBOutlet weak var classLabel: UILabel!
     
-   
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        actInd.hidden = true
+        
+        
+        stopActivityIndicator()
+        
+        do{ let reachability = try Reachability.reachabilityForInternetConnection()
+            self.reachability = reachability
+        } catch ReachabilityError.FailedToCreateWithAddress(let address) {
+            
+        }
+        catch {}
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "connectionChanged", name: ReachabilityChangedNotification, object: nil)
+        
+        // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
+        if reachability?.isReachable() == true
+        {
+            networkConnection = true
+            buttonEnabled(nextButton)
+            
+        }else{
+            let myAlert = UIAlertController(title: "No network", message:
+                "Your network is not working", preferredStyle:
+                UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "Ok", style:
+                UIAlertActionStyle.Default, handler: nil)
+            myAlert.addAction(okAction)
+            self.presentViewController(myAlert, animated: true, completion:
+                nil)
+            
+            networkConnection = false
+            buttonDisabeld(nextButton)
+            
+        }
+        
+    }
+    
+    func connectionChanged() {
+        
+        if reachability!.isReachable() {
+            networkConnection = true
+            buttonEnabled(nextButton)
+            
+        }else {
+            let myAlert = UIAlertController(title: "No network", message: "Your network is not working", preferredStyle:
+                UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+            myAlert.addAction(okAction)
+            
+            self.presentViewController(myAlert, animated: true, completion: nil)
+            
+            networkConnection = false
+            buttonDisabeld(nextButton)
+
+        }
+    }
+    
+    
+
+    
+   
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -164,15 +230,11 @@ class  UploadFirst: UITableViewController {
                 self.performSegueWithIdentifier("uploadFirstToUploadSecond", sender: self)
            
             }
-            
-                
-                
-        }
- 
+             
             }
         }
     }
-
+    }
  
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         

@@ -11,7 +11,7 @@ import Parse
 
 class UploadFourth: UITableViewController,UITextFieldDelegate{
 
-    
+    var reachability : Reachability?
     
     @IBOutlet weak var purchasedDateTextField: UITextField!
     
@@ -40,11 +40,37 @@ class UploadFourth: UITableViewController,UITextFieldDelegate{
         
         
         self.stopActivityIndicator()
+        do{ let reachability = try Reachability.reachabilityForInternetConnection()
+            self.reachability = reachability
+        } catch ReachabilityError.FailedToCreateWithAddress(let address) {
+            
+        }
+        catch {}
         
-        
-        
-        // Do any additional setup after loading the view.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "connectionChanged", name: ReachabilityChangedNotification, object: nil)
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
+        if reachability?.isReachable() == true
+        {
+            
+        }else{
+            // Spelling error
+            let myAlert = UIAlertController(title: "No network", message:
+                "Your network is not working", preferredStyle:
+                UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "Ok", style:
+                UIAlertActionStyle.Default, handler: nil)
+            myAlert.addAction(okAction)
+            self.presentViewController(myAlert, animated: true, completion:
+                nil)
+            
+        }
+        
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

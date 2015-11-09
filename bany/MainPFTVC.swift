@@ -12,6 +12,8 @@ import ParseUI
 
 class MainPFTVC : PFQueryTableViewController {
     
+     var reachability : Reachability?
+    
     override init(style: UITableViewStyle, className: String?) {
         super.init(style: style, className: className)
         parseClassName = "Posts"
@@ -42,10 +44,47 @@ class MainPFTVC : PFQueryTableViewController {
         return query
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+        do{ let reachability = try Reachability.reachabilityForInternetConnection()
+            self.reachability = reachability
+        } catch ReachabilityError.FailedToCreateWithAddress(let address) {
+            
+        }
+        catch {}
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "connectionChanged", name: ReachabilityChangedNotification, object: nil)
+        
+     
+    }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
+        if reachability?.isReachable() == true
+        {
+            
+        }else{
+            // Spelling error
+            let myAlert = UIAlertController(title: "No network", message:
+                "Your network is not working", preferredStyle:
+                UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "Ok", style:
+                UIAlertActionStyle.Default, handler: nil)
+            myAlert.addAction(okAction)
+            self.presentViewController(myAlert, animated: true, completion:
+                nil)
+            
+        }
+    }
+
+
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         let cellIdentifier = "mainCell"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? MainPFTVCE
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? MainPFTVCE
         
         // Show sold label or not
         cell!.soldLabel.hidden = !(object!["sold"] as! Bool)
@@ -102,6 +141,22 @@ class MainPFTVC : PFQueryTableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+    
+    func connectionChanged() {
+        
+        if reachability!.isReachable() {
+            
+        }else {
+            let myAlert = UIAlertController(title: "No network", message: "Your network is not working", preferredStyle:
+                UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+            myAlert.addAction(okAction)
+            
+            self.presentViewController(myAlert, animated: true, completion: nil)
+        }
+    }
+    
+
     
   
 }
